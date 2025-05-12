@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base colors */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 20%;
+
+  /* Primary color - green, adjusted to match design reference */
+  --primary: 151 44% 30%;
+  --primary-light: 151 34% 40%;
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary color - lighter green */
+  --secondary: 151 34% 44%;
+  --secondary-foreground: 0 0% 100%;
+
+  /* Accent color - yellow */
+  --accent: 44 100% 63%;
+  --accent-foreground: 0 0% 20%;
+
+  /* Neutral colors */
+  --neutral: 0 0% 98%;
+  --neutral-dark: 0 0% 90%;
+  --neutral-foreground: 0 0% 20%;
+
+  /* Text colors */
+  --text: 0 0% 20%;
+  --text-light: 0 0% 40%;
+  
+  /* Promotion color - red */
+  --promotion: 353 83% 56%;
+  --promotion-foreground: 0 0% 100%;
+
+  /* Card */
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 20%;
+
+  /* Popover */
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 20%;
+
+  /* Muted */
+  --muted: 0 0% 95%;
+  --muted-foreground: 0 0% 50%;
+
+  /* Destructive */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+
+  /* Border */
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 151 44% 30%;
+
+  /* Chart colors */
+  --chart-1: 151 44% 30%;
+  --chart-2: 44 100% 63%;
+  --chart-3: 353 83% 56%;
+  --chart-4: 210 100% 50%;
+  --chart-5: 280 100% 50%;
+
+  /* Sidebar */
+  --sidebar-background: 151 44% 30%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 0 0% 100%;
+  --sidebar-primary-foreground: 151 44% 30%;
+  --sidebar-accent: 44 100% 63%;
+  --sidebar-accent-foreground: 0 0% 20%;
+  --sidebar-border: 151 34% 40%;
+  --sidebar-ring: 0 0% 100%;
+
+  /* Border radius */
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 0 0% 10%;
+  --foreground: 0 0% 98%;
+
+  --primary: 151 44% 30%;
+  --primary-light: 151 34% 40%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 151 34% 44%;
+  --secondary-foreground: 0 0% 100%;
+
+  --accent: 44 100% 63%;
+  --accent-foreground: 0 0% 20%;
+
+  --neutral: 0 0% 15%;
+  --neutral-dark: 0 0% 20%;
+  --neutral-foreground: 0 0% 98%;
+
+  --text: 0 0% 98%;
+  --text-light: 0 0% 80%;
+
+  --promotion: 353 83% 56%;
+  --promotion-foreground: 0 0% 100%;
+
+  --card: 0 0% 15%;
+  --card-foreground: 0 0% 98%;
+
+  --popover: 0 0% 15%;
+  --popover-foreground: 0 0% 98%;
+
+  --muted: 0 0% 25%;
+  --muted-foreground: 0 0% 70%;
+
+  --destructive: 0 70% 50%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 0 0% 25%;
+  --input: 0 0% 25%;
+  --ring: 151 44% 50%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+}
+
+@layer utilities {
+  .font-body {
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .font-heading {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .text-primary {
+    color: hsl(var(--primary));
+  }
+
+  .text-accent {
+    color: hsl(var(--accent));
+  }
+
+  .text-promotion {
+    color: hsl(var(--promotion));
+  }
+
+  .bg-primary {
+    background-color: hsl(var(--primary));
+  }
+
+  .bg-primary-light {
+    background-color: hsl(var(--primary-light));
+  }
+
+  .bg-secondary {
+    background-color: hsl(var(--secondary));
+  }
+
+  .bg-accent {
+    background-color: hsl(var(--accent));
+  }
+
+  .bg-neutral {
+    background-color: hsl(var(--neutral));
+  }
+
+  .bg-neutral-dark {
+    background-color: hsl(var(--neutral-dark));
+  }
+
+  .bg-promotion {
+    background-color: hsl(var(--promotion));
+  }
+}
