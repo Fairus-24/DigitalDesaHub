@@ -3,7 +3,7 @@
 
 // Village landscape images
 export const VILLAGE_IMAGES = {
-  HERO: "https://pixabay.com/get/g500bc11fae43c0b7d5631cc31aeeb6fbe83259095bc12bcf590b295e423d2ee06554c6917211bea6343641c5099c08818f4136264f83e9ae89c9b03191b5ddcf_1280.jpg",
+  HERO: "https://cdn.pixabay.com/photo/2016/03/27/19/49/bamboo-1283976_1280.jpg",
   TRADITIONAL_VILLAGE: "https://pixabay.com/get/gff085353d4c29b85c5f3efb28dc9a7b1c7326ced915e4cfd02824382fe1ca2550ea8c70b2ca8f75479d4c1a574d02f771dc4bae650aee7d5cf4ae2e24441e6ca_1280.jpg",
   FOREST: "https://images.unsplash.com/photo-1512418490979-92798cec1380?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300",
   CULTURE: "https://pixabay.com/get/g28f2cb4d0b6e391699ca4f7f973a4ede58ea1d86034c3b15cc34be0db8f18f8a0df4a352f57a69822dcff5c4c809e27cf1d8b6324ad7f8754497c994eb2a4415_1280.jpg"

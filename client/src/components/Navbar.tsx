@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'wouter';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, X, Leaf } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "wouter";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, X, Leaf } from "lucide-react";
 
 const navLinks = [
-  { name: 'Beranda', href: '#beranda' },
-  { name: 'Profil Desa', href: '#profil' },
-  { name: 'UMKM', href: '#umkm' },
-  { name: 'Peta Lokasi', href: '#peta' },
-  { name: 'Kontak', href: '#kontak' }
+  { name: "Beranda", href: "#beranda" },
+  { name: "Profil Desa", href: "#profil" },
+  { name: "UMKM", href: "#umkm" },
+  { name: "Peta Lokasi", href: "#peta" },
+  { name: "Kontak", href: "#kontak" },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -24,8 +24,8 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -33,22 +33,26 @@ export default function Navbar() {
     if (element) {
       window.scrollTo({
         top: element.getBoundingClientRect().top + window.scrollY - 80,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
 
   return (
-    <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white/95'}`}>
+    <nav
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-white/95"}`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
               <Leaf className="h-6 w-6 text-primary mr-2" />
-              <span className="font-heading font-bold text-xl text-primary">Desa Sejahtera</span>
+              <span className="font-heading font-bold text-xl text-primary">
+                Kelurahan Sukodono
+              </span>
             </Link>
           </div>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-6">
             {navLinks.map((link) => (
@@ -61,7 +65,7 @@ export default function Navbar() {
               </button>
             ))}
           </div>
-          
+
           {/* Mobile Navigation */}
           <div className="flex md:hidden items-center">
             <Sheet>
@@ -75,7 +79,9 @@ export default function Navbar() {
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center">
                       <Leaf className="h-5 w-5 text-primary mr-2" />
-                      <span className="font-heading font-semibold text-lg text-primary">Desa Sejahtera</span>
+                      <span className="font-heading font-semibold text-lg text-primary">
+                        Kelurahan Sukodono
+                      </span>
                     </div>
                     <SheetTrigger asChild>
                       <button className="text-gray-500">

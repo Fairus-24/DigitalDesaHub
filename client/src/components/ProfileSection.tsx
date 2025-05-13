@@ -11,7 +11,7 @@ export default function ProfileSection({ villageProfile }: ProfileSectionProps) 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="font-heading font-bold text-3xl text-primary">
-            {villageProfile ? `Profil ${villageProfile.name}` : 'Profil Desa Sejahtera'}
+            {villageProfile ? `Profil ${villageProfile.name}` : 'Profil Kelurahan Sukodono'}
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto mt-4 mb-6"></div>
           <p className="text-text-light max-w-3xl mx-auto">
