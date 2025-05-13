@@ -3,11 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* Base colors */
-  --background: 0 0% 100%;
-  --foreground: 0 0% 20%;
-
-  /* Primary color - green, adjusted to match design reference */
+  /* Primary color - green */
   --primary: 151 44% 30%;
   --primary-light: 151 34% 40%;
   --primary-foreground: 0 0% 100%;
@@ -20,11 +16,6 @@
   --accent: 44 100% 63%;
   --accent-foreground: 0 0% 20%;
 
-  /* Neutral colors */
-  --neutral: 0 0% 98%;
-  --neutral-dark: 0 0% 90%;
-  --neutral-foreground: 0 0% 20%;
-
   /* Text colors */
   --text: 0 0% 20%;
   --text-light: 0 0% 40%;
@@ -33,33 +24,10 @@
   --promotion: 353 83% 56%;
   --promotion-foreground: 0 0% 100%;
 
-  /* Card */
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 20%;
-
-  /* Popover */
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 20%;
-
-  /* Muted */
-  --muted: 0 0% 95%;
-  --muted-foreground: 0 0% 50%;
-
-  /* Destructive */
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
-
   /* Border */
   --border: 0 0% 90%;
   --input: 0 0% 90%;
   --ring: 151 44% 30%;
-
-  /* Chart colors */
-  --chart-1: 151 44% 30%;
-  --chart-2: 44 100% 63%;
-  --chart-3: 353 83% 56%;
-  --chart-4: 210 100% 50%;
-  --chart-5: 280 100% 50%;
 
   /* Sidebar */
   --sidebar-background: 151 44% 30%;
