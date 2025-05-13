@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, X, Leaf } from "lucide-react";
+import { ThemeToggle } from "./theme-toggle";
 
 const navLinks = [
   { name: "Beranda", href: "#beranda" },
@@ -64,6 +65,9 @@ export default function Navbar() {
                 {link.name}
               </button>
             ))}
+            <div className="flex items-center gap-4">
+        <ThemeToggle />
+            </div>
           </div>
 
           {/* Mobile Navigation */}
