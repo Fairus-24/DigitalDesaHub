@@ -18,7 +18,7 @@ function Router() {
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="system">
+    <ThemeProvider defaultTheme="system" storageKey="app-theme">
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />
