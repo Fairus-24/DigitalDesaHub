@@ -74,8 +74,8 @@ export default function Navbar() {
                   <Menu className="h-6 w-6" />
                 </button>
               </SheetTrigger>
-              <SheetContent side="right" className="p-0">
-                <div className="py-6 px-4">
+              <SheetContent side="right" className="p-0 bg-white">
+                <div className="py-6 px-4 bg-white">
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center">
                       <Leaf className="h-5 w-5 text-primary mr-2" />
