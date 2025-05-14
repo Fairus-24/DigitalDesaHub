@@ -2,7 +2,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Umkm } from '@/lib/types';
-import { ArrowLeft, MapPin, Star, Calendar } from 'lucide-react';
+import { ArrowLeft, MapPin, Star } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { format } from 'date-fns';
 
@@ -65,13 +65,6 @@ export default function UMKMDetail() {
           </div>
 
           <div className="p-8">
-            <div className="flex items-center gap-4 text-sm text-text-light mb-4">
-              <div className="flex items-center">
-                <Calendar className="h-4 w-4 mr-1" />
-                {format(new Date(umkm.publishDate), 'dd MMMM yyyy')}
-              </div>
-            </div>
-
             <h1 className="font-heading font-bold text-3xl mb-4 text-primary">
               {umkm.name}
             </h1>
