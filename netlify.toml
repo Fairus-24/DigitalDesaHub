@@ -1,7 +1,8 @@
 [build]
-  command = "cd client && npm install && npm run build"
+  command = "cd client && npm ci && npm run build"
   publish = "client/dist"
   functions = "server/functions"
+  cache = false
 
 [context.production.environment]
   NODE_ENV = "production"
