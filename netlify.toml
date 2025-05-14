@@ -1,0 +1,8 @@
+[build]
+  # Kalau root Vite, tinggal pakai:
+  command   = "npm ci && npm run build"
+  publish   = "dist"               # atau sesuai outDir di vite.config.ts
+  functions = "server/functions"
+
+[functions]
+  # (optional) sesuaikan memory/timeout dst
