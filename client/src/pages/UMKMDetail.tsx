@@ -88,16 +88,18 @@ export default function UMKMDetail() {
               <p className="text-text-light">{umkm.address}</p>
             </div>
 
-            <div className="mb-8">
-              <h2 className="text-xl font-medium mb-4">Galeri Produk</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {umkm.productImages.map((image, index) => (
-                  <div key={index} className="aspect-square rounded-lg overflow-hidden">
-                    <img src={image} alt={`Product ${index + 1}`} className="w-full h-full object-cover" />
-                  </div>
-                ))}
+            {umkm.productImages && umkm.productImages.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-xl font-medium mb-4">Galeri Produk</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {umkm.productImages.map((image, index) => (
+                    <div key={index} className="aspect-square rounded-lg overflow-hidden">
+                      <img src={image} alt={`Product ${index + 1}`} className="w-full h-full object-cover" />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             <div>
               <h2 className="text-xl font-medium mb-4">Ulasan</h2>
