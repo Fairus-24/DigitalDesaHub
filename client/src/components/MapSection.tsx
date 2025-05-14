@@ -55,13 +55,12 @@ export default function MapSection({ selectedUmkmId }: MapSectionProps) {
   const handleLocationClick = (markerId: number) => {
     setSelectedMarkerId(markerId);
 
-    const marker = mapMarkers.find((m) => m.id === markerId);
-    if (marker) {
-      // Center the map on the selected marker
+    const selectedUmkm = umkms.find((u) => u.id === markerId);
+    if (selectedUmkm && selectedUmkm.maps) {
+      // Update map with the UMKM's map URL
       const mapElement = mapRef.current;
       if (mapElement) {
-        const {maps} = marker.maps1;
-        mapElement.src = `${maps}`;
+        mapElement.src = selectedUmkm.maps;
       }
     }
   };
