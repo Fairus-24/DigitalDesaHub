@@ -1,0 +1,13 @@
+[build]
+  # Perintah untuk install & build frontend
+  command   = "npm install && cd client && npm ci && npm run build"
+  # Di mana hasil build frontend akan dipublish
+  publish   = "client/dist"
+  # Folder berisi Netlify Functions
+  functions = "server/functions"
+
+[functions]
+  timeout = 15  # detik, sesuaikan jika perlu
+
+[context.production.environment]
+  NODE_ENV = "production"
