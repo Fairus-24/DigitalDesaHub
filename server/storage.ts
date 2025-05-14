@@ -183,16 +183,17 @@ export class MemStorage implements IStorage {
     // Create UMKM data
     const umkmsData: InsertUmkm[] = [
       {
-        name: "Kerajinan Bambu Indah",
+        name: "Yayuk Collection",
         description:
-          "Memproduksi berbagai kerajinan dari bambu berkualitas tinggi, termasuk keranjang, vas, dan furnitur mini.",
+          "Memproduksi berbagai kerajinan tangan berupa gelang manik (Crystal kaca) yang elegan dan menawan.",
         imageUrl:
-          "https://images.unsplash.com/photo-1604849329107-1a24669fa440",
-        location: "Dusun Harapan",
+          "https://down-id.img.susercontent.com/file/id-11134207-7r98z-lnh14d40x6o1c6",
+        location: "Sindujoyo 21/51",
         address: "Jl. Desa No. 12, Dusun Harapan",
         categoryId: 1, // Kerajinan
-        promotionText: "Diskon 20%",
-        coordinates: "-6.399709,108.282611",
+        promotionText: "",
+        coordinates: "-7.152391,112.652379",
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
       },
       {
         name: "Makanan Tradisional Bu Siti",

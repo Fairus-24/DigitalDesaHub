@@ -107,7 +107,7 @@ export default function ProfileSection({ villageProfile }: ProfileSectionProps) 
                   <div className="text-primary text-2xl font-bold">
                     {villageProfile?.hamletCount || '12'}
                   </div>
-                  <div className="text-text-light text-sm">Dusun</div>
+                  <div className="text-text-light text-sm">RT</div>
                 </div>
               </div>
             </div>

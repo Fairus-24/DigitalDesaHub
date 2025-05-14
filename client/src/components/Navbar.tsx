@@ -83,11 +83,6 @@ export default function Navbar() {
                         Kelurahan Sukodono
                       </span>
                     </div>
-                    <SheetTrigger asChild>
-                      <button className="text-gray-500">
-                        <X className="h-5 w-5" />
-                      </button>
-                    </SheetTrigger>
                   </div>
                   <div className="flex flex-col space-y-1">
                     {navLinks.map((link) => (

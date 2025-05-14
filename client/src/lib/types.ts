@@ -14,6 +14,7 @@ export interface Umkm {
   categoryId: number;
   promotionText?: string;
   coordinates: string;
+  maps: string;
 }
 
 export interface VillageProfile {
@@ -28,10 +29,7 @@ export interface VillageProfile {
   hamletCount: number;
 }
 
-export interface Coordinates {
-  lat: number;
-  lng: number;
-}
+
 
 export interface MapMarker {
   id: number;

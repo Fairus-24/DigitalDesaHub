@@ -68,7 +68,7 @@ export default function UMKMSection({ onViewMapClick }: UMKMSectionProps) {
     <section id="umkm" className="py-16 bg-neutral">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="font-heading font-bold text-3xl text-primary">UMKM Desa Sejahtera</h2>
+          <h2 className="font-heading font-bold text-3xl text-primary">UMKM Kelurahan Sukodono</h2>
           <div className="w-20 h-1 bg-accent mx-auto mt-4 mb-6"></div>
           <p className="text-text-light max-w-3xl mx-auto">
             Temukan produk-produk berkualitas dari pelaku usaha mikro, kecil, dan menengah yang ada di desa kami.
