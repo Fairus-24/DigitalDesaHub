@@ -36,17 +36,16 @@ export default function MapSection({ selectedUmkmId }: MapSectionProps) {
 
   useEffect(() => {
     if (selectedUmkmId !== null) {
-      setSelectedMarkerId(selectedUmkmId);
+      setSelectedMarkerId(markerId);
 
-      const marker = mapMarkers.find((m) => m.id === selectedUmkmId);
-      if (marker) {
+      const selectedUmkm = umkms.find((u) => u.id === markerId);
+      if (selectedUmkm && selectedUmkm.maps) {
         // Center the map on the selected marker
         // In a real implementation, this would use the Google Maps JavaScript API
         // Since we're using an iframe, we'll construct a URL with the coordinates
         const mapElement = mapRef.current;
         if (mapElement) {
-          const { lat, lng } = marker.position;
-          mapElement.src = ``;
+          mapElement.src = selectedUmkm.maps;
         }
       }
     }
