@@ -2,7 +2,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Umkm } from '@/lib/types';
-import { ArrowLeft, MapPin, Phone, Clock, Tag } from 'lucide-react';
+import { ArrowLeft, MapPin } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function UMKMDetail() {
@@ -76,15 +76,6 @@ export default function UMKMDetail() {
                   <h3 className="font-medium">Lokasi</h3>
                 </div>
                 <p className="text-text-light">{umkm.address}</p>
-              </div>
-
-              <div className="bg-neutral rounded-lg p-6">
-                <div className="flex items-center mb-4">
-                  <Clock className="h-5 w-5 text-primary mr-2" />
-                  <h3 className="font-medium">Jam Operasional</h3>
-                </div>
-                <p className="text-text-light">08:00 - 17:00 WIB</p>
-                <p className="text-text-light">Senin - Sabtu</p>
               </div>
             </div>
           </div>
