@@ -43,7 +43,15 @@ export default function MapSection({ selectedUmkmId }: MapSectionProps) {
       if (selectedUmkm && selectedUmkm.maps1) {
         const mapElement = mapRef.current;
         if (mapElement) {
-          mapElement.src = selectedUmkm.maps1;
+          mapElement.style.transition = 'transform 0.5s ease-in-out';
+          mapElement.style.transform = 'scale(0.8)';
+          
+          setTimeout(() => {
+            mapElement.src = selectedUmkm.maps1;
+            setTimeout(() => {
+              mapElement.style.transform = 'scale(1)';
+            }, 50);
+          }, 300);
         }
       }
     }
@@ -57,7 +65,15 @@ export default function MapSection({ selectedUmkmId }: MapSectionProps) {
       // Update map with the UMKM's map URL
       const mapElement = mapRef.current;
       if (mapElement) {
-        mapElement.src = selectedUmkm.maps2;
+        mapElement.style.transition = 'transform 0.5s ease-in-out';
+        mapElement.style.transform = 'scale(0.8)';
+        
+        setTimeout(() => {
+          mapElement.src = selectedUmkm.maps2;
+          setTimeout(() => {
+            mapElement.style.transform = 'scale(1)';
+          }, 50);
+        }, 300);
       }
     }
   };
