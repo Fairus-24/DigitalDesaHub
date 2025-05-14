@@ -73,10 +73,10 @@ export default function UMKMDetail() {
               <h2 className="text-xl font-medium mb-2">Deskripsi</h2>
               <p className="text-text-light">{umkm.description}</p>
               
-              <h2 className="text-xl font-medium mt-6 mb-2">Sejarah</h2>
+              <h2 className="text-xl font-medium mt-6 mb-2"></h2>
               <p className="text-text-light">{umkm.history}</p>
               
-              <h2 className="text-xl font-medium mt-6 mb-2">Kondisi Sekarang</h2>
+              <h2 className="text-xl font-medium mt-6 mb-2"></h2>
               <p className="text-text-light">{umkm.currentCondition}</p>
             </div>
 

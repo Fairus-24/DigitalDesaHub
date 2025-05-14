@@ -197,6 +197,26 @@ export class MemStorage implements IStorage {
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
         maps2:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+        history: "tidak ada sejarah",
+        currentCondition: "buka",
+        reviews: [
+            {
+              author: "John Doe",
+              rating: 5,
+              comment: "Produk yang sangat bagus dan berkualitas!",
+              date: "2023-01-15T00:00:00Z"
+            },
+            {
+              author: "Jane Smith",
+              rating: 4,
+              comment: "Cukup baik, saya suka desainnya.",
+              date: "2023-01-16T00:00:00Z"
+            }
+          ],
+          productImages: [
+            "https://example.com/image1.jpg",
+            "https://example.com/image2.jpg"
+          ]
       },
       {
         name: "Yaris Cookies",
