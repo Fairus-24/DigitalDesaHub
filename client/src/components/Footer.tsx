@@ -1,15 +1,15 @@
-import { 
-  Facebook, 
-  Instagram, 
-  Twitter, 
-  Youtube, 
+import {
+  Facebook,
+  Instagram,
+  Twitter,
+  Youtube,
   Leaf,
   MapPin,
   Phone,
   Mail,
-  Clock
-} from 'lucide-react';
-import { Link } from 'wouter';
+  Clock,
+} from "lucide-react";
+import { Link } from "wouter";
 
 export default function Footer() {
   const scrollToSection = (sectionId: string) => {
@@ -17,7 +17,7 @@ export default function Footer() {
     if (element) {
       window.scrollTo({
         top: element.getBoundingClientRect().top + window.scrollY - 80,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
@@ -29,65 +29,80 @@ export default function Footer() {
           <div>
             <div className="flex items-center mb-4">
               <Leaf className="h-6 w-6 text-accent mr-2" />
-              <span className="font-heading font-bold text-xl">Desa Sejahtera</span>
+              <span className="font-heading font-bold text-xl">
+                Kelurahan Sukodono
+              </span>
             </div>
             <p className="mb-4">
-              Website resmi Desa Sejahtera yang menyediakan informasi desa dan mendukung pemberdayaan UMKM lokal.
+              Website resmi Desa Sejahtera yang menyediakan informasi desa dan
+              mendukung pemberdayaan UMKM lokal.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-accent transition-colors">
+              <a
+                href="#"
+                className="text-white hover:text-accent transition-colors"
+              >
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-white hover:text-accent transition-colors">
+              <a
+                href="https://www.instagram.com/kelurahan.sukodono2022"
+                className="text-white hover:text-accent transition-colors"
+              >
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-white hover:text-accent transition-colors">
+              <a
+                href="#"
+                className="text-white hover:text-accent transition-colors"
+              >
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="text-white hover:text-accent transition-colors">
+              <a
+                href="#"
+                className="text-white hover:text-accent transition-colors"
+              >
                 <Youtube className="h-5 w-5" />
               </a>
             </div>
           </div>
-          
+
           <div>
             <h4 className="font-heading font-bold text-lg mb-4">Halaman</h4>
             <ul className="space-y-2">
               <li>
-                <button 
-                  onClick={() => scrollToSection('#beranda')}
+                <button
+                  onClick={() => scrollToSection("#beranda")}
                   className="text-white hover:text-accent transition-colors"
                 >
                   Beranda
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToSection('#profil')}
+                <button
+                  onClick={() => scrollToSection("#profil")}
                   className="text-white hover:text-accent transition-colors"
                 >
                   Profil Desa
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToSection('#umkm')}
+                <button
+                  onClick={() => scrollToSection("#umkm")}
                   className="text-white hover:text-accent transition-colors"
                 >
                   UMKM
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToSection('#peta')}
+                <button
+                  onClick={() => scrollToSection("#peta")}
                   className="text-white hover:text-accent transition-colors"
                 >
                   Peta Lokasi
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToSection('#kontak')}
+                <button
+                  onClick={() => scrollToSection("#kontak")}
                   className="text-white hover:text-accent transition-colors"
                 >
                   Kontak
@@ -95,23 +110,26 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          
+
           <div>
-            <h4 className="font-heading font-bold text-lg mb-4">Hubungi Kami</h4>
+            <h4 className="font-heading font-bold text-lg mb-4">
+              Hubungi Kami
+            </h4>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mt-1 mr-3 text-accent flex-shrink-0" />
                 <span>
-                  Jl. Desa Sejahtera No. 1, Kecamatan Makmur, Kabupaten Indramayu, Jawa Barat
+                  Jl. Sindujoyo Gg. XIII No.9, Kebungson, Kemuteran, Kec.
+                  Gresik, Kabupaten Gresik, Jawa Timur 61116
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-accent flex-shrink-0" />
-                <span>+62 234 5678 910</span>
+                <span>031 3970961</span>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-accent flex-shrink-0" />
-                <span>info@desasejahtera.desa.id</span>
+                <span>info@kelurahansukodono.desa.id</span>
               </li>
               <li className="flex items-center">
                 <Clock className="h-5 w-5 mr-3 text-accent flex-shrink-0" />
@@ -120,9 +138,12 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        
+
         <div className="border-t border-white border-opacity-20 pt-6 text-center text-sm">
-          <p>&copy; {new Date().getFullYear()} Desa Sejahtera. Hak Cipta Dilindungi.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Desa Sejahtera. Hak Cipta
+            Dilindungi.
+          </p>
         </div>
       </div>
     </footer>

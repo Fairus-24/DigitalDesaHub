@@ -3,15 +3,15 @@
 
 // Village landscape images
 export const VILLAGE_IMAGES = {
-  HERO: "https://pixabay.com/get/g500bc11fae43c0b7d5631cc31aeeb6fbe83259095bc12bcf590b295e423d2ee06554c6917211bea6343641c5099c08818f4136264f83e9ae89c9b03191b5ddcf_1280.jpg",
-  TRADITIONAL_VILLAGE: "https://pixabay.com/get/gff085353d4c29b85c5f3efb28dc9a7b1c7326ced915e4cfd02824382fe1ca2550ea8c70b2ca8f75479d4c1a574d02f771dc4bae650aee7d5cf4ae2e24441e6ca_1280.jpg",
-  FOREST: "https://images.unsplash.com/photo-1512418490979-92798cec1380?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300",
-  CULTURE: "https://pixabay.com/get/g28f2cb4d0b6e391699ca4f7f973a4ede58ea1d86034c3b15cc34be0db8f18f8a0df4a352f57a69822dcff5c4c809e27cf1d8b6324ad7f8754497c994eb2a4415_1280.jpg"
+  HERO: "https://cdn.pixabay.com/photo/2016/03/27/19/49/bamboo-1283976_1280.jpg",
+  TRADITIONAL_VILLAGE: "https://cdn.pixabay.com/photo/2022/01/30/12/07/city-6980582_1280.jpg",
+  FOREST: "https://cdn.pixabay.com/photo/2017/04/22/16/00/water-resources-2251633_1280.jpg",
+  CULTURE: "https://cdn.pixabay.com/photo/2023/03/14/11/53/gamelan-7852175_1280.jpg"
 };
 
 // Small business product images
 export const BUSINESS_PRODUCT_IMAGES = {
-  CRAFT_BASKETS: "https://images.unsplash.com/photo-1604849329107-1a24669fa440?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400",
+  CRAFT_BASKETS: "https://replit.com/@kknnarotamasuko/DigitalDesaHub#client/src/components/Assets/Yayuk%20Collection.png",
   FOOD: "https://images.unsplash.com/photo-1619526881542-c81baff85fa4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400",
   ORGANIC_FARMING: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400",
   HONEY: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400"
