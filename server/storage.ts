@@ -172,7 +172,7 @@ export class MemStorage implements IStorage {
     const categoriesData: InsertCategory[] = [
       { name: "Kerajinan", slug: "kerajinan" },
       { name: "Makanan", slug: "makanan" },
-      { name: "Pertanian", slug: "pertanian" },
+      { name: "Kedai", slug: "kedai" },
       { name: "Jasa", slug: "jasa" },
     ];
 
@@ -189,35 +189,38 @@ export class MemStorage implements IStorage {
         imageUrl:
           "https://down-id.img.susercontent.com/file/id-11134207-7r98z-lnh14d40x6o1c6",
         location: "Sindujoyo 21/51",
-        address: "Jl. Desa No. 12, Dusun Harapan",
+        address: "Jl. Sindujoyo Gg. XXI No.51",
         categoryId: 1, // Kerajinan
         promotionText: "",
         coordinates: "-7.152391,112.652379",
-        maps1: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
-        maps2: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+        maps1:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+        maps2:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
       },
       {
-        name: "Makanan Tradisional Bu Siti",
+        name: "Yaris Cookies",
         description:
-          "Menyajikan berbagai makanan dan kue tradisional yang dibuat dari bahan-bahan lokal berkualitas.",
+          "Menyajikan berbagai kue kering yang dibuat dari bahan-bahan lokal berkualitas.",
         imageUrl:
-          "https://images.unsplash.com/photo-1619526881542-c81baff85fa4",
-        location: "Dusun Makmur",
-        address: "Jl. Raya Desa No. 45, Dusun Makmur",
+          "https://2112snackdelight.com/wp-content/uploads/2020/11/products-image-nutella-cookies-04.jpg",
+        location: "Sindujoyo 13/08",
+        address: "Jl. Sindujoyo Gg. XIII No.08",
         categoryId: 2, // Makanan
-        promotionText: "Beli 1 Gratis 1",
+        promotionText: "",
         coordinates: "-6.398709,108.284611",
-        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+        maps1: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.6511758383209!3d-7.151240098213269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010029cc181d%3A0xfc35848efc1e52e7!2sSedia%20Kue%20Kering%20(Yaris%20Cookies)!5e0!3m2!1sid!2sid!4v1747185507203!5m2!1sid!2sid",
+        maps2: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.6511758383209!3d-7.151240098213269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010029cc181d%3A0xfc35848efc1e52e7!2sSedia%20Kue%20Kering%20(Yaris%20Cookies)!5e0!3m2!1sid!2sid!4v1747185507203!5m2!1sid!2sid",
       },
       {
-        name: "Tani Organik Sejahtera",
+        name: "Warung Kopi Mama Atul",
         description:
-          "Menghasilkan sayuran dan buah-buahan organik segar langsung dari kebun tanpa pestisida kimia.",
+          "Menyajikan berbagai minuman kemasan dan kopi khas dari gresik yang kental dan nikmat.",
         imageUrl:
-          "https://images.unsplash.com/photo-1488459716781-31db52582fe9",
-        location: "Dusun Subur",
+          "https://manual.co.id/wp-content/uploads/2021/11/manual_photo_essay_warkop_web-18-980x719.jpg",
+        location: "KH Hasyim Asyari",
         address: "Jl. Kebun No. 8, Dusun Subur",
-        categoryId: 3, // Pertanian
+        categoryId: 3, // Kedai
         promotionText: "Paket Hemat",
         coordinates: "-6.397709,108.283611",
         maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
