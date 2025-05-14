@@ -1,6 +1,6 @@
 [build]
-  command   = "npm install && cd client && npm ci && npm run build"
-  publish   = "client/dist"
+  command = "cd client && npm install && npm run build"
+  publish = "client/dist"
   functions = "server/functions"
 
 [context.production.environment]
