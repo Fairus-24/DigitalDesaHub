@@ -27,7 +27,8 @@ export default function MapSection({ selectedUmkmId }: MapSectionProps) {
           id: umkm.id,
           name: umkm.name,
           address: umkm.address,
-          maps: umkm.maps,
+          maps1: umkm.maps1,
+          maps2: umkm.maps2,
         };
       });
       setMapMarkers(markers);
@@ -39,10 +40,10 @@ export default function MapSection({ selectedUmkmId }: MapSectionProps) {
       setSelectedMarkerId(selectedUmkmId);
 
       const selectedUmkm = umkms.find((u) => u.id === selectedUmkmId);
-      if (selectedUmkm && selectedUmkm.maps) {
+      if (selectedUmkm && selectedUmkm.maps1) {
         const mapElement = mapRef.current;
         if (mapElement) {
-          mapElement.src = selectedUmkm.maps;
+          mapElement.src = selectedUmkm.maps1;
         }
       }
     }
@@ -52,11 +53,11 @@ export default function MapSection({ selectedUmkmId }: MapSectionProps) {
     setSelectedMarkerId(markerId);
 
     const selectedUmkm = umkms.find((u) => u.id === markerId);
-    if (selectedUmkm && selectedUmkm.maps) {
+    if (selectedUmkm && selectedUmkm.maps2) {
       // Update map with the UMKM's map URL
       const mapElement = mapRef.current;
       if (mapElement) {
-        mapElement.src = selectedUmkm.maps;
+        mapElement.src = selectedUmkm.maps2;
       }
     }
   };

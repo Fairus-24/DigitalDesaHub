@@ -14,7 +14,8 @@ export interface Umkm {
   categoryId: number;
   promotionText?: string;
   coordinates: string;
-  maps: string;
+  maps1: string;
+  maps2: string;
 }
 
 export interface VillageProfile {

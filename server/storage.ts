@@ -193,7 +193,8 @@ export class MemStorage implements IStorage {
         categoryId: 1, // Kerajinan
         promotionText: "",
         coordinates: "-7.152391,112.652379",
-        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+        maps1: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+        maps2: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
       },
       {
         name: "Makanan Tradisional Bu Siti",
@@ -206,7 +207,7 @@ export class MemStorage implements IStorage {
         categoryId: 2, // Makanan
         promotionText: "Beli 1 Gratis 1",
         coordinates: "-6.398709,108.284611",
-        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3749!2d108.284611!3d-6.398709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNkwyQys3RyBDaXRhbmd1bGwgS2FidXBhdGVuIFJlZ2Vuc3ksIEphd2EgQmFyYXQ!5e0!3m2!1sid!2sid!4v1747183100085!5m2!1sid!2sid"
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
       },
       {
         name: "Tani Organik Sejahtera",
@@ -219,7 +220,7 @@ export class MemStorage implements IStorage {
         categoryId: 3, // Pertanian
         promotionText: "Paket Hemat",
         coordinates: "-6.397709,108.283611",
-        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3749!2d108.283611!3d-6.397709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNkwyQys1RyBDaXRhbmd1bGwgS2FidXBhdGVuIFJlZ2Vuc3ksIEphd2EgQmFyYXQ!5e0!3m2!1sid!2sid!4v1747183100085!5m2!1sid!2sid"
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
       },
       {
         name: "Batik Alami Desa",
@@ -232,7 +233,7 @@ export class MemStorage implements IStorage {
         categoryId: 1, // Kerajinan
         promotionText: "Diskon 15%",
         coordinates: "-6.396709,108.285611",
-        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3749!2d108.285611!3d-6.396709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMjMnNDguMiJTIDEwOMKwMTcnMDguMiJF!5e0!3m2!1sid!2sid!4v1747183100086!5m2!1sid!2sid"
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
       },
       {
         name: "Kopi Desa Sejahtera",
@@ -245,7 +246,7 @@ export class MemStorage implements IStorage {
         categoryId: 2, // Makanan
         promotionText: "Gratis Sampel",
         coordinates: "-6.400709,108.281611",
-        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3749!2d108.281611!3d-6.400709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMjQnMDIuNiJTIDEwOMKwMTYnNTMuOCJF!5e0!3m2!1sid!2sid!4v1747183100087!5m2!1sid!2sid"
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
       },
       {
         name: "Madu Hutan Asli",
@@ -258,7 +259,7 @@ export class MemStorage implements IStorage {
         categoryId: 3, // Pertanian
         promotionText: "Bundling 3",
         coordinates: "-6.401709,108.280611",
-        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3749!2d108.280611!3d-6.401709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMjQnMDYuMiJTIDEwOMKwMTYnNTAuMiJF!5e0!3m2!1sid!2sid!4v1747183100088!5m2!1sid!2sid"
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
       },
     ];
 
