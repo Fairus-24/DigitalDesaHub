@@ -206,6 +206,7 @@ export class MemStorage implements IStorage {
         categoryId: 2, // Makanan
         promotionText: "Beli 1 Gratis 1",
         coordinates: "-6.398709,108.284611",
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3749!2d108.284611!3d-6.398709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNkwyQys3RyBDaXRhbmd1bGwgS2FidXBhdGVuIFJlZ2Vuc3ksIEphd2EgQmFyYXQ!5e0!3m2!1sid!2sid!4v1747183100085!5m2!1sid!2sid"
       },
       {
         name: "Tani Organik Sejahtera",
@@ -218,6 +219,7 @@ export class MemStorage implements IStorage {
         categoryId: 3, // Pertanian
         promotionText: "Paket Hemat",
         coordinates: "-6.397709,108.283611",
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3749!2d108.283611!3d-6.397709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNkwyQys1RyBDaXRhbmd1bGwgS2FidXBhdGVuIFJlZ2Vuc3ksIEphd2EgQmFyYXQ!5e0!3m2!1sid!2sid!4v1747183100085!5m2!1sid!2sid"
       },
       {
         name: "Batik Alami Desa",
@@ -230,18 +232,20 @@ export class MemStorage implements IStorage {
         categoryId: 1, // Kerajinan
         promotionText: "Diskon 15%",
         coordinates: "-6.396709,108.285611",
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3749!2d108.285611!3d-6.396709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMjMnNDguMiJTIDEwOMKwMTcnMDguMiJF!5e0!3m2!1sid!2sid!4v1747183100086!5m2!1sid!2sid"
       },
       {
         name: "Kopi Desa Sejahtera",
         description:
           "Menawarkan biji kopi lokal yang ditanam di ketinggian optimal dan diolah dengan metode tradisional.",
         imageUrl:
-          "https://pixabay.com/get/g8a03d6b6c36fab89ec7a9efb2df5cf24e9d9418ae670839855c458d99300fe8d8f771601e26ada652e4f3e6b710bda3aaa28cbad340a2ffaaee855c3be76d76_1280.jpg",
+          "https://pixabay.com/get/g8a03d6b6c36fab89ec7a9efb2df5cf24e9d9418ae670839855c458d99300fe8d8f771601e26ada652e4f3e6b710bda3aa28cbad340a2ffaaee855c3be76d76_1280.jpg",
         location: "Dusun Makmur",
         address: "Jl. Pasar No. 15, Dusun Makmur",
         categoryId: 2, // Makanan
         promotionText: "Gratis Sampel",
         coordinates: "-6.400709,108.281611",
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3749!2d108.281611!3d-6.400709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMjQnMDIuNiJTIDEwOMKwMTYnNTMuOCJF!5e0!3m2!1sid!2sid!4v1747183100087!5m2!1sid!2sid"
       },
       {
         name: "Madu Hutan Asli",
@@ -254,6 +258,7 @@ export class MemStorage implements IStorage {
         categoryId: 3, // Pertanian
         promotionText: "Bundling 3",
         coordinates: "-6.401709,108.280611",
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3749!2d108.280611!3d-6.401709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMjQnMDYuMiJTIDEwOMKwMTYnNTAuMiJF!5e0!3m2!1sid!2sid!4v1747183100088!5m2!1sid!2sid"
       },
     ];
 
