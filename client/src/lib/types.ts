@@ -8,7 +8,10 @@ export interface Umkm {
   id: number;
   name: string;
   description: string;
+  history: string;
+  currentCondition: string;
   imageUrl: string;
+  productImages: string[];
   location: string;
   address: string;
   categoryId: number;
@@ -16,6 +19,13 @@ export interface Umkm {
   coordinates: string;
   maps1: string;
   maps2: string;
+  publishDate: string;
+  reviews: {
+    author: string;
+    rating: number;
+    comment: string;
+    date: string;
+  }[];
 }
 
 export interface VillageProfile {

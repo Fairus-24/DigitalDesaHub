@@ -2,8 +2,9 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Umkm } from '@/lib/types';
-import { ArrowLeft, MapPin } from 'lucide-react';
+import { ArrowLeft, MapPin, Star, Calendar } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { format } from 'date-fns';
 
 export default function UMKMDetail() {
   const { id } = useParams();
@@ -49,7 +50,7 @@ export default function UMKMDetail() {
           Kembali
         </button>
 
-        <div className="bg-white rounded-xl overflow-hidden shadow-lg">
+        <article className="bg-white rounded-xl overflow-hidden shadow-lg">
           <div className="relative h-[400px]">
             <img
               src={umkm.imageUrl}
@@ -64,22 +65,69 @@ export default function UMKMDetail() {
           </div>
 
           <div className="p-8">
+            <div className="flex items-center gap-4 text-sm text-text-light mb-4">
+              <div className="flex items-center">
+                <Calendar className="h-4 w-4 mr-1" />
+                {format(new Date(umkm.publishDate), 'dd MMMM yyyy')}
+              </div>
+            </div>
+
             <h1 className="font-heading font-bold text-3xl mb-4 text-primary">
               {umkm.name}
             </h1>
-            <p className="text-text-light text-lg mb-8">{umkm.description}</p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-neutral rounded-lg p-6">
-                <div className="flex items-center mb-4">
-                  <MapPin className="h-5 w-5 text-primary mr-2" />
-                  <h3 className="font-medium">Lokasi</h3>
-                </div>
-                <p className="text-text-light">{umkm.address}</p>
+            <div className="prose max-w-none mb-8">
+              <h2 className="text-xl font-medium mb-2">Deskripsi</h2>
+              <p className="text-text-light">{umkm.description}</p>
+              
+              <h2 className="text-xl font-medium mt-6 mb-2">Sejarah</h2>
+              <p className="text-text-light">{umkm.history}</p>
+              
+              <h2 className="text-xl font-medium mt-6 mb-2">Kondisi Sekarang</h2>
+              <p className="text-text-light">{umkm.currentCondition}</p>
+            </div>
+
+            <div className="bg-neutral rounded-lg p-6 mb-8">
+              <div className="flex items-center mb-4">
+                <MapPin className="h-5 w-5 text-primary mr-2" />
+                <h3 className="font-medium">Lokasi</h3>
+              </div>
+              <p className="text-text-light">{umkm.address}</p>
+            </div>
+
+            <div className="mb-8">
+              <h2 className="text-xl font-medium mb-4">Galeri Produk</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {umkm.productImages.map((image, index) => (
+                  <div key={index} className="aspect-square rounded-lg overflow-hidden">
+                    <img src={image} alt={`Product ${index + 1}`} className="w-full h-full object-cover" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-medium mb-4">Ulasan</h2>
+              <div className="space-y-4">
+                {umkm.reviews.map((review, index) => (
+                  <div key={index} className="bg-neutral rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-medium">{review.author}</span>
+                      <div className="flex items-center">
+                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="ml-1">{review.rating}</span>
+                      </div>
+                    </div>
+                    <p className="text-text-light">{review.comment}</p>
+                    <span className="text-sm text-text-light mt-2 block">
+                      {format(new Date(review.date), 'dd MMM yyyy')}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   );
