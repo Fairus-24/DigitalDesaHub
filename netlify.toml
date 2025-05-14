@@ -1,8 +1,13 @@
 [build]
-  # Kalau root Vite, tinggal pakai:
-  command   = "npm ci && npm run build"
-  publish   = "dist"               # atau sesuai outDir di vite.config.ts
+  # Perintah untuk install & build frontend
+  command   = "npm install && cd client && npm ci && npm run build"
+  # Di mana hasil build frontend akan dipublish
+  publish   = "client/dist"
+  # Folder berisi Netlify Functions
   functions = "server/functions"
 
 [functions]
-  # (optional) sesuaikan memory/timeout dst
+  timeout = 15  # detik, sesuaikan jika perlu
+
+[context.production.environment]
+  NODE_ENV = "production"
