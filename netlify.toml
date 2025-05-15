@@ -1,5 +1,5 @@
 [build]
-  command = "cd client && npm ci && npm run build"
+  command = "npm start"
   publish = "client/dist"
   functions = "server/functions"
   cache = false
