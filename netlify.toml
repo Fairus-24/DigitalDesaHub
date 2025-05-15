@@ -1,8 +1,7 @@
 [build]
-  command = "npm start"
+  base    = "client"
+  command = "npm ci --include=dev && npm run build"
   publish = "client/dist"
-  functions = "server/functions"
-  cache = false
 
-[context.production.environment]
-  NODE_ENV = "production"
+[functions]
+  directory = "server/functions"
