@@ -1,7 +1,14 @@
 [build]
-  base    = "client"
-  command = "npm ci --include=dev && npm run build"
-  publish = "client/dist"
+  command   = "npm run build"
+  publish   = "dist"
+  functions = "netlify/functions"
 
 [functions]
-  directory = "server/functions"
+  external_node_modules = ["express"]
+  node_bundler = "esbuild" 
+
+[[redirects]]
+  from   = "/api/*"
+  to     = "/.netlify/functions/api/:splat"
+  status = 200
+  force  = true
