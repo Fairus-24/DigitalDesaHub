@@ -350,7 +350,7 @@ export class MemStorage implements IStorage {
       },
       {
         name: "Niki Enak",
-        description: "Menyediakan berbagai jenis jajanan Khas Gresik",
+        description: "Menyediakan berbagai jenis jajanan Khas Gresik dengan cita rasa autentik. Spesialisasi dalam pembuatan jajanan tradisional yang telah dimodernisasi tanpa menghilangkan cita rasa aslinya.",
         imageUrl:
           "https://awsimages.detik.net.id/community/media/visual/2023/03/10/kuliner-di-gresik-3_169.jpeg?w=1200",
         location: "Sindujoyo 117",
@@ -362,6 +362,33 @@ export class MemStorage implements IStorage {
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.64761456985576!3d-7.151275654334539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80058841a183d%3A0xb1ddc26aaf203841!2sNiki%20Enak!5e0!3m2!1sen!2sid!4v1747406003159!5m2!1sen!2sid",
         maps2:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.64761456985576!3d-7.151275654334539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80058841a183d%3A0xb1ddc26aaf203841!2sNiki%20Enak!5e0!3m2!1sen!2sid!4v1747406003159!5m2!1sen!2sid",
+        history: "Niki Enak didirikan pada tahun 2012 oleh Ibu Niki yang memiliki passion dalam membuat jajanan tradisional. Berawal dari hobi membuat kue untuk keluarga, kini telah berkembang menjadi usaha yang dikenal dengan kualitas dan cita rasa khasnya.",
+        currentCondition: "Aktif",
+        reviews: [
+          {
+            author: "Anita Wijaya",
+            rating: 5,
+            comment: "Jajanan tradisionalnya enak banget, rasa masih authentic!",
+            date: "2024-02-15T00:00:00Z"
+          },
+          {
+            author: "Hendra Kusuma",
+            rating: 4,
+            comment: "Pelayanannya ramah, harga terjangkau. Worth it!",
+            date: "2024-02-10T00:00:00Z"
+          },
+          {
+            author: "Sarah Putri",
+            rating: 5,
+            comment: "Recommended banget! Rasa konsisten dan packaging rapi",
+            date: "2024-02-05T00:00:00Z"
+          }
+        ],
+        productImages: [
+          "https://awsimages.detik.net.id/community/media/visual/2023/03/10/kuliner-di-gresik-3_169.jpeg?w=1200",
+          "https://images.unsplash.com/photo-1555126634-323283e090fa",
+          "https://images.unsplash.com/photo-1558961363-fa8fdf82db35"
+        ]
       },
       {
         name: "Otak-otak Bandeng Kang Wahab",
@@ -378,21 +405,75 @@ export class MemStorage implements IStorage {
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.6524837698959!3d-7.151598751712937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80058603f7c33%3A0xa0e940ac0c5357dd!2sOtak%20-%20Otak%20Bandeng%20Kang%20Wahab!5e0!3m2!1sen!2sid!4v1747406421923!5m2!1sen!2sid",
         maps2:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.6524837698959!3d-7.151598751712937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80058603f7c33%3A0xa0e940ac0c5357dd!2sOtak%20-%20Otak%20Bandeng%20Kang%20Wahab!5e0!3m2!1sen!2sid!4v1747406421923!5m2!1sen!2sid",
+        history: "Usaha ini dirintis oleh Kang Wahab sejak tahun 1996. Bermula dari warisan resep keluarga, otak-otak bandeng ini telah menjadi salah satu kuliner khas Gresik yang terkenal dengan cita rasa autentiknya.",
+        currentCondition: "Aktif",
+        reviews: [
+          {
+            author: "Bambang Sutrisno",
+            rating: 5,
+            comment: "Otak-otak bandengnya juara! Tekstur lembut dan bumbu meresap",
+            date: "2024-02-17T00:00:00Z"
+          },
+          {
+            author: "Diana Puspita",
+            rating: 5,
+            comment: "Recommended! Packaging aman dan rasa tetap fresh",
+            date: "2024-02-12T00:00:00Z"
+          },
+          {
+            author: "Agus Hermawan",
+            rating: 4,
+            comment: "Enak banget, tapi harga agak mahal. Worth it sih!",
+            date: "2024-02-08T00:00:00Z"
+          }
+        ],
+        productImages: [
+          "https://smb-padiumkm-images-public-prod.oss-ap-southeast-5.aliyuncs.com/product/image/13092024/631a6566cdc00cf233d35930/66e27ed40e477431d309e28c/c1d5fd169a4a6e8e95f94e95860a38.jpg",
+          "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
+          "https://images.unsplash.com/photo-1555126634-323283e090fa"
+        ]
       },
       {
         name: "Warung Kopi Cak Udin",
-        description: "Warkop cak Udin Menyajikan minuman di tempat",
+        description: "Warkop Cak Udin menyajikan berbagai jenis kopi dan minuman dengan suasana yang nyaman dan harga terjangkau. Tempat favorit untuk nongkrong dan bersantai bagi warga sekitar.",
         imageUrl:
           "https://manual.co.id/wp-content/uploads/2021/11/manual_photo_essay_warkop_web-14-980x719.jpg",
         location: "KH Hasyim Asyari",
         address: "Jl. K.H. Hasyim Asyari No. 1",
         categoryId: 3,
-        promotionText: "",
+        promotionText: "Free WiFi",
         coordinates: "",
         maps1:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65017435948572!3d-7.151592872940658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd800f7dc127c1d%3A0x23f8f56e9e90c3f0!2sWarkop%20Cak%20Udin!5e0!3m2!1sen!2sid!4v1747406864064!5m2!1sen!2sid",
         maps2:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65017435948572!3d-7.151592872940658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd800f7dc127c1d%3A0x23f8f56e9e90c3f0!2sWarkop%20Cak%20Udin!5e0!3m2!1sen!2sid!4v1747406864064!5m2!1sen!2sid",
+        history: "Warung Kopi Cak Udin berdiri sejak tahun 2015. Berawal dari warung kopi sederhana, kini telah berkembang menjadi tempat nongkrong favorit dengan fasilitas WiFi dan menu yang beragam.",
+        currentCondition: "Aktif",
+        reviews: [
+          {
+            author: "Andi Pratama",
+            rating: 5,
+            comment: "Kopi nya enak, tempat nyaman buat kerja. WiFi kenceng!",
+            date: "2024-02-16T00:00:00Z"
+          },
+          {
+            author: "Rina Safitri",
+            rating: 4,
+            comment: "Harga terjangkau, suasana asik buat nongkrong",
+            date: "2024-02-11T00:00:00Z"
+          },
+          {
+            author: "Budi Santoso",
+            rating: 5,
+            comment: "Recommended! Pelayanan ramah dan tempat bersih",
+            date: "2024-02-07T00:00:00Z"
+          }
+        ],
+        productImages: [
+          "https://manual.co.id/wp-content/uploads/2021/11/manual_photo_essay_warkop_web-14-980x719.jpg",
+          "https://images.unsplash.com/photo-1442512595331-e89e73853f31",
+          "https://images.unsplash.com/photo-1511920170033-f8396924c348"
+        ]
       },
     ];
 
