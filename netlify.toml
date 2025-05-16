@@ -1,6 +1,6 @@
 [build]
-  command   = "npm run build"
-  publish   = "dist"
+  command = "cd client && npm ci --include=dev && npm run build && cd .. && npm ci --include=dev && npm run build:server"
+  publish = "client/dist"
   functions = "netlify/functions"
 
 [functions]

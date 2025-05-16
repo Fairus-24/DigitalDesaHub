@@ -189,14 +189,14 @@ export class MemStorage implements IStorage {
         imageUrl:
           "https://down-id.img.susercontent.com/file/id-11134207-7r98z-lnh14d40x6o1c6",
         location: "Sindujoyo 21/51",
-        address: "Jl. Sindujoyo Gg. XXI No.51",
+        address: "Jl. Sindujoyo Gg. XXI No.50",
         categoryId: 1, // Kerajinan
         promotionText: "",
         coordinates: "-7.152391,112.652379",
         maps1:
-          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65279798679201!3d-7.152348076278058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010066bd5589%3A0x36be09024c3b982a!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sen!2sid!4v1747374768900!5m2!1sen!2sid",
         maps2:
-          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65279798679201!3d-7.152348076278058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010066bd5589%3A0x36be09024c3b982a!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sen!2sid!4v1747374768900!5m2!1sen!2sid",
       },
       {
         name: "Yaris Cookies",
@@ -236,7 +236,8 @@ export class MemStorage implements IStorage {
         categoryId: 1, // Kerajinan
         promotionText: "Diskon 15%",
         coordinates: "-6.396709,108.285611",
-        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+        maps1: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+        maps2: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
       },
       {
         name: "Kopi Desa Sejahtera",
