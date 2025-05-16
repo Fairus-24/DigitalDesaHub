@@ -19,7 +19,6 @@ export interface Umkm {
   coordinates: string;
   maps1: string;
   maps2: string;
-  publishDate: string;
   reviews: {
     author: string;
     rating: number;
