@@ -198,7 +198,7 @@ export class MemStorage implements IStorage {
         maps2:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65279798679201!3d-7.152348076278058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010066bd5589%3A0x36be09024c3b982a!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sen!2sid!4v1747374768900!5m2!1sen!2sid",
         history: "tidak ada sejarah",
-        currentCondition: "buka",
+        currentCondition: "Aktif",
         reviews: [
           {
             author: "John Doe",
@@ -289,7 +289,7 @@ export class MemStorage implements IStorage {
           "https://smb-padiumkm-images-public-prod.oss-ap-southeast-5.aliyuncs.com/product/image/13092024/631a6566cdc00cf233d35930/66e27ed40e477431d309e28c/c1d5fd169a4a6e8e95f94e95860a38.jpg?x-oss-process=image/resize,m_pad,w_432,h_432/quality,Q_70",
         location: "Sindujoyo 15/33",
         address: "Jl. Sindujoyo XV No. 33",
-        categoryId: 1,
+        categoryId: 2,
         promotionText: "Bundling 3",
         coordinates: "",
         maps1:
