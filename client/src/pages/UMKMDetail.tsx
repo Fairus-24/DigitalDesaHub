@@ -81,8 +81,16 @@ export default function UMKMDetail() {
               <h2 className="text-xl font-medium mt-6 mb-2"></h2>
               <p className="text-text-light">{umkm.history}</p>
               
-              <h2 className="text-xl font-medium mt-6 mb-2"></h2>
-              <p className="text-text-light">{umkm.currentCondition}</p>
+              <h2 className="text-xl font-medium mt-6 mb-2">Status</h2>
+              <span 
+                className={`px-3 py-1 rounded-full text-sm font-medium ${
+                  umkm.currentCondition === 'Aktif' 
+                    ? 'bg-green-100 text-green-800' 
+                    : 'bg-red-100 text-red-800'
+                }`}
+              >
+                {umkm.currentCondition}
+              </span>
             </div>
 
             <div className="bg-neutral rounded-lg p-6 mb-8">
