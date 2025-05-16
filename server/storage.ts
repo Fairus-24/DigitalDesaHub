@@ -241,53 +241,76 @@ export class MemStorage implements IStorage {
         imageUrl:
           "https://manual.co.id/wp-content/uploads/2021/11/manual_photo_essay_warkop_web-18-980x719.jpg",
         location: "KH Hasyim Asyari",
-        address: "Jl. Kebun No. 8, Dusun Subur",
+        address: "Jl. K.H. Hasyim Asyari gang pasar",
         categoryId: 3, // Kedai
-        promotionText: "Paket Hemat",
-        coordinates: "-6.397709,108.283611",
+        promotionText: "",
+        coordinates: "",
         maps1:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65215365357392!3d-7.15248834709858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80100665e4d91%3A0x3849cac3ba0439b3!2sWarung%20Kopi%20Mama%20Atul!5e0!3m2!1sen!2sid!4v1747380713479!5m2!1sen!2sid",
         maps2:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65215365357392!3d-7.15248834709858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80100665e4d91%3A0x3849cac3ba0439b3!2sWarung%20Kopi%20Mama%20Atul!5e0!3m2!1sen!2sid!4v1747380713479!5m2!1sen!2sid",
       },
       {
-        name: "Batik Alami Desa",
+        name: "Farah Craft",
         description:
-          "Memproduksi kain batik dengan pewarna alami dari tumbuhan lokal dengan motif khas desa.",
+          "Memproduksi suvenir seperti bucket bunga, jajanan, uang dll, dan juga memproduksi jajanan kue kering",
         imageUrl:
-          "https://pixabay.com/get/gf3689bb6f45fd018d16b64086251e3dc3aa8df4a487dd070a3c62a1f5a833a34b625a5bb13ebba240f441247c256194576bcc2514f03fa43a7e2e722172fc9d6_1280.jpg",
-        location: "Dusun Indah",
-        address: "Jl. Seni No. 20, Dusun Indah",
+          "https://threebouquets.com/cdn/shop/articles/toko-bunga-terdekat.jpg?v=1659941837",
+        location: "Sindujoyo 13/46",
+        address: "Jl. Sindujoyo Gg. XIII No.466",
         categoryId: 1, // Kerajinan
-        promotionText: "Diskon 15%",
-        coordinates: "-6.396709,108.285611",
-        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+        promotionText: "",
+        coordinates: "",
+        maps1:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65063007403916!3d-7.151648470158272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8015ac782bd89%3A0x246274db7820b419!2sFarah%20Craft!5e0!3m2!1sen!2sid!4v1747405737126!5m2!1sen!2sid",
+        maps2:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65063007403916!3d-7.151648470158272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8015ac782bd89%3A0x246274db7820b419!2sFarah%20Craft!5e0!3m2!1sen!2sid!4v1747405737126!5m2!1sen!2sid",
       },
       {
-        name: "Kopi Desa Sejahtera",
-        description:
-          "Menawarkan biji kopi lokal yang ditanam di ketinggian optimal dan diolah dengan metode tradisional.",
+        name: "Niki Enak",
+        description: "Menyediakan berbagai jenis jajanan Khas Gresik",
         imageUrl:
-          "https://pixabay.com/get/g8a03d6b6c36fab89ec7a9efb2df5cf24e9d9418ae670839855c458d99300fe8d8f771601e26ada652e4f3e6b710bda3aa28cbad340a2ffaaee855c3be76d76_1280.jpg",
-        location: "Dusun Makmur",
-        address: "Jl. Pasar No. 15, Dusun Makmur",
+          "https://awsimages.detik.net.id/community/media/visual/2023/03/10/kuliner-di-gresik-3_169.jpeg?w=1200",
+        location: "Sindujoyo 117",
+        address: "Jl. Sindujoyo No.117",
         categoryId: 2, // Makanan
         promotionText: "Gratis Sampel",
-        coordinates: "-6.400709,108.281611",
-        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+        coordinates: "",
+        maps1:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.64761456985576!3d-7.151275654334539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80058841a183d%3A0xb1ddc26aaf203841!2sNiki%20Enak!5e0!3m2!1sen!2sid!4v1747406003159!5m2!1sen!2sid",
+        maps2:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.64761456985576!3d-7.151275654334539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80058841a183d%3A0xb1ddc26aaf203841!2sNiki%20Enak!5e0!3m2!1sen!2sid!4v1747406003159!5m2!1sen!2sid",
       },
       {
-        name: "Madu Hutan Asli",
+        name: "Otak-otak Bandeng Kang Wahab",
         description:
-          "Menyediakan madu murni yang diambil langsung dari hutan desa dengan kualitas premium.",
+          "Otak-otak Bandeng Kang Wahab Gresik merupakan UMKM kuliner khas Kabupaten Gresik yang berdiri sejak 1996 dan berlokasi di Jalan Sindujoyo XV/33 Gresik, menghadirkan olahan bandeng premium dalam kemasan 650 ml yang dibakar di atas daun pisang untuk aroma khas smoky.",
         imageUrl:
-          "https://images.unsplash.com/photo-1587049352851-8d4e89133924",
-        location: "Dusun Hutan",
-        address: "Jl. Hutan No. 5, Dusun Hutan",
-        categoryId: 3, // Pertanian
+          "https://smb-padiumkm-images-public-prod.oss-ap-southeast-5.aliyuncs.com/product/image/13092024/631a6566cdc00cf233d35930/66e27ed40e477431d309e28c/c1d5fd169a4a6e8e95f94e95860a38.jpg?x-oss-process=image/resize,m_pad,w_432,h_432/quality,Q_70",
+        location: "Sindujoyo 15/33",
+        address: "Jl. Sindujoyo XV No. 33",
+        categoryId: 1,
         promotionText: "Bundling 3",
-        coordinates: "-6.401709,108.280611",
-        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+        coordinates: "",
+        maps1:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.6524837698959!3d-7.151598751712937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80058603f7c33%3A0xa0e940ac0c5357dd!2sOtak%20-%20Otak%20Bandeng%20Kang%20Wahab!5e0!3m2!1sen!2sid!4v1747406421923!5m2!1sen!2sid",
+        maps2:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.6524837698959!3d-7.151598751712937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80058603f7c33%3A0xa0e940ac0c5357dd!2sOtak%20-%20Otak%20Bandeng%20Kang%20Wahab!5e0!3m2!1sen!2sid!4v1747406421923!5m2!1sen!2sid",
+      },
+      {
+        name: "Warung Kopi Cak Udin",
+        description: "Warkop cak Udin Menyajikan minuman di tempat",
+        imageUrl:
+          "https://manual.co.id/wp-content/uploads/2021/11/manual_photo_essay_warkop_web-14-980x719.jpg",
+        location: "KH Hasyim Asyari",
+        address: "Jl. K.H. Hasyim Asyari No. 1",
+        categoryId: 3,
+        promotionText: "",
+        coordinates: "",
+        maps1:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65017435948572!3d-7.151592872940658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd800f7dc127c1d%3A0x23f8f56e9e90c3f0!2sWarkop%20Cak%20Udin!5e0!3m2!1sen!2sid!4v1747406864064!5m2!1sen!2sid",
+        maps2:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65017435948572!3d-7.151592872940658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd800f7dc127c1d%3A0x23f8f56e9e90c3f0!2sWarkop%20Cak%20Udin!5e0!3m2!1sen!2sid!4v1747406864064!5m2!1sen!2sid",
       },
     ];
 
