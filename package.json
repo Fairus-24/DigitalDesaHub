@@ -4,14 +4,10 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev:client": "cd client && vite",
-    "dev:server": "NODE_ENV=development tsx server/index.ts",
-    "dev": "npm-run-all --parallel dev:client dev:server",
-    "build:client": "cd client && npm ci && npm run build",
-    "build:server": "esbuild server/index.ts \\ --platform=node --packages=external --bundle --format=esm \\ --outdir=dist",
-    "build": "npm-run-all build:client build:server",
-    "preview": "cd client && vite preview",
-    "start": "NODE_ENV=production node dist/index.js",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "NODE_ENV=production node client/dist/index.js",
     "check": "tsc --noEmit",
     "db:push": "drizzle-kit push"
   },
