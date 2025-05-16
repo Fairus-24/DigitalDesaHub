@@ -198,7 +198,7 @@ export class MemStorage implements IStorage {
         maps2:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65279798679201!3d-7.152348076278058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010066bd5589%3A0x36be09024c3b982a!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sen!2sid!4v1747374768900!5m2!1sen!2sid",
         history: "tidak ada sejarah",
-        currentCondition: "buka",
+        currentCondition: "Aktif",
         reviews: [
           {
             author: "John Doe",
