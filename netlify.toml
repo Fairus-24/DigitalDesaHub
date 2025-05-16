@@ -1,7 +1,8 @@
 [build]
   base    = "client"
   command = "npm install && npm run build"
-  publish = "dist"
+  publish = "client/dist"
 
-[context.production.environment]
-  NODE_ENV = "production"
+[build.environment]
+  NODE_ENV   = "production"
+  NPM_FLAGS  = "--include=dev"
