@@ -201,21 +201,28 @@ export class MemStorage implements IStorage {
         currentCondition: "Aktif",
         reviews: [
           {
-            author: "John Doe",
+            author: "Siti Aminah",
             rating: 5,
-            comment: "Produk yang sangat bagus dan berkualitas!",
-            date: "2023-01-15T00:00:00Z",
+            comment: "Gelang maniknya sangat cantik dan elegan, cocok untuk acara formal!",
+            date: "2024-01-15T00:00:00Z",
           },
           {
-            author: "Jane Smith",
+            author: "Budi Santoso",
             rating: 4,
-            comment: "Cukup baik, saya suka desainnya.",
-            date: "2023-01-16T00:00:00Z",
+            comment: "Pelayanannya ramah, produknya berkualitas. Worth it!",
+            date: "2024-01-20T00:00:00Z",
           },
+          {
+            author: "Maya Indah",
+            rating: 5,
+            comment: "Desainnya unik dan harganya terjangkau. Recommended!",
+            date: "2024-02-01T00:00:00Z",
+          }
         ],
         productImages: [
-          "https://example.com/image1.jpg",
-          "https://example.com/image2.jpg",
+          "https://down-id.img.susercontent.com/file/id-11134207-7r98z-lnh14d40x6o1c6",
+          "https://down-id.img.susercontent.com/file/id-11134207-7r98z-lnh14d40x6o1c7",
+          "https://down-id.img.susercontent.com/file/id-11134207-7r98z-lnh14d40x6o1c8"
         ],
       },
       {
