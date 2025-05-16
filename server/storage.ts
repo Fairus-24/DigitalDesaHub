@@ -475,6 +475,22 @@ export class MemStorage implements IStorage {
           "https://images.unsplash.com/photo-1511920170033-f8396924c348"
         ]
       },
+      {
+        name: "",
+        description: "",
+        imageUrl: "",
+        location: "",
+        address: "",
+        categoryId: 1,
+        promotionText: "",
+        coordinates: "",
+        maps1: "",
+        maps2: "",
+        history: "",
+        currentCondition: "",
+        reviews: [],
+        productImages: []
+      },
     ];
 
     umkmsData.forEach((umkm) => {
