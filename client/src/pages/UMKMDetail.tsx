@@ -48,7 +48,7 @@ export default function UMKMDetail() {
     <div className="min-h-screen bg-neutral py-16">
       <div className="max-w-4xl mx-auto px-4">
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/')}
           className="mb-8 flex items-center text-primary hover:text-secondary transition-colors"
         >
           <ArrowLeft className="h-5 w-5 mr-2" />
