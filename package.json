@@ -8,7 +8,7 @@
     "dev:server": "NODE_ENV=development tsx server/index.ts",
     "dev": "npm-run-all --parallel dev:client dev:server",
     "build:client": "cd client && npm ci && npm run build",
-    "build:server": "esbuild server/index.ts \\ --platform=node --packages=external --bundle --format=esm \\ --outdir=dist",
+     "build:server": "esbuild server/index.ts --platform=node --bundle --format=esm --outdir=dist",
     "build": "npm-run-all build:client build:server",
     "preview": "cd client && vite preview",
     "start": "NODE_ENV=production node dist/index.js",
