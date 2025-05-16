@@ -194,29 +194,29 @@ export class MemStorage implements IStorage {
         promotionText: "",
         coordinates: "-7.152391,112.652379",
         maps1:
-          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65279798679201!3d-7.152348076278058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010066bd5589%3A0x36be09024c3b982a!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sen!2sid!4v1747374768900!5m2!1sen!2sid",
         maps2:
-          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65279798679201!3d-7.152348076278058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010066bd5589%3A0x36be09024c3b982a!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sen!2sid!4v1747374768900!5m2!1sen!2sid",
         history: "tidak ada sejarah",
         currentCondition: "buka",
         reviews: [
-            {
-              author: "John Doe",
-              rating: 5,
-              comment: "Produk yang sangat bagus dan berkualitas!",
-              date: "2023-01-15T00:00:00Z"
-            },
-            {
-              author: "Jane Smith",
-              rating: 4,
-              comment: "Cukup baik, saya suka desainnya.",
-              date: "2023-01-16T00:00:00Z"
-            }
-          ],
-          productImages: [
-            "https://example.com/image1.jpg",
-            "https://example.com/image2.jpg"
-          ]
+          {
+            author: "John Doe",
+            rating: 5,
+            comment: "Produk yang sangat bagus dan berkualitas!",
+            date: "2023-01-15T00:00:00Z",
+          },
+          {
+            author: "Jane Smith",
+            rating: 4,
+            comment: "Cukup baik, saya suka desainnya.",
+            date: "2023-01-16T00:00:00Z",
+          },
+        ],
+        productImages: [
+          "https://example.com/image1.jpg",
+          "https://example.com/image2.jpg",
+        ],
       },
       {
         name: "Yaris Cookies",
@@ -229,8 +229,10 @@ export class MemStorage implements IStorage {
         categoryId: 2, // Makanan
         promotionText: "",
         coordinates: "-6.398709,108.284611",
-        maps1: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.6511758383209!3d-7.151240098213269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010029cc181d%3A0xfc35848efc1e52e7!2sSedia%20Kue%20Kering%20(Yaris%20Cookies)!5e0!3m2!1sid!2sid!4v1747185507203!5m2!1sid!2sid",
-        maps2: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.6511758383209!3d-7.151240098213269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010029cc181d%3A0xfc35848efc1e52e7!2sSedia%20Kue%20Kering%20(Yaris%20Cookies)!5e0!3m2!1sid!2sid!4v1747185507203!5m2!1sid!2sid",
+        maps1:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.6511758383209!3d-7.151240098213269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010029cc181d%3A0xfc35848efc1e52e7!2sSedia%20Kue%20Kering%20(Yaris%20Cookies)!5e0!3m2!1sid!2sid!4v1747185507203!5m2!1sid!2sid",
+        maps2:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.6511758383209!3d-7.151240098213269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010029cc181d%3A0xfc35848efc1e52e7!2sSedia%20Kue%20Kering%20(Yaris%20Cookies)!5e0!3m2!1sid!2sid!4v1747185507203!5m2!1sid!2sid",
       },
       {
         name: "Warung Kopi Mama Atul",
@@ -243,7 +245,10 @@ export class MemStorage implements IStorage {
         categoryId: 3, // Kedai
         promotionText: "Paket Hemat",
         coordinates: "-6.397709,108.283611",
-        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.3857754746075!2d112.65176368664429!3d-7.152391898289468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8018bea2f0c1f%3A0xd69264df8de74401!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sid!2sid!4v1747183100084!5m2!1sid!2sid",
+        maps1:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65215365357392!3d-7.15248834709858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80100665e4d91%3A0x3849cac3ba0439b3!2sWarung%20Kopi%20Mama%20Atul!5e0!3m2!1sen!2sid!4v1747380713479!5m2!1sen!2sid",
+        maps2:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65215365357392!3d-7.15248834709858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80100665e4d91%3A0x3849cac3ba0439b3!2sWarung%20Kopi%20Mama%20Atul!5e0!3m2!1sen!2sid!4v1747380713479!5m2!1sen!2sid",
       },
       {
         name: "Batik Alami Desa",
