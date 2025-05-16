@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Umkm } from '@/lib/types';
-import { ArrowLeft, MapPin, Star } from 'lucide-react';
+import { ArrowLeft, MapPin, Star, MessageSquare, User2, Clock } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { format } from 'date-fns';
 
@@ -114,22 +114,41 @@ export default function UMKMDetail() {
               </div>
             )}
 
-            <div>
-              <h2 className="text-xl font-medium mb-4">Ulasan</h2>
-              <div className="space-y-4">
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <h2 className="text-2xl font-bold mb-6 flex items-center text-primary">
+                <MessageSquare className="h-6 w-6 mr-2" />
+                Ulasan Pelanggan
+              </h2>
+              <div className="space-y-6">
                 {umkm.reviews.map((review, index) => (
-                  <div key={index} className="bg-neutral rounded-lg p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-medium">{review.author}</span>
-                      <div className="flex items-center">
-                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                        <span className="ml-1">{review.rating}</span>
+                  <div key={index} className="border-b border-gray-100 last:border-0 pb-6 last:pb-0">
+                    <div className="flex items-start">
+                      <div className="bg-primary/10 rounded-full p-3 mr-4">
+                        <User2 className="h-6 w-6 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="font-semibold text-lg">{review.author}</h3>
+                          <div className="flex items-center bg-yellow-50 px-3 py-1 rounded-full">
+                            {[...Array(5)].map((_, i) => (
+                              <Star 
+                                key={i} 
+                                className={`h-4 w-4 ${
+                                  i < review.rating 
+                                    ? 'text-yellow-400 fill-current' 
+                                    : 'text-gray-300'
+                                }`} 
+                              />
+                            ))}
+                          </div>
+                        </div>
+                        <p className="text-gray-600 mb-2">{review.comment}</p>
+                        <span className="text-sm text-gray-400 flex items-center">
+                          <Clock className="h-4 w-4 mr-1" />
+                          {format(new Date(review.date), 'dd MMMM yyyy')}
+                        </span>
                       </div>
                     </div>
-                    <p className="text-text-light">{review.comment}</p>
-                    <span className="text-sm text-text-light mt-2 block">
-                      {format(new Date(review.date), 'dd MMM yyyy')}
-                    </span>
                   </div>
                 ))}
               </div>
