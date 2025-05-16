@@ -289,7 +289,7 @@ export class MemStorage implements IStorage {
           "https://smb-padiumkm-images-public-prod.oss-ap-southeast-5.aliyuncs.com/product/image/13092024/631a6566cdc00cf233d35930/66e27ed40e477431d309e28c/c1d5fd169a4a6e8e95f94e95860a38.jpg?x-oss-process=image/resize,m_pad,w_432,h_432/quality,Q_70",
         location: "Sindujoyo 15/33",
         address: "Jl. Sindujoyo XV No. 33",
-        categoryId: 1,
+        categoryId: 2,
         promotionText: "Bundling 3",
         coordinates: "",
         maps1:

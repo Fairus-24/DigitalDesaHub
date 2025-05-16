@@ -34,8 +34,8 @@ export default function Footer() {
               </span>
             </div>
             <p className="mb-4">
-              Website resmi Desa Sejahtera yang menyediakan informasi desa dan
-              mendukung pemberdayaan UMKM lokal.
+              Website resmi Kelurahan Sukodono yang menyediakan informasi desa
+              dan mendukung pemberdayaan UMKM lokal.
             </p>
             <div className="flex space-x-4">
               <a
@@ -141,7 +141,7 @@ export default function Footer() {
 
         <div className="border-t border-white border-opacity-20 pt-6 text-center text-sm">
           <p>
-            &copy; {new Date().getFullYear()} Desa Sejahtera. Hak Cipta
+            &copy; {new Date().getFullYear()} Kelurahan Sukodono. Hak Cipta
             Dilindungi.
           </p>
         </div>
