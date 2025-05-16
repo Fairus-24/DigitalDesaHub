@@ -10,6 +10,10 @@ export default function UMKMDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { data: umkm, isLoading } = useQuery<Umkm>({
     queryKey: [`/api/umkms/${id}`],
   });
