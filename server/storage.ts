@@ -228,50 +228,125 @@ export class MemStorage implements IStorage {
       {
         name: "Yaris Cookies",
         description:
-          "Menyajikan berbagai kue kering yang dibuat dari bahan-bahan lokal berkualitas.",
+          "Menyajikan berbagai kue kering yang dibuat dari bahan-bahan lokal berkualitas. Spesialisasi kami adalah kue kering tradisional dengan sentuhan modern yang cocok untuk berbagai acara.",
         imageUrl:
           "https://2112snackdelight.com/wp-content/uploads/2020/11/products-image-nutella-cookies-04.jpg",
         location: "Sindujoyo 13/08",
         address: "Jl. Sindujoyo Gg. XIII No.08",
         categoryId: 2, // Makanan
-        promotionText: "",
+        promotionText: "Diskon 10% Pembelian >50pcs",
         coordinates: "-6.398709,108.284611",
         maps1:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.6511758383209!3d-7.151240098213269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010029cc181d%3A0xfc35848efc1e52e7!2sSedia%20Kue%20Kering%20(Yaris%20Cookies)!5e0!3m2!1sid!2sid!4v1747185507203!5m2!1sid!2sid",
         maps2:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.6511758383209!3d-7.151240098213269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010029cc181d%3A0xfc35848efc1e52e7!2sSedia%20Kue%20Kering%20(Yaris%20Cookies)!5e0!3m2!1sid!2sid!4v1747185507203!5m2!1sid!2sid",
+        history: "Didirikan pada tahun 2015 oleh Ibu Yaris yang awalnya hanya menerima pesanan dari tetangga. Seiring waktu, kualitas dan cita rasa khas membuat usaha ini berkembang pesat.",
+        currentCondition: "Aktif",
+        reviews: [
+          {
+            author: "Rini Wulandari",
+            rating: 5,
+            comment: "Kue kering nya enak, renyah dan tidak terlalu manis. Kemasan juga bagus!",
+            date: "2024-02-10T00:00:00Z"
+          },
+          {
+            author: "Ahmad Sutrisno",
+            rating: 4,
+            comment: "Cookies nya enak, tapi harga agak mahal. Tapi worth it sih untuk kualitasnya.",
+            date: "2024-02-05T00:00:00Z"
+          }
+        ],
+        productImages: [
+          "https://2112snackdelight.com/wp-content/uploads/2020/11/products-image-nutella-cookies-04.jpg",
+          "https://images.unsplash.com/photo-1499636136210-6f4ee915583e",
+          "https://images.unsplash.com/photo-1558961363-fa8fdf82db35"
+        ]
       },
       {
         name: "Warung Kopi Mama Atul",
         description:
-          "Menyajikan berbagai minuman kemasan dan kopi khas dari gresik yang kental dan nikmat.",
+          "Menyajikan berbagai minuman kemasan dan kopi khas dari gresik yang kental dan nikmat. Tempat nongkrong favorit warga sekitar dengan suasana yang nyaman dan harga terjangkau.",
         imageUrl:
           "https://manual.co.id/wp-content/uploads/2021/11/manual_photo_essay_warkop_web-18-980x719.jpg",
         location: "KH Hasyim Asyari",
         address: "Jl. K.H. Hasyim Asyari gang pasar",
         categoryId: 3, // Kedai
-        promotionText: "",
+        promotionText: "Free WiFi",
         coordinates: "",
         maps1:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65215365357392!3d-7.15248834709858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80100665e4d91%3A0x3849cac3ba0439b3!2sWarung%20Kopi%20Mama%20Atul!5e0!3m2!1sen!2sid!4v1747380713479!5m2!1sen!2sid",
         maps2:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65215365357392!3d-7.15248834709858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80100665e4d91%3A0x3849cac3ba0439b3!2sWarung%20Kopi%20Mama%20Atul!5e0!3m2!1sen!2sid!4v1747380713479!5m2!1sen!2sid",
+        history: "Warung Kopi Mama Atul berdiri sejak 2010, dikelola oleh keluarga dan menjadi tempat berkumpul favorit warga sekitar. Awalnya hanya menjual kopi sederhana, kini berkembang dengan berbagai menu minuman dan makanan ringan.",
+        currentCondition: "Aktif",
+        reviews: [
+          {
+            author: "Joko Prasetyo",
+            rating: 5,
+            comment: "Kopi nya mantap, tempatnya nyaman buat ngobrol. WiFi kenceng!",
+            date: "2024-02-15T00:00:00Z"
+          },
+          {
+            author: "Dewi Anggraini",
+            rating: 4,
+            comment: "Suka banget sama suasananya, pelayanannya ramah",
+            date: "2024-02-12T00:00:00Z"
+          },
+          {
+            author: "Rizki Pratama",
+            rating: 5,
+            comment: "Tempat favorit buat kerja remote, kopinya enak!",
+            date: "2024-02-08T00:00:00Z"
+          }
+        ],
+        productImages: [
+          "https://manual.co.id/wp-content/uploads/2021/11/manual_photo_essay_warkop_web-18-980x719.jpg",
+          "https://images.unsplash.com/photo-1442512595331-e89e73853f31",
+          "https://images.unsplash.com/photo-1511920170033-f8396924c348"
+        ]
       },
       {
         name: "Farah Craft",
         description:
-          "Memproduksi suvenir seperti bucket bunga, jajanan, uang dll, dan juga memproduksi jajanan kue kering",
+          "Memproduksi suvenir seperti bucket bunga, jajanan, uang dll, dan juga memproduksi jajanan kue kering. Menghadirkan kreasi handmade berkualitas tinggi dengan design yang unik dan modern.",
         imageUrl:
           "https://threebouquets.com/cdn/shop/articles/toko-bunga-terdekat.jpg?v=1659941837",
         location: "Sindujoyo 13/46",
         address: "Jl. Sindujoyo Gg. XIII No.466",
         categoryId: 1, // Kerajinan
-        promotionText: "",
+        promotionText: "Custom Order Available",
         coordinates: "",
         maps1:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d112.65063007403916!3d-7.151648470158272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8015ac782bd89%3A0x246274db7820b419!2sFarah%20Craft!5e0!3m2!1sen!2sid!4v1747405737126!5m2!1sen!2sid",
         maps2:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65063007403916!3d-7.151648470158272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8015ac782bd89%3A0x246274db7820b419!2sFarah%20Craft!5e0!3m2!1sen!2sid!4v1747405737126!5m2!1sen!2sid",
+        history: "Farah Craft dimulai dari hobi membuat kerajinan tangan pada tahun 2018. Berawal dari pesanan teman dan kerabat, kini telah berkembang menjadi usaha yang melayani berbagai pesanan custom untuk acara pernikahan, wisuda, dan berbagai celebration.",
+        currentCondition: "Aktif",
+        reviews: [
+          {
+            author: "Linda Kusuma",
+            rating: 5,
+            comment: "Bucket bunganya cantik banget, packaging rapi dan sesuai request!",
+            date: "2024-02-18T00:00:00Z"
+          },
+          {
+            author: "Fariz Abdullah",
+            rating: 5,
+            comment: "Pesan bucket uang untuk wisuda, hasilnya memuaskan!",
+            date: "2024-02-14T00:00:00Z"
+          },
+          {
+            author: "Nadya Putri",
+            rating: 4,
+            comment: "Desainnya bagus, pengerjaan cepat. Recommended!",
+            date: "2024-02-01T00:00:00Z"
+          }
+        ],
+        productImages: [
+          "https://threebouquets.com/cdn/shop/articles/toko-bunga-terdekat.jpg?v=1659941837",
+          "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e",
+          "https://images.unsplash.com/photo-1507679799987-c73779587ccf"
+        ]
       },
       {
         name: "Niki Enak",
