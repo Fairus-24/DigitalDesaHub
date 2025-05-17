@@ -10,6 +10,7 @@ deploymentTarget = "autoscale"
 run = ["sh", "-c", "npm run dev"]
 
 [workflows]
+runButton = "Dev"
 
 [[workflows.workflow]]
 name = "Project"
@@ -28,6 +29,15 @@ author = "agent"
 task = "shell.exec"
 args = "npm run dev"
 waitForPort = 5000
+
+[[workflows.workflow]]
+name = "Dev"
+author = 42552511
+mode = "parallel"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev:client & npm run dev:server"
 
 [[ports]]
 localPort = 5000
