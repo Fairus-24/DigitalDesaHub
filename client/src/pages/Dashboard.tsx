@@ -103,7 +103,31 @@ export default function Dashboard() {
     setIsEditDialogOpen(true);
   };
 
-  const UmkmForm = ({ data, setData, isEdit = false }: { data: Partial<Umkm>, setData: (data: Partial<Umkm>) => void, isEdit?: boolean }) => (
+  const generateDummyReviews = () => {
+  const dummyNames = ["John Doe", "Jane Smith", "Mike Johnson", "Sarah Wilson", "David Brown"];
+  const dummyComments = [
+    "Pelayanannya sangat baik dan ramah!",
+    "Produknya berkualitas, recommended!",
+    "Harga terjangkau dan tempat nyaman",
+    "Suka banget dengan produknya, akan kembali lagi",
+    "Pelayanan cepat dan memuaskan"
+  ];
+  
+  return Array.from({ length: 3 }, (_, i) => ({
+    author: dummyNames[Math.floor(Math.random() * dummyNames.length)],
+    rating: Math.floor(Math.random() * 2) + 4, // Generates 4 or 5
+    comment: dummyComments[Math.floor(Math.random() * dummyComments.length)],
+    date: new Date().toISOString()
+  }));
+};
+
+const UmkmForm = ({ data, setData, isEdit = false }: { data: Partial<Umkm>, setData: (data: Partial<Umkm>) => void, isEdit?: boolean }) => {
+  // Set default dummy reviews for new UMKM
+  if (!isEdit && !data.reviews) {
+    setData({ ...data, reviews: generateDummyReviews() });
+  }
+  
+  return (
     <div className="grid gap-4 py-4">
       <div className="grid grid-cols-2 gap-4">
         <div className="grid gap-2">
@@ -161,7 +185,19 @@ export default function Dashboard() {
         <label className="text-sm font-medium">History</label>
         <Textarea value={data.history || ''} onChange={(e) => setData({ ...data, history: e.target.value })} />
       </div>
+
+      <div className="grid gap-2">
+        <label className="text-sm font-medium">Maps URL 1 (Overview)</label>
+        <Input value={data.maps1 || ''} onChange={(e) => setData({ ...data, maps1: e.target.value })} />
+      </div>
+
+      <div className="grid gap-2">
+        <label className="text-sm font-medium">Maps URL 2 (Detailed)</label>
+        <Input value={data.maps2 || ''} onChange={(e) => setData({ ...data, maps2: e.target.value })} />
+      </div>
     </div>
+  );
+};
   );
 
   return (
