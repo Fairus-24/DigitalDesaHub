@@ -122,13 +122,13 @@ export default function Dashboard() {
     }));
   };
 
-  const UmkmForm = React.memo(({ data, setData, isEdit = false }: { data: Partial<Umkm>, setData: (data: Partial<Umkm>) => void, isEdit?: boolean }) => {
-    React.useEffect(() => {
+  const UmkmForm = ({ data, setData, isEdit = false }: { data: Partial<Umkm>, setData: (data: Partial<Umkm>) => void, isEdit?: boolean }) => {
+    useEffect(() => {
       if (!isEdit && !data.reviews) {
         const dummyReviews = generateDummyReviews();
-        setData(prev => ({ ...prev, reviews: dummyReviews }));
+        setData({ ...data, reviews: dummyReviews });
       }
-    }, [isEdit, data.reviews, setData]);
+    }, [isEdit, data, setData]);
     
     return (
       <div className="grid gap-4 py-4">
