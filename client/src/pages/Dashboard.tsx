@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Umkm, Category } from '@/lib/types';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -122,13 +122,13 @@ export default function Dashboard() {
     }));
   };
 
-  const UmkmForm = ({ data, setData, isEdit = false }: { data: Partial<Umkm>, setData: (data: Partial<Umkm>) => void, isEdit?: boolean }) => {
-    useEffect(() => {
+  const UmkmForm = React.memo(({ data, setData, isEdit = false }: { data: Partial<Umkm>, setData: (data: Partial<Umkm>) => void, isEdit?: boolean }) => {
+    React.useEffect(() => {
       if (!isEdit && !data.reviews) {
         const dummyReviews = generateDummyReviews();
-        setData({ ...data, reviews: dummyReviews });
+        setData(prev => ({ ...prev, reviews: dummyReviews }));
       }
-    }, [isEdit]);
+    }, [isEdit, data.reviews, setData]);
     
     return (
       <div className="grid gap-4 py-4">
