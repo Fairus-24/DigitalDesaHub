@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { Trash2, RefreshCw, Edit, Plus } from 'lucide-react';
 
 export default function Dashboard() {
@@ -104,170 +105,189 @@ export default function Dashboard() {
 
   const UmkmForm = ({ data, setData, isEdit = false }: { data: Partial<Umkm>, setData: (data: Partial<Umkm>) => void, isEdit?: boolean }) => (
     <div className="grid gap-4 py-4">
-      <div className="grid gap-2">
-        <label>Name</label>
-        <Input value={data.name || ''} onChange={(e) => setData({ ...data, name: e.target.value })} />
+      <div className="grid grid-cols-2 gap-4">
+        <div className="grid gap-2">
+          <label className="text-sm font-medium">Name</label>
+          <Input value={data.name || ''} onChange={(e) => setData({ ...data, name: e.target.value })} />
+        </div>
+        <div className="grid gap-2">
+          <label className="text-sm font-medium">Category</label>
+          <Select value={String(data.categoryId)} onValueChange={(value) => setData({ ...data, categoryId: Number(value) })}>
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {categories.map((category) => (
+                <SelectItem key={category.id} value={String(category.id)}>{category.name}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
+
       <div className="grid gap-2">
-        <label>Description</label>
+        <label className="text-sm font-medium">Description</label>
         <Textarea value={data.description || ''} onChange={(e) => setData({ ...data, description: e.target.value })} />
       </div>
-      <div className="grid gap-2">
-        <label>Category</label>
-        <Select value={String(data.categoryId)} onValueChange={(value) => setData({ ...data, categoryId: Number(value) })}>
-          <SelectTrigger>
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {categories.map((category) => (
-              <SelectItem key={category.id} value={String(category.id)}>{category.name}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div className="grid gap-2">
+          <label className="text-sm font-medium">Location</label>
+          <Input value={data.location || ''} onChange={(e) => setData({ ...data, location: e.target.value })} />
+        </div>
+        <div className="grid gap-2">
+          <label className="text-sm font-medium">Address</label>
+          <Input value={data.address || ''} onChange={(e) => setData({ ...data, address: e.target.value })} />
+        </div>
       </div>
+
       <div className="grid gap-2">
-        <label>Location</label>
-        <Input value={data.location || ''} onChange={(e) => setData({ ...data, location: e.target.value })} />
-      </div>
-      <div className="grid gap-2">
-        <label>Address</label>
-        <Input value={data.address || ''} onChange={(e) => setData({ ...data, address: e.target.value })} />
-      </div>
-      <div className="grid gap-2">
-        <label>Image URL</label>
+        <label className="text-sm font-medium">Image URL</label>
         <Input value={data.imageUrl || ''} onChange={(e) => setData({ ...data, imageUrl: e.target.value })} />
       </div>
-      <div className="grid gap-2">
-        <label>Current Condition</label>
-        <Input value={data.currentCondition || ''} onChange={(e) => setData({ ...data, currentCondition: e.target.value })} />
+
+      <div className="grid grid-cols-2 gap-4">
+        <div className="grid gap-2">
+          <label className="text-sm font-medium">Current Condition</label>
+          <Input value={data.currentCondition || ''} onChange={(e) => setData({ ...data, currentCondition: e.target.value })} />
+        </div>
+        <div className="grid gap-2">
+          <label className="text-sm font-medium">Promotion Text</label>
+          <Input value={data.promotionText || ''} onChange={(e) => setData({ ...data, promotionText: e.target.value })} />
+        </div>
       </div>
+
       <div className="grid gap-2">
-        <label>Promotion Text</label>
-        <Input value={data.promotionText || ''} onChange={(e) => setData({ ...data, promotionText: e.target.value })} />
-      </div>
-      <div className="grid gap-2">
-        <label>History</label>
+        <label className="text-sm font-medium">History</label>
         <Textarea value={data.history || ''} onChange={(e) => setData({ ...data, history: e.target.value })} />
       </div>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-neutral p-8">
-      <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
+    <div className="min-h-screen bg-gray-50 p-8">
+      <Card className="mb-8">
+        <CardContent className="pt-6">
+          <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+        </CardContent>
+      </Card>
       
       <Tabs defaultValue="umkm" className="space-y-4">
-        <TabsList>
+        <TabsList className="bg-white p-1 shadow-sm">
           <TabsTrigger value="umkm">UMKM</TabsTrigger>
           <TabsTrigger value="deleted">Recycle Bin</TabsTrigger>
           <TabsTrigger value="categories">Categories</TabsTrigger>
         </TabsList>
 
         <TabsContent value="umkm">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">UMKM List</h2>
-              <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button><Plus className="w-4 h-4 mr-2" /> Add UMKM</Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle>Add New UMKM</DialogTitle>
-                  </DialogHeader>
-                  <UmkmForm data={newUmkm} setData={setNewUmkm} />
-                  <DialogFooter>
-                    <Button onClick={() => createUmkmMutation.mutate(newUmkm)}>Create</Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-            </div>
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-semibold text-gray-900">UMKM List</h2>
+                <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
+                  <DialogTrigger asChild>
+                    <Button><Plus className="w-4 h-4 mr-2" /> Add UMKM</Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white">
+                    <DialogHeader>
+                      <DialogTitle>Add New UMKM</DialogTitle>
+                    </DialogHeader>
+                    <UmkmForm data={newUmkm} setData={setNewUmkm} />
+                    <DialogFooter>
+                      <Button onClick={() => createUmkmMutation.mutate(newUmkm)}>Create</Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </div>
 
-            <div className="overflow-x-auto">
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Name</TableHead>
+                      <TableHead>Category</TableHead>
+                      <TableHead>Location</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {umkms.map((umkm) => (
+                      <TableRow key={umkm.id}>
+                        <TableCell className="font-medium">{umkm.name}</TableCell>
+                        <TableCell>
+                          {categories.find(c => c.id === umkm.categoryId)?.name}
+                        </TableCell>
+                        <TableCell>{umkm.location}</TableCell>
+                        <TableCell>
+                          <Badge variant={umkm.currentCondition === 'Aktif' ? 'success' : 'destructive'}>
+                            {umkm.currentCondition}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleEdit(umkm)}
+                            >
+                              <Edit className="w-4 h-4" />
+                            </Button>
+                            <Button
+                              variant="destructive"
+                              size="sm"
+                              onClick={() => handleDelete(umkm.id)}
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="deleted">
+          <Card>
+            <CardContent className="pt-6">
+              <h2 className="text-xl font-semibold mb-6">Deleted UMKM</h2>
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Name</TableHead>
                     <TableHead>Category</TableHead>
                     <TableHead>Location</TableHead>
-                    <TableHead>Status</TableHead>
                     <TableHead>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {umkms.map((umkm) => (
+                  {deletedUmkms.map((umkm) => (
                     <TableRow key={umkm.id}>
-                      <TableCell className="font-medium">{umkm.name}</TableCell>
+                      <TableCell>{umkm.name}</TableCell>
                       <TableCell>
                         {categories.find(c => c.id === umkm.categoryId)?.name}
                       </TableCell>
                       <TableCell>{umkm.location}</TableCell>
                       <TableCell>
-                        <Badge variant={umkm.currentCondition === 'Aktif' ? 'success' : 'destructive'}>
-                          {umkm.currentCondition}
-                        </Badge>
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleEdit(umkm)}
-                          >
-                            <Edit className="w-4 h-4" />
-                          </Button>
-                          <Button
-                            variant="destructive"
-                            size="sm"
-                            onClick={() => handleDelete(umkm.id)}
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </Button>
-                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleRestore(umkm)}
+                        >
+                          <RefreshCw className="w-4 h-4 mr-2" />
+                          Restore
+                        </Button>
                       </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
-            </div>
-          </div>
-        </TabsContent>
-
-        <TabsContent value="deleted">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-4">Deleted UMKM</h2>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead>Location</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {deletedUmkms.map((umkm) => (
-                  <TableRow key={umkm.id}>
-                    <TableCell>{umkm.name}</TableCell>
-                    <TableCell>
-                      {categories.find(c => c.id === umkm.categoryId)?.name}
-                    </TableCell>
-                    <TableCell>{umkm.location}</TableCell>
-                    <TableCell>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleRestore(umkm)}
-                      >
-                        <RefreshCw className="w-4 h-4 mr-2" />
-                        Restore
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
+            </CardContent>
+          </Card>
         </TabsContent>
       </Tabs>
 
@@ -287,7 +307,7 @@ export default function Dashboard() {
       </AlertDialog>
 
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white">
           <DialogHeader>
             <DialogTitle>Edit UMKM</DialogTitle>
           </DialogHeader>
