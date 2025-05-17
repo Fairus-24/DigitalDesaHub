@@ -1,3 +1,4 @@
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
@@ -11,13 +12,16 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      // pastikan ini:
       '@': path.resolve(__dirname, 'src'),
     },
-    extensions: ['.js', '.ts', '.jsx', '.tsx'], // agar .tsx ter‑resolve
+    extensions: ['.js', '.ts', '.jsx', '.tsx'],
   },
   build: {
     outDir: 'dist',
     emptyOutDir: true,
   },
+  server: {
+    host: '0.0.0.0',
+    allowedHosts: 'all'
+  }
 })
