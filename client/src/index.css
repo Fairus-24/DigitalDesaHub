@@ -83,18 +83,20 @@
   --input: 0 0% 25%;
   --ring: 151 44% 50%;
 }
-
 @layer base {
   * {
-    @apply border-[hsl(var(--border))];
+    border-color: hsl(var(--border));
   }
 
   body {
-    @apply bg-background text-foreground font-body;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Nunito', sans-serif; /* sesuai .font-body */
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold;
+    font-family: 'Poppins', sans-serif; /* sesuai .font-heading */
+    font-weight: bold;
   }
 }
 

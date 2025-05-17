@@ -6,11 +6,13 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.7",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.15.18",
     "@vitejs/plugin-react": "^4.4.1",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.7",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.8.3",
     "vite": "^6.3.5"
   },
@@ -76,7 +78,6 @@
     "recharts": "^2.15.2",
     "serverless-http": "^3.2.0",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7",
     "tw-animate-css": "^1.2.5",
     "vaul": "^1.1.2",
     "wouter": "^3.3.5",
