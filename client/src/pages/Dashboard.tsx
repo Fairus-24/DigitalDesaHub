@@ -198,8 +198,6 @@ const UmkmForm = ({ data, setData, isEdit = false }: { data: Partial<Umkm>, setD
     </div>
   );
 };
-  );
-
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <Card className="mb-8">
