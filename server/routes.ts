@@ -6,7 +6,16 @@ import { z } from "zod";
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes
 
-  // Get categories
+  // CRUD for categories
+  app.post('/api/categories', async (req, res) => {
+    try {
+      const category = await storage.createCategory(req.body);
+      res.json(category);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to create category' });
+    }
+  });
+
   app.get('/api/categories', async (req, res) => {
     try {
       const categories = await storage.getCategories();
@@ -35,7 +44,45 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get all UMKMs
+  // CRUD for UMKMs
+  app.post('/api/umkms', async (req, res) => {
+    try {
+      const umkm = await storage.createUmkm(req.body);
+      res.json(umkm);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to create UMKM' });
+    }
+  });
+
+  app.put('/api/umkms/:id', async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: 'Invalid UMKM ID' });
+      }
+      const umkm = await storage.updateUmkm(id, req.body);
+      if (!umkm) {
+        return res.status(404).json({ message: 'UMKM not found' });
+      }
+      res.json(umkm);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to update UMKM' });
+    }
+  });
+
+  app.delete('/api/umkms/:id', async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: 'Invalid UMKM ID' });
+      }
+      await storage.deleteUmkm(id);
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to delete UMKM' });
+    }
+  });
+
   app.get('/api/umkms', async (req, res) => {
     try {
       const categoryId = req.query.categoryId ? parseInt(req.query.categoryId as string) : null;

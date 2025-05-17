@@ -33,6 +33,8 @@ export interface IStorage {
   getUmkmById(id: number): Promise<Umkm | undefined>;
   getUmkmsByCategoryId(categoryId: number): Promise<Umkm[]>;
   createUmkm(umkm: InsertUmkm): Promise<Umkm>;
+  updateUmkm(id: number, umkm: Partial<InsertUmkm>): Promise<Umkm | undefined>;
+  deleteUmkm(id: number): Promise<void>;
 
   // Village Profile methods
   getVillageProfile(): Promise<VillageProfile | undefined>;
@@ -129,6 +131,29 @@ export class MemStorage implements IStorage {
     const umkm: Umkm = { ...insertUmkm, id };
     this.umkms.set(id, umkm);
     return umkm;
+  }
+
+  async updateUmkm(
+    id: number,
+    umkmUpdate: Partial<InsertUmkm>,
+  ): Promise<Umkm | undefined> {
+    const currentUmkm = this.umkms.get(id);
+
+    if (!currentUmkm) {
+      return undefined;
+    }
+
+    const updatedUmkm: Umkm = {
+      ...currentUmkm,
+      ...umkmUpdate,
+    };
+
+    this.umkms.set(id, updatedUmkm);
+    return updatedUmkm;
+  }
+
+  async deleteUmkm(id: number): Promise<void> {
+    this.umkms.delete(id);
   }
 
   // Village Profile methods
