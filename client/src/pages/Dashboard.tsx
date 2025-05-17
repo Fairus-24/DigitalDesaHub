@@ -123,12 +123,12 @@ export default function Dashboard() {
   };
 
   const UmkmForm = ({ data, setData, isEdit = false }: { data: Partial<Umkm>, setData: (data: Partial<Umkm>) => void, isEdit?: boolean }) => {
-    // Initialize reviews only once when the form is first rendered for new UMKMs
-    React.useEffect(() => {
+    useEffect(() => {
       if (!isEdit && !data.reviews) {
-        setData(prev => ({ ...prev, reviews: generateDummyReviews() }));
+        const dummyReviews = generateDummyReviews();
+        setData({ ...data, reviews: dummyReviews });
       }
-    }, []); // Empty dependency array means this runs once on mount
+    }, [isEdit]);
     
     return (
       <div className="grid gap-4 py-4">
