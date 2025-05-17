@@ -5,6 +5,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.7",
     "@types/node": "^22.15.18",
     "@vitejs/plugin-react": "^4.4.1",
     "autoprefixer": "^10.4.21",
