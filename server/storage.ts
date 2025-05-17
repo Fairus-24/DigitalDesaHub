@@ -27,6 +27,8 @@ export interface IStorage {
   getCategoryById(id: number): Promise<Category | undefined>;
   getCategoryBySlug(slug: string): Promise<Category | undefined>;
   createCategory(category: InsertCategory): Promise<Category>;
+  updateCategory(id: number, category: Partial<InsertCategory>): Promise<Category | undefined>;
+  deleteCategory(id: number): Promise<void>;
 
   // UMKM methods
   getUmkms(): Promise<Umkm[]>;
@@ -109,6 +111,29 @@ export class MemStorage implements IStorage {
     const category: Category = { ...insertCategory, id };
     this.categories.set(id, category);
     return category;
+  }
+
+  async updateCategory(
+    id: number,
+    categoryUpdate: Partial<InsertCategory>,
+  ): Promise<Category | undefined> {
+    const currentCategory = this.categories.get(id);
+
+    if (!currentCategory) {
+      return undefined;
+    }
+
+    const updatedCategory: Category = {
+      ...currentCategory,
+      ...categoryUpdate,
+    };
+
+    this.categories.set(id, updatedCategory);
+    return updatedCategory;
+  }
+
+  async deleteCategory(id: number): Promise<void> {
+    this.categories.delete(id);
   }
 
   // UMKM methods

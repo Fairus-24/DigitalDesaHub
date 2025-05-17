@@ -122,12 +122,12 @@ export default function Dashboard() {
   };
 
   const UmkmForm = ({ data, setData, isEdit = false }: { data: Partial<Umkm>, setData: (data: Partial<Umkm>) => void, isEdit?: boolean }) => {
-    useEffect(() => {
+    // Initialize reviews only once when the form is first rendered for new UMKMs
+    React.useEffect(() => {
       if (!isEdit && !data.reviews) {
-        const dummyReviews = generateDummyReviews();
-        setData(prev => ({ ...prev, reviews: dummyReviews }));
+        setData(prev => ({ ...prev, reviews: generateDummyReviews() }));
       }
-    }, [isEdit]);
+    }, []); // Empty dependency array means this runs once on mount
     
     return (
       <div className="grid gap-4 py-4">
@@ -330,12 +330,52 @@ export default function Dashboard() {
         <TabsContent value="categories">
           <Card>
             <CardContent className="pt-6">
-              <h2 className="text-xl font-semibold mb-6">Categories</h2>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-semibold">Categories</h2>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button><Plus className="w-4 h-4 mr-2" /> Add Category</Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-md">
+                    <DialogHeader>
+                      <DialogTitle>Add New Category</DialogTitle>
+                    </DialogHeader>
+                    <form onSubmit={(e) => {
+                      e.preventDefault();
+                      const formData = new FormData(e.currentTarget);
+                      const name = formData.get('name') as string;
+                      const slug = name.toLowerCase().replace(/\s+/g, '-');
+                      
+                      fetch('/api/categories', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, slug }),
+                      }).then(() => {
+                        queryClient.invalidateQueries({ queryKey: ['/api/categories'] });
+                        (e.target as HTMLFormElement).reset();
+                        toast({ title: "Success", description: "Category created successfully" });
+                      });
+                    }}>
+                      <div className="grid gap-4 py-4">
+                        <div className="grid gap-2">
+                          <Label htmlFor="name">Name</Label>
+                          <Input id="name" name="name" required />
+                        </div>
+                      </div>
+                      <DialogFooter>
+                        <Button type="submit">Create</Button>
+                      </DialogFooter>
+                    </form>
+                  </DialogContent>
+                </Dialog>
+              </div>
+
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Name</TableHead>
                     <TableHead>Slug</TableHead>
+                    <TableHead>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -343,6 +383,46 @@ export default function Dashboard() {
                     <TableRow key={category.id}>
                       <TableCell>{category.name}</TableCell>
                       <TableCell>{category.slug}</TableCell>
+                      <TableCell>
+                        <div className="flex gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => {
+                              const newName = window.prompt('Enter new name:', category.name);
+                              if (newName) {
+                                const newSlug = newName.toLowerCase().replace(/\s+/g, '-');
+                                fetch(`/api/categories/${category.id}`, {
+                                  method: 'PUT',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ name: newName, slug: newSlug }),
+                                }).then(() => {
+                                  queryClient.invalidateQueries({ queryKey: ['/api/categories'] });
+                                  toast({ title: "Success", description: "Category updated successfully" });
+                                });
+                              }
+                            }}
+                          >
+                            <Edit className="w-4 h-4" />
+                          </Button>
+                          <Button
+                            variant="destructive"
+                            size="sm"
+                            onClick={() => {
+                              if (window.confirm('Are you sure you want to delete this category?')) {
+                                fetch(`/api/categories/${category.id}`, {
+                                  method: 'DELETE',
+                                }).then(() => {
+                                  queryClient.invalidateQueries({ queryKey: ['/api/categories'] });
+                                  toast({ title: "Success", description: "Category deleted successfully" });
+                                });
+                              }
+                            }}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
