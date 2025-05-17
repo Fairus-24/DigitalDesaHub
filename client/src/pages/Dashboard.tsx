@@ -122,9 +122,11 @@ export default function Dashboard() {
   };
 
   const UmkmForm = ({ data, setData, isEdit = false }: { data: Partial<Umkm>, setData: (data: Partial<Umkm>) => void, isEdit?: boolean }) => {
-    if (!isEdit && !data.reviews) {
-      setData({ ...data, reviews: generateDummyReviews() });
-    }
+    useEffect(() => {
+      if (!isEdit && !data.reviews) {
+        setData({ ...data, reviews: generateDummyReviews() });
+      }
+    }, [isEdit, data.reviews, setData]);
     
     return (
       <div className="grid gap-4 py-4">
