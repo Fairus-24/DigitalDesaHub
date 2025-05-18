@@ -155,9 +155,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (typeof mission === 'string') {
         try {
           mission = JSON.parse(mission);
+          if (!Array.isArray(mission)) mission = "";
+          // If mission must be a string, convert empty array to empty string
+          if (!Array.isArray(mission)) mission = "";
         } catch {
           mission = "";
         }
+      } else if (!Array.isArray(mission)) {
+        mission = "";
       }
       res.json({ ...profile, mission });
     } catch (error) {
