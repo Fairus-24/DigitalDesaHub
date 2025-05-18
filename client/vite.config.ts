@@ -1,18 +1,22 @@
+// client/vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { fileURLToPath, URL } from 'node:url';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// ES module: bangkitkan __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  root: './',  // arahkan ke folder client
+  plugins: [react()],
   resolve: {
     alias: {
-      // Alias @ mengarah ke client/src
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
   build: {
-    outDir: './dist',    // hasil build di root/dist
-    emptyOutDir: true
+    outDir: 'dist',
+    emptyOutDir: true,
   },
-  plugins: [react()]
 });
