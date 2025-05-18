@@ -1,27 +1,18 @@
-
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
-import { fileURLToPath } from 'url'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
-  base: './',
-  plugins: [react()],
+  root: './',  // arahkan ke folder client
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
-    extensions: ['.js', '.ts', '.jsx', '.tsx'],
+      // Alias @ mengarah ke client/src
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
   },
   build: {
-    outDir: 'dist',
-    emptyOutDir: true,
+    outDir: './dist',    // hasil build di root/dist
+    emptyOutDir: true
   },
-  server: {
-    host: '0.0.0.0',
-    allowedHosts: 'all'
-  }
-})
+  plugins: [react()]
+});
