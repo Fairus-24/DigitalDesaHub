@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Umkm, Category } from '@/lib/types';
@@ -16,6 +15,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Trash2, RefreshCw, Edit, Plus } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+
 export default function Dashboard() {
   const { data: umkms = [] } = useQuery<Umkm[]>({ queryKey: ['/api/umkms'] });
   const { data: categories = [] } = useQuery<Category[]>({ queryKey: ['/api/categories'] });
@@ -32,7 +33,7 @@ export default function Dashboard() {
 
   const createUmkmMutation = useMutation({
     mutationFn: async (data: Partial<Umkm>) => {
-      const response = await fetch('/api/umkms', {
+      const response = await fetch(`${API_BASE_URL}/api/umkms`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -50,7 +51,7 @@ export default function Dashboard() {
 
   const updateUmkmMutation = useMutation({
     mutationFn: async (data: Umkm) => {
-      const response = await fetch(`/api/umkms/${data.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/umkms/${data.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -68,7 +69,7 @@ export default function Dashboard() {
 
   const deleteUmkmMutation = useMutation({
     mutationFn: async (id: number) => {
-      const response = await fetch(`/api/umkms/${id}`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE_URL}/api/umkms/${id}`, { method: 'DELETE' });
       if (!response.ok) throw new Error('Failed to delete UMKM');
     },
     onSuccess: (_, id) => {
@@ -258,7 +259,7 @@ export default function Dashboard() {
                         </TableCell>
                         <TableCell>{umkm.location}</TableCell>
                         <TableCell>
-                          <Badge variant={umkm.currentCondition === 'Aktif' ? 'success' : 'destructive'}>
+                          <Badge variant={umkm.currentCondition === 'Aktif' ? 'default' : 'destructive'}>
                             {umkm.currentCondition}
                           </Badge>
                         </TableCell>
@@ -347,7 +348,7 @@ export default function Dashboard() {
                       const name = formData.get('name') as string;
                       const slug = name.toLowerCase().replace(/\s+/g, '-');
                       
-                      fetch('/api/categories', {
+                      fetch(`${API_BASE_URL}/api/categories`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ name, slug }),
