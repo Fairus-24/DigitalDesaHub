@@ -26,6 +26,7 @@ export default function MapSection({ selectedUmkmId }: MapSectionProps) {
         return {
           id: umkm.id,
           name: umkm.name,
+          position: { lat, lng },
           address: umkm.address,
           maps1: umkm.maps1,
           maps2: umkm.maps2,
@@ -47,7 +48,7 @@ export default function MapSection({ selectedUmkmId }: MapSectionProps) {
           mapElement.style.transform = 'scale(0.8)';
           
           setTimeout(() => {
-            mapElement.src = selectedUmkm.maps1;
+            mapElement.src = selectedUmkm.maps1 ?? "";
             setTimeout(() => {
               mapElement.style.transform = 'scale(1)';
             }, 50);
@@ -69,7 +70,7 @@ export default function MapSection({ selectedUmkmId }: MapSectionProps) {
         mapElement.style.transform = 'scale(0.8)';
         
         setTimeout(() => {
-          mapElement.src = selectedUmkm.maps2;
+          mapElement.src = selectedUmkm.maps2 ?? "";
           setTimeout(() => {
             mapElement.style.transform = 'scale(1)';
           }, 50);

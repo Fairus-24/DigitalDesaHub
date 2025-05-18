@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development tsx server/index.ts",
     "build": "npm run build --workspace client && npm run build --workspace server",
-    "start": "node server/dist/index.js",
+    "start": "node dist/index.js",
     "check": "tsc",
     "db:push": "drizzle-kit push"
   },
@@ -104,7 +104,7 @@
     "tailwindcss": "^3.4.17",
     "tsx": "^4.19.1",
     "typescript": "5.6.3",
-    "vite": "^5.4.14",
+    "vite": "^5.4.19",
     "vite-plugin-static-copy": "^3.0.0"
   },
   "optionalDependencies": {

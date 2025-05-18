@@ -41,6 +41,11 @@ export interface VillageProfile {
 
 
 
+export interface Coordinates {
+  lat: number;
+  lng: number;
+}
+
 export interface MapMarker {
   id: number;
   name: string;

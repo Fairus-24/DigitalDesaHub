@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+    "build": "vite build",
     "check": "tsc",
     "db:push": "drizzle-kit push",
     "preview": "vite preview"
@@ -102,7 +102,6 @@
     "tailwindcss": "^3.4.17",
     "tsx": "^4.19.1",
     "typescript": "5.6.3",
-    "vite": "^6.3.5",
     "vite-plugin-static-copy": "^3.0.0"
   },
   "optionalDependencies": {
