@@ -115,51 +115,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get('/api/umkms', async (req, res) => {
     try {
       const categoryId = req.query.categoryId ? parseInt(req.query.categoryId as string) : null;
-
       let umkms;
       if (categoryId && !isNaN(categoryId)) {
         umkms = await storage.getUmkmsByCategoryId(categoryId);
       } else {
         umkms = await storage.getUmkms();
       }
-
       res.json(umkms);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch UMKMs' });
     }
   });
 
-  app.get("/api/umkms/:id", async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      if (isNaN(id)) {
-        return res.status(400).json({ message: "Invalid UMKM ID" });
-      }
-
-      const umkm = await storage.getUmkmById(id);
-      if (!umkm) {
-        return res.status(404).json({ message: "UMKM not found" });
-      }
-
-      res.json(umkm);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to fetch UMKM" });
-    }
-  });
-
-  // Get UMKM by ID
   app.get('/api/umkms/:id', async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       if (isNaN(id)) {
         return res.status(400).json({ message: 'Invalid UMKM ID' });
       }
-
       const umkm = await storage.getUmkmById(id);
       if (!umkm) {
         return res.status(404).json({ message: 'UMKM not found' });
       }
-
       res.json(umkm);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch UMKM' });
@@ -173,7 +150,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!profile) {
         return res.status(404).json({ message: 'Village profile not found' });
       }
-
       res.json(profile);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch village profile' });
