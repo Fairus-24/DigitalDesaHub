@@ -156,7 +156,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         try {
           mission = JSON.parse(mission);
         } catch {
-          mission = [];
+          mission = "";
         }
       }
       res.json({ ...profile, mission });
