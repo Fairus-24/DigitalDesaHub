@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "check": "tsc",
     "db:push": "drizzle-kit push",
     "preview": "vite preview"
@@ -96,13 +96,13 @@
     "@types/ws": "^8.5.13",
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.21",
-    "drizzle-kit": "^0.30.4",
+    "drizzle-kit": "^0.31.1",
     "esbuild": "^0.25.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.19.1",
     "typescript": "5.6.3",
-    "vite": "^5.4.14"
+    "vite": "^6.3.5"
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.8"
