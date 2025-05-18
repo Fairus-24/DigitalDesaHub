@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "ES2020",
+    "module": "commonjs",
     "baseUrl": "../",
     "paths": {
       "@shared/*": ["shared/*"]
@@ -13,5 +13,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["index.ts"]
+  "include": ["index.ts", "routes.ts", "storage.ts", "vite.ts"],
+  "exclude": ["functions/api.ts"]
 }

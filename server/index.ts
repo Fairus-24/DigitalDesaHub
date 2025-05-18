@@ -1,7 +1,8 @@
 import express, { type Request, Response, NextFunction } from "express";
 import cors from "cors";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+// Ganti import dengan require agar kompatibel dengan CommonJS
+const { setupVite, serveStatic, log } = require("./vite");
 
 const app = express();
 app.use(cors({
