@@ -1,0 +1,13 @@
+// Enable CORS for Netlify frontend
+import cors from "cors";
+
+// ...existing code...
+const app = express();
+app.use(cors({
+  origin: [
+    "https://kelurahansukodono.netlify.app",
+    "http://localhost:5173"
+  ],
+  credentials: true
+}));
+// ...existing code...
