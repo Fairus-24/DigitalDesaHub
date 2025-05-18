@@ -18,8 +18,8 @@ import { Trash2, RefreshCw, Edit, Plus } from 'lucide-react';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 export default function Dashboard() {
-  const { data: umkms = [] } = useQuery<Umkm[]>({ queryKey: ['/api/umkms'] });
-  const { data: categories = [] } = useQuery<Category[]>({ queryKey: ['/api/categories'] });
+  const { data: umkms = [] } = useQuery<Umkm[]>({ queryKey: [`${API_BASE_URL}/api/umkms`] });
+  const { data: categories = [] } = useQuery<Category[]>({ queryKey: [`${API_BASE_URL}/api/categories`] });
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
@@ -42,7 +42,7 @@ export default function Dashboard() {
       return response.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/umkms'] });
+      queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/umkms`] });
       toast({ title: "Success", description: "UMKM created successfully" });
       setIsAddDialogOpen(false);
       setNewUmkm({});
@@ -60,7 +60,7 @@ export default function Dashboard() {
       return response.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/umkms'] });
+      queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/umkms`] });
       toast({ title: "Success", description: "UMKM updated successfully" });
       setIsEditDialogOpen(false);
       setEditingUmkm(null);
@@ -77,7 +77,7 @@ export default function Dashboard() {
       if (deletedUmkm) {
         setDeletedUmkms(prev => [...prev, deletedUmkm]);
       }
-      queryClient.invalidateQueries({ queryKey: ['/api/umkms'] });
+      queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/umkms`] });
       toast({ title: "Success", description: "UMKM moved to recycle bin" });
     }
   });
@@ -353,7 +353,7 @@ export default function Dashboard() {
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ name, slug }),
                       }).then(() => {
-                        queryClient.invalidateQueries({ queryKey: ['/api/categories'] });
+                        queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/categories`] });
                         (e.target as HTMLFormElement).reset();
                         toast({ title: "Success", description: "Category created successfully" });
                       });
@@ -394,12 +394,12 @@ export default function Dashboard() {
                               const newName = window.prompt('Enter new name:', category.name);
                               if (newName) {
                                 const newSlug = newName.toLowerCase().replace(/\s+/g, '-');
-                                fetch(`/api/categories/${category.id}`, {
+                                fetch(`${API_BASE_URL}/api/categories/${category.id}`, {
                                   method: 'PUT',
                                   headers: { 'Content-Type': 'application/json' },
                                   body: JSON.stringify({ name: newName, slug: newSlug }),
                                 }).then(() => {
-                                  queryClient.invalidateQueries({ queryKey: ['/api/categories'] });
+                                  queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/categories`] });
                                   toast({ title: "Success", description: "Category updated successfully" });
                                 });
                               }
@@ -412,10 +412,10 @@ export default function Dashboard() {
                             size="sm"
                             onClick={() => {
                               if (window.confirm('Are you sure you want to delete this category?')) {
-                                fetch(`/api/categories/${category.id}`, {
+                                fetch(`${API_BASE_URL}/api/categories/${category.id}`, {
                                   method: 'DELETE',
                                 }).then(() => {
-                                  queryClient.invalidateQueries({ queryKey: ['/api/categories'] });
+                                  queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/categories`] });
                                   toast({ title: "Success", description: "Category deleted successfully" });
                                 });
                               }
