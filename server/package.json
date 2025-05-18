@@ -1,7 +1,8 @@
 {
   "scripts": {
     "build": "tsc",
-    "start": "node dist/server/index.js"
+    "start": "node dist/server/index.js",
+    "postbuild": "mkdir -p public && cp -rf ../client/dist/* public/"
   },
   "dependencies": {
     "express": "^4.18.2",
