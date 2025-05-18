@@ -17,8 +17,8 @@ export interface Umkm {
   categoryId: number;
   promotionText?: string;
   coordinates: string;
-  maps1: string;
-  maps2: string;
+  maps1?: string;
+  maps2?: string;
   reviews: {
     author: string;
     rating: number;

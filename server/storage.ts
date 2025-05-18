@@ -13,16 +13,11 @@ import {
   type InsertVillageProfile,
 } from "@shared/schema";
 
-// modify the interface with any CRUD methods
-// you might need
-
 export interface IStorage {
-  // User methods
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
 
-  // Category methods
   getCategories(): Promise<Category[]>;
   getCategoryById(id: number): Promise<Category | undefined>;
   getCategoryBySlug(slug: string): Promise<Category | undefined>;
@@ -30,7 +25,6 @@ export interface IStorage {
   updateCategory(id: number, category: Partial<InsertCategory>): Promise<Category | undefined>;
   deleteCategory(id: number): Promise<void>;
 
-  // UMKM methods
   getUmkms(): Promise<Umkm[]>;
   getUmkmById(id: number): Promise<Umkm | undefined>;
   getUmkmsByCategoryId(categoryId: number): Promise<Umkm[]>;
@@ -38,197 +32,146 @@ export interface IStorage {
   updateUmkm(id: number, umkm: Partial<InsertUmkm>): Promise<Umkm | undefined>;
   deleteUmkm(id: number): Promise<void>;
 
-  // Village Profile methods
   getVillageProfile(): Promise<VillageProfile | undefined>;
   createVillageProfile(profile: InsertVillageProfile): Promise<VillageProfile>;
   updateVillageProfile(
     id: number,
-    profile: Partial<InsertVillageProfile>,
+    profile: Partial<InsertVillageProfile>
   ): Promise<VillageProfile | undefined>;
 }
 
 export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  private categories: Map<number, Category>;
-  private umkms: Map<number, Umkm>;
-  private villageProfiles: Map<number, VillageProfile>;
+  private users = new Map<number, User>();
+  private categories = new Map<number, Category>();
+  private umkms = new Map<number, Umkm>();
+  private villageProfiles = new Map<number, VillageProfile>();
 
-  private currentUserId: number;
-  private currentCategoryId: number;
-  private currentUmkmId: number;
-  private currentVillageProfileId: number;
+  private currentUserId = 1;
+  private currentCategoryId = 1;
+  private currentUmkmId = 1;
+  private currentVillageProfileId = 1;
 
   constructor() {
-    this.users = new Map();
-    this.categories = new Map();
-    this.umkms = new Map();
-    this.villageProfiles = new Map();
-
-    this.currentUserId = 1;
-    this.currentCategoryId = 1;
-    this.currentUmkmId = 1;
-    this.currentVillageProfileId = 1;
-
-    // Initialize with sample data
     this.initializeData();
   }
 
   // User methods
-  async getUser(id: number): Promise<User | undefined> {
+  async getUser(id: number) {
     return this.users.get(id);
   }
-
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  async getUserByUsername(username: string) {
+    return Array.from(this.users.values()).find(u => u.username === username);
   }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
+  async createUser(insertUser: InsertUser) {
     const id = this.currentUserId++;
-    const user: User = { ...insertUser, id };
+    const user: User = { id, ...insertUser };
     this.users.set(id, user);
     return user;
   }
 
   // Category methods
-  async getCategories(): Promise<Category[]> {
+  async getCategories() {
     return Array.from(this.categories.values());
   }
-
-  async getCategoryById(id: number): Promise<Category | undefined> {
+  async getCategoryById(id: number) {
     return this.categories.get(id);
   }
-
-  async getCategoryBySlug(slug: string): Promise<Category | undefined> {
-    return Array.from(this.categories.values()).find(
-      (category) => category.slug === slug,
-    );
+  async getCategoryBySlug(slug: string) {
+    return Array.from(this.categories.values()).find(c => c.slug === slug);
   }
-
-  async createCategory(insertCategory: InsertCategory): Promise<Category> {
+  async createCategory(insertCategory: InsertCategory) {
     const id = this.currentCategoryId++;
-    const category: Category = { ...insertCategory, id };
+    const category: Category = { id, ...insertCategory };
     this.categories.set(id, category);
     return category;
   }
-
-  async updateCategory(
-    id: number,
-    categoryUpdate: Partial<InsertCategory>,
-  ): Promise<Category | undefined> {
-    const currentCategory = this.categories.get(id);
-
-    if (!currentCategory) {
-      return undefined;
-    }
-
-    const updatedCategory: Category = {
-      ...currentCategory,
-      ...categoryUpdate,
-    };
-
-    this.categories.set(id, updatedCategory);
-    return updatedCategory;
+  async updateCategory(id: number, catUpdate: Partial<InsertCategory>) {
+    const existing = this.categories.get(id);
+    if (!existing) return undefined;
+    const updated: Category = { ...existing, ...catUpdate };
+    this.categories.set(id, updated);
+    return updated;
   }
-
-  async deleteCategory(id: number): Promise<void> {
+  async deleteCategory(id: number) {
     this.categories.delete(id);
   }
 
   // UMKM methods
-  async getUmkms(): Promise<Umkm[]> {
+  async getUmkms() {
     return Array.from(this.umkms.values());
   }
-
-  async getUmkmById(id: number): Promise<Umkm | undefined> {
+  async getUmkmById(id: number) {
     return this.umkms.get(id);
   }
-
-  async getUmkmsByCategoryId(categoryId: number): Promise<Umkm[]> {
-    return Array.from(this.umkms.values()).filter(
-      (umkm) => umkm.categoryId === categoryId,
-    );
+  async getUmkmsByCategoryId(categoryId: number) {
+    return Array.from(this.umkms.values()).filter(u => u.categoryId === categoryId);
   }
-
-  async createUmkm(insertUmkm: InsertUmkm): Promise<Umkm> {
+  async createUmkm(insertUmkm: InsertUmkm) {
     const id = this.currentUmkmId++;
-    const umkm: Umkm = { ...insertUmkm, id };
+    const umkm: Umkm = {
+      id,
+      ...insertUmkm,
+      promotionText: insertUmkm.promotionText ?? null,
+      reviews: JSON.stringify(insertUmkm.reviews),
+      productImages: JSON.stringify(insertUmkm.productImages),
+    };
     this.umkms.set(id, umkm);
     return umkm;
   }
-
-  async updateUmkm(
-    id: number,
-    umkmUpdate: Partial<InsertUmkm>,
-  ): Promise<Umkm | undefined> {
-    const currentUmkm = this.umkms.get(id);
-
-    if (!currentUmkm) {
-      return undefined;
-    }
-
-    const updatedUmkm: Umkm = {
-      ...currentUmkm,
-      ...umkmUpdate,
-    };
-
-    this.umkms.set(id, updatedUmkm);
-    return updatedUmkm;
+  async updateUmkm(id: number, update: Partial<InsertUmkm>) {
+    const existing = this.umkms.get(id);
+    if (!existing) return undefined;
+    const merged = {
+      ...existing,
+      ...update,
+      promotionText: update.promotionText ?? existing.promotionText,
+      reviews: update.reviews ? JSON.stringify(update.reviews) : existing.reviews,
+      productImages: update.productImages ? JSON.stringify(update.productImages) : existing.productImages,
+    } as Umkm;
+    this.umkms.set(id, merged);
+    return merged;
   }
-
-  async deleteUmkm(id: number): Promise<void> {
+  async deleteUmkm(id: number) {
     this.umkms.delete(id);
   }
 
   // Village Profile methods
-  async getVillageProfile(): Promise<VillageProfile | undefined> {
-    // Return the first village profile (should only be one)
-    const profiles = Array.from(this.villageProfiles.values());
-    return profiles.length > 0 ? profiles[0] : undefined;
+  async getVillageProfile() {
+    const list = Array.from(this.villageProfiles.values());
+    return list[0];
   }
-
-  async createVillageProfile(
-    insertProfile: InsertVillageProfile,
-  ): Promise<VillageProfile> {
+  async createVillageProfile(insert: InsertVillageProfile) {
     const id = this.currentVillageProfileId++;
-    const profile: VillageProfile = { ...insertProfile, id };
+    const profile: VillageProfile = {
+      id,
+      ...insert,
+      mission: JSON.stringify(insert.mission),
+    };
     this.villageProfiles.set(id, profile);
     return profile;
   }
-
-  async updateVillageProfile(
-    id: number,
-    profileUpdate: Partial<InsertVillageProfile>,
-  ): Promise<VillageProfile | undefined> {
-    const currentProfile = this.villageProfiles.get(id);
-
-    if (!currentProfile) {
-      return undefined;
-    }
-
-    const updatedProfile: VillageProfile = {
-      ...currentProfile,
-      ...profileUpdate,
-    };
-
-    this.villageProfiles.set(id, updatedProfile);
-    return updatedProfile;
+  async updateVillageProfile(id: number, update: Partial<InsertVillageProfile>) {
+    const existing = this.villageProfiles.get(id);
+    if (!existing) return undefined;
+    const merged = {
+      ...existing,
+      ...update,
+      mission: update.mission ? JSON.stringify(update.mission) : existing.mission,
+    } as VillageProfile;
+    this.villageProfiles.set(id, merged);
+    return merged;
   }
 
-  // Initialize with sample data
   private initializeData() {
-    // Create categories
-    const categoriesData: InsertCategory[] = [
+    // categories
+    const cats: InsertCategory[] = [
       { name: "Kerajinan", slug: "kerajinan" },
       { name: "Makanan", slug: "makanan" },
       { name: "Kedai", slug: "kedai" },
       { name: "Jasa", slug: "jasa" },
     ];
+    cats.forEach(c => this.createCategory(c));
 
-    categoriesData.forEach((category) => {
-      this.createCategory(category);
-    });
 
     // Create UMKM data
     const umkmsData: InsertUmkm[] = [
@@ -249,7 +192,7 @@ export class MemStorage implements IStorage {
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65279798679201!3d-7.152348076278058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010066bd5589%3A0x36be09024c3b982a!2sYayuk%20Collection%20%26%20Accessories!5e0!3m2!1sen!2sid!4v1747374768900!5m2!1sen!2sid",
         history: "tidak ada sejarah",
         currentCondition: "Aktif",
-        reviews: [
+        reviews: JSON.stringify([
           {
             author: "Siti Aminah",
             rating: 5,
@@ -268,12 +211,12 @@ export class MemStorage implements IStorage {
             comment: "Desainnya unik dan harganya terjangkau. Recommended!",
             date: "2024-02-01T00:00:00Z",
           }
-        ],
-        productImages: [
+        ]),
+        productImages: JSON.stringify([
           "https://down-id.img.susercontent.com/file/id-11134207-7r98z-lnh14d40x6o1c6",
           "https://down-id.img.susercontent.com/file/id-11134207-7r98z-lnh14d40x6o1c7",
           "https://down-id.img.susercontent.com/file/id-11134207-7r98z-lnh14d40x6o1c8"
-        ],
+        ]),
       },
       {
         name: "Yaris Cookies",
@@ -292,7 +235,7 @@ export class MemStorage implements IStorage {
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.6511758383209!3d-7.151240098213269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8010029cc181d%3A0xfc35848efc1e52e7!2sSedia%20Kue%20Kering%20(Yaris%20Cookies)!5e0!3m2!1sid!2sid!4v1747185507203!5m2!1sid!2sid",
         history: "Didirikan pada tahun 2015 oleh Ibu Yaris yang awalnya hanya menerima pesanan dari tetangga. Seiring waktu, kualitas dan cita rasa khas membuat usaha ini berkembang pesat.",
         currentCondition: "Aktif",
-        reviews: [
+        reviews: JSON.stringify([
           {
             author: "Rini Wulandari",
             rating: 5,
@@ -305,12 +248,12 @@ export class MemStorage implements IStorage {
             comment: "Cookies nya enak, tapi harga agak mahal. Tapi worth it sih untuk kualitasnya.",
             date: "2024-02-05T00:00:00Z"
           }
-        ],
-        productImages: [
+        ]),
+        productImages: JSON.stringify([
           "https://2112snackdelight.com/wp-content/uploads/2020/11/products-image-nutella-cookies-04.jpg",
           "https://images.unsplash.com/photo-1499636136210-6f4ee915583e",
           "https://images.unsplash.com/photo-1558961363-fa8fdf82db35"
-        ]
+        ]),
       },
       {
         name: "Warung Kopi Mama Atul",
@@ -329,7 +272,7 @@ export class MemStorage implements IStorage {
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65215365357392!3d-7.15248834709858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80100665e4d91%3A0x3849cac3ba0439b3!2sWarung%20Kopi%20Mama%20Atul!5e0!3m2!1sen!2sid!4v1747380713479!5m2!1sen!2sid",
         history: "Warung Kopi Mama Atul berdiri sejak 2010, dikelola oleh keluarga dan menjadi tempat berkumpul favorit warga sekitar. Awalnya hanya menjual kopi sederhana, kini berkembang dengan berbagai menu minuman dan makanan ringan.",
         currentCondition: "Aktif",
-        reviews: [
+        reviews: JSON.stringify([
           {
             author: "Joko Prasetyo",
             rating: 5,
@@ -348,12 +291,12 @@ export class MemStorage implements IStorage {
             comment: "Tempat favorit buat kerja remote, kopinya enak!",
             date: "2024-02-08T00:00:00Z"
           }
-        ],
-        productImages: [
+        ]),
+        productImages: JSON.stringify([
           "https://manual.co.id/wp-content/uploads/2021/11/manual_photo_essay_warkop_web-18-980x719.jpg",
           "https://images.unsplash.com/photo-1442512595331-e89e73853f31",
           "https://images.unsplash.com/photo-1511920170033-f8396924c348"
-        ]
+        ]),
       },
       {
         name: "Farah Craft",
@@ -372,7 +315,7 @@ export class MemStorage implements IStorage {
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65063007403916!3d-7.151648470158272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8015ac782bd89%3A0x246274db7820b419!2sFarah%20Craft!5e0!3m2!1sen!2sid!4v1747405737126!5m2!1sen!2sid",
         history: "Farah Craft dimulai dari hobi membuat kerajinan tangan pada tahun 2018. Berawal dari pesanan teman dan kerabat, kini telah berkembang menjadi usaha yang melayani berbagai pesanan custom untuk acara pernikahan, wisuda, dan berbagai celebration.",
         currentCondition: "Aktif",
-        reviews: [
+        reviews: JSON.stringify([
           {
             author: "Linda Kusuma",
             rating: 5,
@@ -391,12 +334,12 @@ export class MemStorage implements IStorage {
             comment: "Desainnya bagus, pengerjaan cepat. Recommended!",
             date: "2024-02-01T00:00:00Z"
           }
-        ],
-        productImages: [
+        ]),
+        productImages: JSON.stringify([
           "https://threebouquets.com/cdn/shop/articles/toko-bunga-terdekat.jpg?v=1659941837",
           "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e",
           "https://images.unsplash.com/photo-1507679799987-c73779587ccf"
-        ]
+        ]),
       },
       {
         name: "Niki Enak",
@@ -414,7 +357,7 @@ export class MemStorage implements IStorage {
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.64761456985576!3d-7.151275654334539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80058841a183d%3A0xb1ddc26aaf203841!2sNiki%20Enak!5e0!3m2!1sen!2sid!4v1747406003159!5m2!1sen!2sid",
         history: "Niki Enak didirikan pada tahun 2012 oleh Ibu Niki yang memiliki passion dalam membuat jajanan tradisional. Berawal dari hobi membuat kue untuk keluarga, kini telah berkembang menjadi usaha yang dikenal dengan kualitas dan cita rasa khasnya.",
         currentCondition: "Aktif",
-        reviews: [
+        reviews: JSON.stringify([
           {
             author: "Anita Wijaya",
             rating: 5,
@@ -433,12 +376,12 @@ export class MemStorage implements IStorage {
             comment: "Recommended banget! Rasa konsisten dan packaging rapi",
             date: "2024-02-05T00:00:00Z"
           }
-        ],
-        productImages: [
+        ]),
+        productImages: JSON.stringify([
           "https://awsimages.detik.net.id/community/media/visual/2023/03/10/kuliner-di-gresik-3_169.jpeg?w=1200",
           "https://images.unsplash.com/photo-1555126634-323283e090fa",
           "https://images.unsplash.com/photo-1558961363-fa8fdf82db35"
-        ]
+        ]),
       },
       {
         name: "Otak-otak Bandeng Kang Wahab",
@@ -457,7 +400,7 @@ export class MemStorage implements IStorage {
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.6524837698959!3d-7.151598751712937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd80058603f7c33%3A0xa0e940ac0c5357dd!2sOtak%20-%20Otak%20Bandeng%20Kang%20Wahab!5e0!3m2!1sen!2sid!4v1747406421923!5m2!1sen!2sid",
         history: "Usaha ini dirintis oleh Kang Wahab sejak tahun 1996. Bermula dari warisan resep keluarga, otak-otak bandeng ini telah menjadi salah satu kuliner khas Gresik yang terkenal dengan cita rasa autentiknya.",
         currentCondition: "Aktif",
-        reviews: [
+        reviews: JSON.stringify([
           {
             author: "Bambang Sutrisno",
             rating: 5,
@@ -476,12 +419,12 @@ export class MemStorage implements IStorage {
             comment: "Enak banget, tapi harga agak mahal. Worth it sih!",
             date: "2024-02-08T00:00:00Z"
           }
-        ],
-        productImages: [
+        ]),
+        productImages: JSON.stringify([
           "https://smb-padiumkm-images-public-prod.oss-ap-southeast-5.aliyuncs.com/product/image/13092024/631a6566cdc00cf233d35930/66e27ed40e477431d309e28c/c1d5fd169a4a6e8e95f94e95860a38.jpg",
           "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
           "https://images.unsplash.com/photo-1555126634-323283e090fa"
-        ]
+        ]),
       },
       {
         name: "Warung Kopi Cak Udin",
@@ -499,7 +442,7 @@ export class MemStorage implements IStorage {
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d300.0!2d112.65017435948572!3d-7.151592872940658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd800f7dc127c1d%3A0x23f8f56e9e90c3f0!2sWarkop%20Cak%20Udin!5e0!3m2!1sen!2sid!4v1747406864064!5m2!1sen!2sid",
         history: "Warung Kopi Cak Udin berdiri sejak tahun 2015. Berawal dari warung kopi sederhana, kini telah berkembang menjadi tempat nongkrong favorit dengan fasilitas WiFi dan menu yang beragam.",
         currentCondition: "Aktif",
-        reviews: [
+        reviews: JSON.stringify([
           {
             author: "Andi Pratama",
             rating: 5,
@@ -518,14 +461,14 @@ export class MemStorage implements IStorage {
             comment: "Recommended! Pelayanan ramah dan tempat bersih",
             date: "2024-02-07T00:00:00Z"
           }
-        ],
-        productImages: [
+        ]),
+        productImages: JSON.stringify([
           "https://manual.co.id/wp-content/uploads/2021/11/manual_photo_essay_warkop_web-14-980x719.jpg",
           "https://images.unsplash.com/photo-1442512595331-e89e73853f31",
           "https://images.unsplash.com/photo-1511920170033-f8396924c348"
-        ]
+        ]),
       },
-      {
+      /* {
         name: "",
         description: "",
         imageUrl: "",
@@ -538,36 +481,28 @@ export class MemStorage implements IStorage {
         maps2: "",
         history: "",
         currentCondition: "",
-        reviews: [],
-        productImages: []
-      },
+        reviews: JSON.stringify([]),
+        productImages: JSON.stringify([]),
+      }, */
     ];
-
-    umkmsData.forEach((umkm) => {
-      this.createUmkm(umkm);
-    });
+    umkmsData.forEach(u => this.createUmkm(u));
 
     // Create village profile
-    const villageProfileData: InsertVillageProfile = {
+    // village profile
+    const vp: InsertVillageProfile = {
       name: "Kelurahan Sukodono",
-      description:
-        "Pusat informasi digital untuk mempromosikan potensi desa dan mendukung UMKM lokal.",
-      history:
-        "Kelurahan Sukodono memiliki sejarah panjang sejak tahun 1945. Didirikan oleh para pejuang kemerdekaan, desa ini telah berkembang menjadi pusat ekonomi dan budaya di kawasan ini.",
-      vision:
-        "Menjadikan Kelurahan Sukodono sebagai desa mandiri dan berkelanjutan melalui pemberdayaan ekonomi lokal dan pelestarian budaya.",
-      mission: [
-        "Meningkatkan taraf hidup masyarakat melalui pemberdayaan UMKM",
-        "Mengembangkan potensi alam desa secara berkelanjutan",
-        "Melestarikan kearifan lokal dan budaya desa",
-        "Menciptakan lingkungan desa yang bersih dan sehat",
-      ],
+      description: "Pusat informasi digital...",
+      history: "...sejak tahun 1945...",
+      vision: "Menjadikan...",
+      mission: JSON.stringify([
+        "Meningkatkan taraf hidup...",
+        "Mengembangkan potensi alam...",
+      ]),
       population: 1220,
       umkmCount: 52,
       hamletCount: 8,
     };
-
-    this.createVillageProfile(villageProfileData);
+    this.createVillageProfile(vp);
   }
 }
 
