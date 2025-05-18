@@ -62,16 +62,12 @@ async function setupVite(app, server) {
 }
 
 function serveStatic(app) {
-  // Railway build: client build output ada di ../../client/public
-  // Jika tidak ditemukan, fallback ke ../../client/dist
-  let distPath = path.resolve(__dirname, "../../client/public");
+  // Serve hasil build client dari server/public (bukan dari luar folder server)
+  const distPath = path.resolve(__dirname, "public");
   if (!fs.existsSync(distPath)) {
-    distPath = path.resolve(__dirname, "../../client/dist");
-    if (!fs.existsSync(distPath)) {
-      throw new Error(
-        `Could not find the build directory: ${distPath}, make sure to build the client first`,
-      );
-    }
+    throw new Error(
+      `Could not find the build directory: ${distPath}, make sure to build the client first (copy client/dist ke server/public)`,
+    );
   }
   app.use(express.static(distPath));
   app.use("*", (_req, res) => {
