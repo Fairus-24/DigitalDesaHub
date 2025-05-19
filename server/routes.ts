@@ -121,7 +121,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } else {
         umkms = await storage.getUmkms();
       }
-      res.json(umkms);
+      // Pastikan setiap productImages di array selalu array
+      const safeUmkms = umkms.map((umkm: any) => {
+        let productImages: string[] = [];
+        if (typeof umkm.productImages === 'string') {
+          try {
+            const parsed = JSON.parse(umkm.productImages);
+            productImages = Array.isArray(parsed) ? parsed : [];
+          } catch {
+            productImages = [];
+          }
+        } else if (Array.isArray(umkm.productImages)) {
+          productImages = umkm.productImages;
+        }
+        return { ...umkm, productImages };
+      });
+      res.json(safeUmkms);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch UMKMs' });
     }
@@ -137,7 +152,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!umkm) {
         return res.status(404).json({ message: 'UMKM not found' });
       }
-      res.json(umkm);
+      // Pastikan productImages selalu array
+      let productImages: string[] = [];
+      if (typeof umkm.productImages === 'string') {
+        try {
+          const parsed = JSON.parse(umkm.productImages);
+          productImages = Array.isArray(parsed) ? parsed : [];
+        } catch {
+          productImages = [];
+        }
+      } else if (Array.isArray(umkm.productImages)) {
+        productImages = umkm.productImages;
+      }
+      res.json({ ...umkm, productImages });
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch UMKM' });
     }
