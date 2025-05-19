@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Umkm, Category } from '@/lib/types';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -17,27 +17,29 @@ import { Trash2, RefreshCw, Edit, Plus } from 'lucide-react';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
+// Perbaikan: Gunakan tipe yang konsisten antara string[] dan string pada state newUmkm
 export default function Dashboard() {
   const { data: umkms = [] } = useQuery<Umkm[]>({ queryKey: [`${API_BASE_URL}/api/umkms`] });
   const { data: categories = [] } = useQuery<Category[]>({ queryKey: [`${API_BASE_URL}/api/categories`] });
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
+  // Gunakan tipe yang sesuai dengan Umkm
   const [newUmkm, setNewUmkm] = useState<Partial<Umkm>>({
     name: "",
     description: "",
     history: "",
     currentCondition: "",
     imageUrl: "",
-    productImages: [],
+    productImages: [], // string[]
     location: "",
     address: "",
-    categoryId: 1, // default, update setelah categories ada
+    categoryId: 1,
     promotionText: "",
     coordinates: "",
     maps1: "",
     maps2: "",
-    reviews: [],
+    reviews: [], // array of review object
   });
   const [editingUmkm, setEditingUmkm] = useState<Umkm | null>(null);
   const [deletedUmkms, setDeletedUmkms] = useState<Umkm[]>([]);
@@ -97,6 +99,62 @@ export default function Dashboard() {
     }
   });
 
+  // Tambahkan useEffect untuk update categoryId jika categories sudah ada dan newUmkm belum diisi
+  useEffect(() => {
+    if (categories.length > 0 && !newUmkm.categoryId) {
+      setNewUmkm((prev) => ({ ...prev, categoryId: categories[0].id }));
+    }
+  }, [categories]);
+  
+  // State untuk Add UMKM (per field)
+  const [umkmName, setUmkmName] = useState("");
+  const [umkmCategoryId, setUmkmCategoryId] = useState(1);
+  const [umkmDescription, setUmkmDescription] = useState("");
+  const [umkmHistory, setUmkmHistory] = useState("");
+  const [umkmCurrentCondition, setUmkmCurrentCondition] = useState("");
+  const [umkmImageUrl, setUmkmImageUrl] = useState("");
+  const [umkmProductImages, setUmkmProductImages] = useState<string[]>([]);
+  const [umkmLocation, setUmkmLocation] = useState("");
+  const [umkmAddress, setUmkmAddress] = useState("");
+  const [umkmPromotionText, setUmkmPromotionText] = useState("");
+  const [umkmCoordinates, setUmkmCoordinates] = useState("");
+  const [umkmMaps1, setUmkmMaps1] = useState("");
+  const [umkmMaps2, setUmkmMaps2] = useState("");
+
+  // State untuk Edit UMKM (per field)
+  const [editUmkmName, setEditUmkmName] = useState("");
+  const [editUmkmCategoryId, setEditUmkmCategoryId] = useState(1);
+  const [editUmkmDescription, setEditUmkmDescription] = useState("");
+  const [editUmkmHistory, setEditUmkmHistory] = useState("");
+  const [editUmkmCurrentCondition, setEditUmkmCurrentCondition] = useState("");
+  const [editUmkmImageUrl, setEditUmkmImageUrl] = useState("");
+  const [editUmkmProductImages, setEditUmkmProductImages] = useState<string[]>([]);
+  const [editUmkmLocation, setEditUmkmLocation] = useState("");
+  const [editUmkmAddress, setEditUmkmAddress] = useState("");
+  const [editUmkmPromotionText, setEditUmkmPromotionText] = useState("");
+  const [editUmkmCoordinates, setEditUmkmCoordinates] = useState("");
+  const [editUmkmMaps1, setEditUmkmMaps1] = useState("");
+  const [editUmkmMaps2, setEditUmkmMaps2] = useState("");
+
+  // Sinkronisasi state edit ketika editingUmkm berubah
+  useEffect(() => {
+    if (editingUmkm) {
+      setEditUmkmName(editingUmkm.name || "");
+      setEditUmkmCategoryId(editingUmkm.categoryId ?? 1);
+      setEditUmkmDescription(editingUmkm.description || "");
+      setEditUmkmHistory(editingUmkm.history || "");
+      setEditUmkmCurrentCondition(editingUmkm.currentCondition || "");
+      setEditUmkmImageUrl(editingUmkm.imageUrl || "");
+      setEditUmkmProductImages(editingUmkm.productImages ?? []);
+      setEditUmkmLocation(editingUmkm.location || "");
+      setEditUmkmAddress(editingUmkm.address || "");
+      setEditUmkmPromotionText(editingUmkm.promotionText || "");
+      setEditUmkmCoordinates(editingUmkm.coordinates || "");
+      setEditUmkmMaps1(editingUmkm.maps1 || "");
+      setEditUmkmMaps2(editingUmkm.maps2 || "");
+    }
+  }, [editingUmkm]);
+
   const handleDelete = (id: number) => {
     setUmkmToDelete(id);
     setIsDeleteDialogOpen(true);
@@ -138,92 +196,119 @@ export default function Dashboard() {
     }));
   };
 
-  const UmkmForm = ({ data, setData, isEdit = false }: { data: Partial<Umkm>, setData: (data: Partial<Umkm>) => void, isEdit?: boolean }) => {
-    // Gunakan useCallback agar referensi setData stabil
-    const handleSetData = React.useCallback(
-      (field: keyof Umkm, value: any) => setData({ ...data, [field]: value }),
-      [data, setData]
-    );
-    return (
-      <div className="grid gap-4 py-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="grid gap-2">
-            <label className="text-sm font-medium">Name</label>
-            <Input value={data.name || ''} onChange={(e) => handleSetData("name", e.target.value)} />
-          </div>
-          <div className="grid gap-2">
-            <label className="text-sm font-medium">Category</label>
-            <Select value={String(data.categoryId)} onValueChange={(value) => handleSetData("categoryId", Number(value))}>
-              <SelectTrigger className="bg-white">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {categories.map((category) => (
-                  <SelectItem key={category.id} value={String(category.id)}>{category.name}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
+  // Form UMKM (gunakan satu state per field)
+  const UmkmForm = ({
+    name, setName,
+    categoryId, setCategoryId,
+    description, setDescription,
+    history, setHistory,
+    currentCondition, setCurrentCondition,
+    imageUrl, setImageUrl,
+    productImages, setProductImages,
+    location, setLocation,
+    address, setAddress,
+    promotionText, setPromotionText,
+    coordinates, setCoordinates,
+    maps1, setMaps1,
+    maps2, setMaps2,
+  }: {
+    name: string;
+    setName: (v: string) => void;
+    categoryId: number;
+    setCategoryId: (v: number) => void;
+    description: string;
+    setDescription: (v: string) => void;
+    history: string;
+    setHistory: (v: string) => void;
+    currentCondition: string;
+    setCurrentCondition: (v: string) => void;
+    imageUrl: string;
+    setImageUrl: (v: string) => void;
+    productImages: string[];
+    setProductImages: (v: string[]) => void;
+    location: string;
+    setLocation: (v: string) => void;
+    address: string;
+    setAddress: (v: string) => void;
+    promotionText: string;
+    setPromotionText: (v: string) => void;
+    coordinates: string;
+    setCoordinates: (v: string) => void;
+    maps1: string;
+    setMaps1: (v: string) => void;
+    maps2: string;
+    setMaps2: (v: string) => void;
+  }) => (
+    <div className="grid gap-4 py-4">
+      <div className="grid grid-cols-2 gap-4">
         <div className="grid gap-2">
-          <label className="text-sm font-medium">Description</label>
-          <Textarea value={data.description || ''} onChange={(e) => handleSetData("description", e.target.value)} />
+          <label className="text-sm font-medium">Name</label>
+          <Input value={name} onChange={e => setName(e.target.value)} />
         </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <div className="grid gap-2">
-            <label className="text-sm font-medium">Location</label>
-            <Input value={data.location || ''} onChange={(e) => handleSetData("location", e.target.value)} />
-          </div>
-          <div className="grid gap-2">
-            <label className="text-sm font-medium">Address</label>
-            <Input value={data.address || ''} onChange={(e) => handleSetData("address", e.target.value)} />
-          </div>
-        </div>
-
         <div className="grid gap-2">
-          <label className="text-sm font-medium">Image URL</label>
-          <Input value={data.imageUrl || ''} onChange={(e) => handleSetData("imageUrl", e.target.value)} />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <div className="grid gap-2">
-            <label className="text-sm font-medium">Current Condition</label>
-            <Input value={data.currentCondition || ''} onChange={(e) => handleSetData("currentCondition", e.target.value)} />
-          </div>
-          <div className="grid gap-2">
-            <label className="text-sm font-medium">Promotion Text</label>
-            <Input value={data.promotionText || ''} onChange={(e) => handleSetData("promotionText", e.target.value)} />
-          </div>
-        </div>
-
-        <div className="grid gap-2">
-          <label className="text-sm font-medium">History</label>
-          <Textarea value={data.history || ''} onChange={(e) => handleSetData("history", e.target.value)} />
-        </div>
-
-        <div className="grid gap-2">
-          <label className="text-sm font-medium">Maps URL 1 (Overview)</label>
-          <Input value={data.maps1 || ''} onChange={(e) => handleSetData("maps1", e.target.value)} />
-        </div>
-
-        <div className="grid gap-2">
-          <label className="text-sm font-medium">Maps URL 2 (Detailed)</label>
-          <Input value={data.maps2 || ''} onChange={(e) => handleSetData("maps2", e.target.value)} />
-        </div>
-
-        <div className="grid gap-2">
-          <label className="text-sm font-medium">Product Images (pisahkan dengan koma)</label>
-          <Input
-            value={Array.isArray(data.productImages) ? data.productImages.join(",") : ""}
-            onChange={e => handleSetData("productImages", e.target.value.split(",").map(s => s.trim()).filter(Boolean))}
-            placeholder="https://img1.jpg, https://img2.jpg"
-          />
+          <label className="text-sm font-medium">Category</label>
+          <Select value={String(categoryId)} onValueChange={value => setCategoryId(Number(value))}>
+            <SelectTrigger className="bg-white">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {categories.map((category) => (
+                <SelectItem key={category.id} value={String(category.id)}>{category.name}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
       </div>
-    );
-  };
+      <div className="grid gap-2">
+        <label className="text-sm font-medium">Description</label>
+        <Textarea value={description} onChange={e => setDescription(e.target.value)} />
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="grid gap-2">
+          <label className="text-sm font-medium">Location</label>
+          <Input value={location} onChange={e => setLocation(e.target.value)} />
+        </div>
+        <div className="grid gap-2">
+          <label className="text-sm font-medium">Address</label>
+          <Input value={address} onChange={e => setAddress(e.target.value)} />
+        </div>
+      </div>
+      <div className="grid gap-2">
+        <label className="text-sm font-medium">Image URL</label>
+        <Input value={imageUrl} onChange={e => setImageUrl(e.target.value)} />
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="grid gap-2">
+          <label className="text-sm font-medium">Current Condition</label>
+          <Input value={currentCondition} onChange={e => setCurrentCondition(e.target.value)} />
+        </div>
+        <div className="grid gap-2">
+          <label className="text-sm font-medium">Promotion Text</label>
+          <Input value={promotionText} onChange={e => setPromotionText(e.target.value)} />
+        </div>
+      </div>
+      <div className="grid gap-2">
+        <label className="text-sm font-medium">History</label>
+        <Textarea value={history} onChange={e => setHistory(e.target.value)} />
+      </div>
+      <div className="grid gap-2">
+        <label className="text-sm font-medium">Maps URL 1 (Overview)</label>
+        <Input value={maps1} onChange={e => setMaps1(e.target.value)} />
+      </div>
+      <div className="grid gap-2">
+        <label className="text-sm font-medium">Maps URL 2 (Detailed)</label>
+        <Input value={maps2} onChange={e => setMaps2(e.target.value)} />
+      </div>
+      <div className="grid gap-2">
+        <label className="text-sm font-medium">Product Images (pisahkan dengan koma)</label>
+        <Input
+          value={Array.isArray(productImages) ? productImages.join(",") : ""}
+          onChange={e => setProductImages(e.target.value.split(",").map(s => s.trim()).filter(Boolean))}
+          placeholder="https://img1.jpg, https://img2.jpg"
+        />
+      </div>
+    </div>
+  );
 
   // Tambahkan useEffect untuk update categoryId jika categories sudah ada dan newUmkm belum diisi
   useEffect(() => {
@@ -232,6 +317,83 @@ export default function Dashboard() {
     }
   }, [categories]);
   
+  // State for JSON input dialog
+  const [isJsonDialogOpen, setIsJsonDialogOpen] = useState(false);
+  const [jsonInput, setJsonInput] = useState("");
+  const [jsonEditId, setJsonEditId] = useState<number | null>(null);
+  const jsonTextareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Handler for Add/Edit UMKM from JSON
+  const handleJsonSubmit = async () => {
+    try {
+      const json = JSON.parse(jsonInput);
+      let url = `${API_BASE_URL}/api/umkms`;
+      let method = "POST";
+      if (jsonEditId) {
+        url = `${API_BASE_URL}/api/umkms/${jsonEditId}`;
+        method = "PUT";
+      }
+      await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(json),
+      });
+      setIsJsonDialogOpen(false);
+      setJsonInput("");
+      setJsonEditId(null);
+      queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/umkms`] });
+      toast({ title: "Success", description: jsonEditId ? "UMKM updated from JSON" : "UMKM added from JSON" });
+    } catch (e) {
+      toast({ title: "Error", description: "Invalid JSON or failed to save" });
+    }
+  };
+
+  // Handler to open dialog for add
+  const openAddJsonDialog = () => {
+    setJsonInput(`{
+  "name": "",
+  "description": "",
+  "imageUrl": "",
+  "location": "",
+  "address": "",
+  "categoryId": 1,
+  "promotionText": "",
+  "coordinates": "",
+  "maps1": "",
+  "maps2": "",
+  "history": "",
+  "currentCondition": "",
+  "reviews": [],
+  "productImages": []
+}`);
+    setJsonEditId(null);
+    setIsJsonDialogOpen(true);
+    setTimeout(() => jsonTextareaRef.current?.focus(), 100);
+  };
+
+  // Handler to open dialog for edit
+  const openEditJsonDialog = (umkm: Umkm) => {
+    setJsonInput(JSON.stringify({
+      name: umkm.name,
+      description: umkm.description,
+      imageUrl: umkm.imageUrl,
+      location: umkm.location,
+      address: umkm.address,
+      categoryId: umkm.categoryId,
+      promotionText: umkm.promotionText,
+      coordinates: umkm.coordinates,
+      maps1: umkm.maps1,
+      maps2: umkm.maps2,
+      history: umkm.history,
+      currentCondition: umkm.currentCondition,
+      reviews: umkm.reviews,
+      productImages: umkm.productImages,
+    }, null, 2));
+    setJsonEditId(umkm.id);
+    setIsJsonDialogOpen(true);
+    setTimeout(() => jsonTextareaRef.current?.focus(), 100);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <Card className="mb-8">
@@ -252,26 +414,87 @@ export default function Dashboard() {
             <CardContent className="pt-6">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-semibold text-gray-900">UMKM List</h2>
-                <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-                  <DialogTrigger asChild>
-                    <Button><Plus className="w-4 h-4 mr-2" /> Add UMKM</Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white">
-                    <DialogHeader>
-                      <DialogTitle>Add New UMKM</DialogTitle>
-                    </DialogHeader>
-                    <UmkmForm data={newUmkm} setData={setNewUmkm} />
-                    <DialogFooter>
-                      <Button onClick={() => createUmkmMutation.mutate({
-    ...newUmkm,
-    reviews: newUmkm.reviews ?? [],
-    productImages: newUmkm.productImages ?? [],
-  })}>
-    Create
-  </Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
+                <div className="flex gap-2">
+                  <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
+                    <DialogTrigger asChild>
+                      <Button><Plus className="w-4 h-4 mr-2" /> Add UMKM</Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white">
+                      <DialogHeader>
+                        <DialogTitle>Add New UMKM</DialogTitle>
+                      </DialogHeader>
+                      <UmkmForm
+                        name={umkmName}
+                        setName={setUmkmName}
+                        categoryId={umkmCategoryId}
+                        setCategoryId={setUmkmCategoryId}
+                        description={umkmDescription}
+                        setDescription={setUmkmDescription}
+                        history={umkmHistory}
+                        setHistory={setUmkmHistory}
+                        currentCondition={umkmCurrentCondition}
+                        setCurrentCondition={setUmkmCurrentCondition}
+                        imageUrl={umkmImageUrl}
+                        setImageUrl={setUmkmImageUrl}
+                        productImages={umkmProductImages}
+                        setProductImages={setUmkmProductImages}
+                        location={umkmLocation}
+                        setLocation={setUmkmLocation}
+                        address={umkmAddress}
+                        setAddress={setUmkmAddress}
+                        promotionText={umkmPromotionText}
+                        setPromotionText={setUmkmPromotionText}
+                        coordinates={umkmCoordinates}
+                        setCoordinates={setUmkmCoordinates}
+                        maps1={umkmMaps1}
+                        setMaps1={setUmkmMaps1}
+                        maps2={umkmMaps2}
+                        setMaps2={setUmkmMaps2}
+                      />
+                      <DialogFooter>
+                        <Button
+                          onClick={() => {
+                            createUmkmMutation.mutate({
+                              name: umkmName,
+                              categoryId: umkmCategoryId,
+                              description: umkmDescription,
+                              history: umkmHistory,
+                              currentCondition: umkmCurrentCondition,
+                              imageUrl: umkmImageUrl,
+                              productImages: umkmProductImages,
+                              location: umkmLocation,
+                              address: umkmAddress,
+                              promotionText: umkmPromotionText,
+                              coordinates: umkmCoordinates,
+                              maps1: umkmMaps1,
+                              maps2: umkmMaps2,
+                              reviews: [],
+                            });
+                            setUmkmName("");
+                            setUmkmCategoryId(1);
+                            setUmkmDescription("");
+                            setUmkmHistory("");
+                            setUmkmCurrentCondition("");
+                            setUmkmImageUrl("");
+                            setUmkmProductImages([]);
+                            setUmkmLocation("");
+                            setUmkmAddress("");
+                            setUmkmPromotionText("");
+                            setUmkmCoordinates("");
+                            setUmkmMaps1("");
+                            setUmkmMaps2("");
+                          }}
+                        >
+                          Create
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                  {/* Button to open JSON Add dialog */}
+                  <Button variant="outline" onClick={openAddJsonDialog}>
+                    Add UMKM (JSON)
+                  </Button>
+                </div>
               </div>
 
               <div className="overflow-x-auto">
@@ -313,6 +536,15 @@ export default function Dashboard() {
                               onClick={() => handleDelete(umkm.id)}
                             >
                               <Trash2 className="w-4 h-4" />
+                            </Button>
+                            {/* Button to open JSON Edit dialog */}
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => openEditJsonDialog(umkm)}
+                              title="Edit as JSON"
+                            >
+                              {"{"}JSON{"}"}
                             </Button>
                           </div>
                         </TableCell>
@@ -373,7 +605,7 @@ export default function Dashboard() {
                   <DialogTrigger asChild>
                     <Button><Plus className="w-4 h-4 mr-2" /> Add Category</Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-md">
+                  <DialogContent className="max-w-md bg-white">
                     <DialogHeader>
                       <DialogTitle>Add New Category</DialogTitle>
                     </DialogHeader>
@@ -494,12 +726,56 @@ export default function Dashboard() {
           {editingUmkm && (
             <>
               <UmkmForm
-                data={editingUmkm as Partial<Umkm>}
-                setData={(data) => setEditingUmkm(editingUmkm ? { ...editingUmkm, ...data } : editingUmkm)}
-                isEdit={true}
+                name={editUmkmName}
+                setName={setEditUmkmName}
+                categoryId={editUmkmCategoryId}
+                setCategoryId={setEditUmkmCategoryId}
+                description={editUmkmDescription}
+                setDescription={setEditUmkmDescription}
+                history={editUmkmHistory}
+                setHistory={setEditUmkmHistory}
+                currentCondition={editUmkmCurrentCondition}
+                setCurrentCondition={setEditUmkmCurrentCondition}
+                imageUrl={editUmkmImageUrl}
+                setImageUrl={setEditUmkmImageUrl}
+                productImages={editUmkmProductImages}
+                setProductImages={setEditUmkmProductImages}
+                location={editUmkmLocation}
+                setLocation={setEditUmkmLocation}
+                address={editUmkmAddress}
+                setAddress={setEditUmkmAddress}
+                promotionText={editUmkmPromotionText}
+                setPromotionText={setEditUmkmPromotionText}
+                coordinates={editUmkmCoordinates}
+                setCoordinates={setEditUmkmCoordinates}
+                maps1={editUmkmMaps1}
+                setMaps1={setEditUmkmMaps1}
+                maps2={editUmkmMaps2}
+                setMaps2={setEditUmkmMaps2}
               />
               <DialogFooter>
-                <Button onClick={() => editingUmkm && updateUmkmMutation.mutate(editingUmkm)}>
+                <Button
+                  onClick={() => {
+                    updateUmkmMutation.mutate({
+                      ...editingUmkm,
+                      name: editUmkmName,
+                      categoryId: editUmkmCategoryId,
+                      description: editUmkmDescription,
+                      history: editUmkmHistory,
+                      currentCondition: editUmkmCurrentCondition,
+                      imageUrl: editUmkmImageUrl,
+                      productImages: editUmkmProductImages,
+                      location: editUmkmLocation,
+                      address: editUmkmAddress,
+                      promotionText: editUmkmPromotionText,
+                      coordinates: editUmkmCoordinates,
+                      maps1: editUmkmMaps1,
+                      maps2: editUmkmMaps2,
+                    });
+                    setIsEditDialogOpen(false);
+                    setEditingUmkm(null);
+                  }}
+                >
                   Save Changes
                 </Button>
               </DialogFooter>
@@ -507,9 +783,39 @@ export default function Dashboard() {
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Dialog for Add/Edit UMKM via JSON */}
+      <Dialog open={isJsonDialogOpen} onOpenChange={setIsJsonDialogOpen}>
+        <DialogContent className="max-w-xl">
+          <DialogHeader>
+            <DialogTitle>
+              {jsonEditId ? "Edit UMKM (JSON)" : "Add UMKM (JSON)"}
+            </DialogTitle>
+          </DialogHeader>
+          <div>
+            <textarea
+              ref={jsonTextareaRef}
+              className="w-full h-64 p-2 border rounded font-mono text-xs"
+              value={jsonInput}
+              onChange={e => setJsonInput(e.target.value)}
+              spellCheck={false}
+            />
+          </div>
+          <DialogFooter>
+            <Button onClick={handleJsonSubmit}>
+              {jsonEditId ? "Save JSON" : "Add JSON"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
 
-// Penjelasan singkat:
-// Masalah hover/input "reset" setiap satu huruf terjadi karena setiap kali mengetik, state newUmkm diubah secara langsung (setNewUmkm), sehingga seluruh form di-*rerender* dan menyebabkan efek hover/fokus pada input berubah. Namun, pada kode Anda saat ini, masalah utama biasanya terjadi jika ada efek samping (useEffect) yang memanggil setData/setNewUmkm setiap render, atau jika inisialisasi state bergantung pada data async (categories).
+// PENYEBAB MASALAH:
+// Setiap kali Anda mengetik satu huruf di form Add UMKM, seluruh komponen <DialogContent> (dan seluruh form) di-*rerender* ulang dari awal. Ini terjadi karena Anda menggunakan controlled state object (newUmkm) dan mengoper setForm ke child, lalu setiap perubahan field menyebabkan object baru, sehingga React menganggap seluruh subtree berubah dan me-*remount* input (bukan hanya rerender).
+
+// SOLUSI FINAL: Gunakan satu state per field untuk form Add UMKM, jangan gunakan object state untuk seluruh form.
+// Ini akan membuat input tidak kehilangan focus/hover setiap mengetik satu huruf, seperti pada Add Category.
+
+// (Duplicate code removed. All necessary state and component definitions are already present inside the Dashboard component above.)
