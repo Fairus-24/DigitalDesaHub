@@ -130,8 +130,8 @@ export class MemStorage implements IStorage {
       id,
       ...insertUmkm,
       promotionText: insertUmkm.promotionText ?? null,
-      reviews: JSON.stringify(insertUmkm.reviews),
-      productImages: JSON.stringify(insertUmkm.productImages),
+      reviews: JSON.stringify(insertUmkm.reviews ?? []),
+      productImages: JSON.stringify(insertUmkm.productImages ?? []),
     };
     this.umkms.set(id, umkm);
     return umkm;
@@ -178,6 +178,73 @@ export class MemStorage implements IStorage {
     } as VillageProfile;
     this.villageProfiles.set(id, merged);
     return merged;
+  }
+
+  // Tambahkan fungsi untuk add data UMKM dari JSON object
+  async addUmkmFromJson(json: {
+    name: string;
+    description: string;
+    imageUrl: string;
+    location: string;
+    address: string;
+    categoryId: number;
+    promotionText: string;
+    coordinates: string;
+    maps1: string;
+    maps2: string;
+    history: string;
+    currentCondition: string;
+    reviews: string; // JSON.stringify([])
+    productImages: string; // JSON.stringify([])
+  }) {
+    const id = this.currentUmkmId++;
+    const umkm: Umkm = {
+      id,
+      name: json.name,
+      description: json.description,
+      imageUrl: json.imageUrl,
+      location: json.location,
+      address: json.address,
+      categoryId: json.categoryId,
+      promotionText: json.promotionText,
+      coordinates: json.coordinates,
+      maps1: json.maps1,
+      maps2: json.maps2,
+      history: json.history,
+      currentCondition: json.currentCondition,
+      reviews: json.reviews,
+      productImages: json.productImages,
+    };
+    this.umkms.set(id, umkm);
+    return umkm;
+  }
+
+  // Tambahkan fungsi untuk edit data UMKM dari JSON object (by id)
+  async editUmkmFromJson(id: number, json: {
+    name?: string;
+    description?: string;
+    imageUrl?: string;
+    location?: string;
+    address?: string;
+    categoryId?: number;
+    promotionText?: string;
+    coordinates?: string;
+    maps1?: string;
+    maps2?: string;
+    history?: string;
+    currentCondition?: string;
+    reviews?: string; // JSON.stringify([])
+    productImages?: string; // JSON.stringify([])
+  }) {
+    const existing = this.umkms.get(id);
+    if (!existing) return undefined;
+    const updated: Umkm = {
+      ...existing,
+      ...json,
+      id, // ensure id is not changed
+    };
+    this.umkms.set(id, updated);
+    return updated;
   }
 
   private initializeData() {
