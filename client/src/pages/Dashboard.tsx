@@ -139,17 +139,22 @@ export default function Dashboard() {
   };
 
   const UmkmForm = ({ data, setData, isEdit = false }: { data: Partial<Umkm>, setData: (data: Partial<Umkm>) => void, isEdit?: boolean }) => {
+    // Gunakan useCallback agar referensi setData stabil
+    const handleSetData = React.useCallback(
+      (field: keyof Umkm, value: any) => setData({ ...data, [field]: value }),
+      [data, setData]
+    );
     return (
       <div className="grid gap-4 py-4">
         <div className="grid grid-cols-2 gap-4">
           <div className="grid gap-2">
             <label className="text-sm font-medium">Name</label>
-            <Input value={data.name || ''} onChange={(e) => setData({ ...data, name: e.target.value })} />
+            <Input value={data.name || ''} onChange={(e) => handleSetData("name", e.target.value)} />
           </div>
           <div className="grid gap-2">
             <label className="text-sm font-medium">Category</label>
-            <Select value={String(data.categoryId)} onValueChange={(value) => setData({ ...data, categoryId: Number(value) })}>
-              <SelectTrigger>
+            <Select value={String(data.categoryId)} onValueChange={(value) => handleSetData("categoryId", Number(value))}>
+              <SelectTrigger className="bg-white">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -163,59 +168,56 @@ export default function Dashboard() {
 
         <div className="grid gap-2">
           <label className="text-sm font-medium">Description</label>
-          <Textarea value={data.description || ''} onChange={(e) => setData({ ...data, description: e.target.value })} />
+          <Textarea value={data.description || ''} onChange={(e) => handleSetData("description", e.target.value)} />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div className="grid gap-2">
             <label className="text-sm font-medium">Location</label>
-            <Input value={data.location || ''} onChange={(e) => setData({ ...data, location: e.target.value })} />
+            <Input value={data.location || ''} onChange={(e) => handleSetData("location", e.target.value)} />
           </div>
           <div className="grid gap-2">
             <label className="text-sm font-medium">Address</label>
-            <Input value={data.address || ''} onChange={(e) => setData({ ...data, address: e.target.value })} />
+            <Input value={data.address || ''} onChange={(e) => handleSetData("address", e.target.value)} />
           </div>
         </div>
 
         <div className="grid gap-2">
           <label className="text-sm font-medium">Image URL</label>
-          <Input value={data.imageUrl || ''} onChange={(e) => setData({ ...data, imageUrl: e.target.value })} />
+          <Input value={data.imageUrl || ''} onChange={(e) => handleSetData("imageUrl", e.target.value)} />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div className="grid gap-2">
             <label className="text-sm font-medium">Current Condition</label>
-            <Input value={data.currentCondition || ''} onChange={(e) => setData({ ...data, currentCondition: e.target.value })} />
+            <Input value={data.currentCondition || ''} onChange={(e) => handleSetData("currentCondition", e.target.value)} />
           </div>
           <div className="grid gap-2">
             <label className="text-sm font-medium">Promotion Text</label>
-            <Input value={data.promotionText || ''} onChange={(e) => setData({ ...data, promotionText: e.target.value })} />
+            <Input value={data.promotionText || ''} onChange={(e) => handleSetData("promotionText", e.target.value)} />
           </div>
         </div>
 
         <div className="grid gap-2">
           <label className="text-sm font-medium">History</label>
-          <Textarea value={data.history || ''} onChange={(e) => setData({ ...data, history: e.target.value })} />
+          <Textarea value={data.history || ''} onChange={(e) => handleSetData("history", e.target.value)} />
         </div>
 
         <div className="grid gap-2">
           <label className="text-sm font-medium">Maps URL 1 (Overview)</label>
-          <Input value={data.maps1 || ''} onChange={(e) => setData({ ...data, maps1: e.target.value })} />
+          <Input value={data.maps1 || ''} onChange={(e) => handleSetData("maps1", e.target.value)} />
         </div>
 
         <div className="grid gap-2">
           <label className="text-sm font-medium">Maps URL 2 (Detailed)</label>
-          <Input value={data.maps2 || ''} onChange={(e) => setData({ ...data, maps2: e.target.value })} />
+          <Input value={data.maps2 || ''} onChange={(e) => handleSetData("maps2", e.target.value)} />
         </div>
 
         <div className="grid gap-2">
           <label className="text-sm font-medium">Product Images (pisahkan dengan koma)</label>
           <Input
             value={Array.isArray(data.productImages) ? data.productImages.join(",") : ""}
-            onChange={e => setData({
-              ...data,
-              productImages: e.target.value.split(",").map(s => s.trim()).filter(Boolean)
-            })}
+            onChange={e => handleSetData("productImages", e.target.value.split(",").map(s => s.trim()).filter(Boolean))}
             placeholder="https://img1.jpg, https://img2.jpg"
           />
         </div>
