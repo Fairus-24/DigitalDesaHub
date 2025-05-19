@@ -98,13 +98,31 @@ export class MemStorage implements IStorage {
 
   // UMKM methods
   async getUmkms() {
-    return Array.from(this.umkms.values());
+    // Parse reviews & productImages to array
+    return Array.from(this.umkms.values()).map(umkm => ({
+      ...umkm,
+      reviews: typeof umkm.reviews === "string" ? JSON.parse(umkm.reviews) : umkm.reviews,
+      productImages: typeof umkm.productImages === "string" ? JSON.parse(umkm.productImages) : umkm.productImages,
+    }));
   }
   async getUmkmById(id: number) {
-    return this.umkms.get(id);
+    const umkm = this.umkms.get(id);
+    if (!umkm) return undefined;
+    return {
+      ...umkm,
+      reviews: typeof umkm.reviews === "string" ? JSON.parse(umkm.reviews) : umkm.reviews,
+      productImages: typeof umkm.productImages === "string" ? JSON.parse(umkm.productImages) : umkm.productImages,
+    };
   }
   async getUmkmsByCategoryId(categoryId: number) {
-    return Array.from(this.umkms.values()).filter(u => u.categoryId === categoryId);
+    // Parse reviews & productImages to array
+    return Array.from(this.umkms.values())
+      .filter(u => u.categoryId === categoryId)
+      .map(umkm => ({
+        ...umkm,
+        reviews: typeof umkm.reviews === "string" ? JSON.parse(umkm.reviews) : umkm.reviews,
+        productImages: typeof umkm.productImages === "string" ? JSON.parse(umkm.productImages) : umkm.productImages,
+      }));
   }
   async createUmkm(insertUmkm: InsertUmkm) {
     const id = this.currentUmkmId++;

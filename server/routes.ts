@@ -121,22 +121,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } else {
         umkms = await storage.getUmkms();
       }
-      // Pastikan setiap productImages di array selalu array
-      const safeUmkms = umkms.map((umkm: any) => {
-        let productImages: string[] = [];
-        if (typeof umkm.productImages === 'string') {
-          try {
-            const parsed = JSON.parse(umkm.productImages);
-            productImages = Array.isArray(parsed) ? parsed : [];
-          } catch {
-            productImages = [];
-          }
-        } else if (Array.isArray(umkm.productImages)) {
-          productImages = umkm.productImages;
-        }
-        return { ...umkm, productImages };
-      });
-      res.json(safeUmkms);
+      // Tidak perlu parsing lagi, data sudah array
+      res.json(umkms);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch UMKMs' });
     }
@@ -152,19 +138,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!umkm) {
         return res.status(404).json({ message: 'UMKM not found' });
       }
-      // Pastikan productImages selalu array
-      let productImages: string[] = [];
-      if (typeof umkm.productImages === 'string') {
-        try {
-          const parsed = JSON.parse(umkm.productImages);
-          productImages = Array.isArray(parsed) ? parsed : [];
-        } catch {
-          productImages = [];
-        }
-      } else if (Array.isArray(umkm.productImages)) {
-        productImages = umkm.productImages;
-      }
-      res.json({ ...umkm, productImages });
+      // Tidak perlu parsing lagi, data sudah array
+      res.json(umkm);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch UMKM' });
     }

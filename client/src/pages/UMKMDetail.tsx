@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -42,6 +41,31 @@ export default function UMKMDetail() {
         <p>UMKM tidak ditemukan</p>
       </div>
     );
+  }
+
+  // Fallback agar tidak error jika productImages/reviews bukan array
+  let productImages: string[] = [];
+  if (Array.isArray(umkm.productImages)) {
+    productImages = umkm.productImages;
+  } else if (typeof umkm.productImages === "string") {
+    try {
+      const parsed = JSON.parse(umkm.productImages);
+      productImages = Array.isArray(parsed) ? parsed : [];
+    } catch {
+      productImages = [];
+    }
+  }
+
+  let reviews: any[] = [];
+  if (Array.isArray(umkm.reviews)) {
+    reviews = umkm.reviews;
+  } else if (typeof umkm.reviews === "string") {
+    try {
+      const parsed = JSON.parse(umkm.reviews);
+      reviews = Array.isArray(parsed) ? parsed : [];
+    } catch {
+      reviews = [];
+    }
   }
 
   return (
@@ -103,11 +127,11 @@ export default function UMKMDetail() {
             </div>
 
             {/* Product Gallery */}
-            {umkm.productImages && umkm.productImages.length > 0 && (
+            {productImages.length > 0 && (
               <div className="mb-8">
                 <h2 className="text-xl font-medium mb-4">Galeri Produk</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                  {umkm.productImages.map((image, index) => (
+                  {productImages.map((image, index) => (
                     <div key={index} className="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
                       <img 
                         src={image} 
@@ -146,7 +170,7 @@ export default function UMKMDetail() {
                 Ulasan Pelanggan
               </h2>
               <div className="space-y-6">
-                {umkm.reviews.map((review, index) => (
+                {reviews.map((review, index) => (
                   <div key={index} className="border-b border-gray-100 last:border-0 pb-6 last:pb-0">
                     <div className="flex items-start">
                       <div className="bg-primary/10 rounded-full p-3 mr-4">
