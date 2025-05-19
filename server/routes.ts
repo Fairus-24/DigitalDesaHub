@@ -121,33 +121,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } else {
         umkms = await storage.getUmkms();
       }
-      // Pastikan setiap productImages dan reviews di array selalu array
-      const safeUmkms = umkms.map((umkm: any) => {
-        let productImages: string[] = [];
-        if (typeof umkm.productImages === 'string') {
-          try {
-            const parsed = JSON.parse(umkm.productImages);
-            productImages = Array.isArray(parsed) ? parsed : [];
-          } catch {
-            productImages = [];
-          }
-        } else if (Array.isArray(umkm.productImages)) {
-          productImages = umkm.productImages;
-        }
-        let reviews: any[] = [];
-        if (typeof umkm.reviews === 'string') {
-          try {
-            const parsed = JSON.parse(umkm.reviews);
-            reviews = Array.isArray(parsed) ? parsed : [];
-          } catch {
-            reviews = [];
-          }
-        } else if (Array.isArray(umkm.reviews)) {
-          reviews = umkm.reviews;
-        }
-        return { ...umkm, productImages, reviews };
-      });
-      res.json(safeUmkms);
+      // Tidak perlu parsing lagi, data sudah array
+      res.json(umkms);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch UMKMs' });
     }
@@ -163,30 +138,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!umkm) {
         return res.status(404).json({ message: 'UMKM not found' });
       }
-      // Pastikan productImages dan reviews selalu array
-      let productImages: string[] = [];
-      if (typeof umkm.productImages === 'string') {
-        try {
-          const parsed = JSON.parse(umkm.productImages);
-          productImages = Array.isArray(parsed) ? parsed : [];
-        } catch {
-          productImages = [];
-        }
-      } else if (Array.isArray(umkm.productImages)) {
-        productImages = umkm.productImages;
-      }
-      let reviews: any[] = [];
-      if (typeof umkm.reviews === 'string') {
-        try {
-          const parsed = JSON.parse(umkm.reviews);
-          reviews = Array.isArray(parsed) ? parsed : [];
-        } catch {
-          reviews = [];
-        }
-      } else if (Array.isArray(umkm.reviews)) {
-        reviews = umkm.reviews;
-      }
-      res.json({ ...umkm, productImages, reviews });
+      // Tidak perlu parsing lagi, data sudah array
+      res.json(umkm);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch UMKM' });
     }
