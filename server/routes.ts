@@ -150,21 +150,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!profile) {
         return res.status(404).json({ message: 'Village profile not found' });
       }
-      // Pastikan mission selalu array
-      let mission = profile.mission;
-      if (typeof mission === 'string') {
+      // Pastikan mission di response selalu array
+      let missionResponse: string[] = [];
+      if (typeof profile.mission === 'string') {
         try {
-          mission = JSON.parse(mission);
-          if (!Array.isArray(mission)) mission = "";
-          // If mission must be a string, convert empty array to empty string
-          if (!Array.isArray(mission)) mission = "";
+          const parsed = JSON.parse(profile.mission);
+          missionResponse = Array.isArray(parsed) ? parsed : [];
         } catch {
-          mission = "";
+          missionResponse = [];
         }
-      } else if (!Array.isArray(mission)) {
-        mission = "";
+      } else if (Array.isArray(profile.mission)) {
+        missionResponse = profile.mission;
       }
-      res.json({ ...profile, mission });
+      res.json({ ...profile, mission: missionResponse });
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch village profile' });
     }
