@@ -130,8 +130,8 @@ export class MemStorage implements IStorage {
       id,
       ...insertUmkm,
       promotionText: insertUmkm.promotionText ?? null,
-      reviews: JSON.stringify(insertUmkm.reviews),
-      productImages: JSON.stringify(insertUmkm.productImages),
+      reviews: JSON.stringify(insertUmkm.reviews ?? []),
+      productImages: JSON.stringify(insertUmkm.productImages ?? []),
     };
     this.umkms.set(id, umkm);
     return umkm;

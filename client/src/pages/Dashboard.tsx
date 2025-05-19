@@ -23,7 +23,22 @@ export default function Dashboard() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
-  const [newUmkm, setNewUmkm] = useState<Partial<Umkm>>({});
+  const [newUmkm, setNewUmkm] = useState<Partial<Umkm>>({
+    name: "",
+    description: "",
+    history: "",
+    currentCondition: "",
+    imageUrl: "",
+    productImages: [],
+    location: "",
+    address: "",
+    categoryId: 1, // default, update setelah categories ada
+    promotionText: "",
+    coordinates: "",
+    maps1: "",
+    maps2: "",
+    reviews: [],
+  });
   const [editingUmkm, setEditingUmkm] = useState<Umkm | null>(null);
   const [deletedUmkms, setDeletedUmkms] = useState<Umkm[]>([]);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -192,10 +207,29 @@ export default function Dashboard() {
           <label className="text-sm font-medium">Maps URL 2 (Detailed)</label>
           <Input value={data.maps2 || ''} onChange={(e) => setData({ ...data, maps2: e.target.value })} />
         </div>
+
+        <div className="grid gap-2">
+          <label className="text-sm font-medium">Product Images (pisahkan dengan koma)</label>
+          <Input
+            value={Array.isArray(data.productImages) ? data.productImages.join(",") : ""}
+            onChange={e => setData({
+              ...data,
+              productImages: e.target.value.split(",").map(s => s.trim()).filter(Boolean)
+            })}
+            placeholder="https://img1.jpg, https://img2.jpg"
+          />
+        </div>
       </div>
     );
   };
 
+  // Tambahkan useEffect untuk update categoryId jika categories sudah ada dan newUmkm belum diisi
+  useEffect(() => {
+    if (categories.length > 0 && !newUmkm.categoryId) {
+      setNewUmkm((prev) => ({ ...prev, categoryId: categories[0].id }));
+    }
+  }, [categories]);
+  
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <Card className="mb-8">
@@ -226,7 +260,13 @@ export default function Dashboard() {
                     </DialogHeader>
                     <UmkmForm data={newUmkm} setData={setNewUmkm} />
                     <DialogFooter>
-                      <Button onClick={() => createUmkmMutation.mutate(newUmkm)}>Create</Button>
+                      <Button onClick={() => createUmkmMutation.mutate({
+    ...newUmkm,
+    reviews: newUmkm.reviews ?? [],
+    productImages: newUmkm.productImages ?? [],
+  })}>
+    Create
+  </Button>
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>
@@ -331,7 +371,7 @@ export default function Dashboard() {
                   <DialogTrigger asChild>
                     <Button><Plus className="w-4 h-4 mr-2" /> Add Category</Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-md bg-white">
+                  <DialogContent className="max-w-md">
                     <DialogHeader>
                       <DialogTitle>Add New Category</DialogTitle>
                     </DialogHeader>
@@ -427,6 +467,7 @@ export default function Dashboard() {
         </TabsContent>
       </Tabs>
 
+      {/* AlertDialog for delete confirmation */}
       <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -442,6 +483,7 @@ export default function Dashboard() {
         </AlertDialogContent>
       </AlertDialog>
 
+      {/* Dialog for editing UMKM */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white">
           <DialogHeader>
@@ -450,12 +492,12 @@ export default function Dashboard() {
           {editingUmkm && (
             <>
               <UmkmForm
-                data={editingUmkm}
-                setData={(data) => setEditingUmkm({ ...editingUmkm, ...data })}
+                data={editingUmkm as Partial<Umkm>}
+                setData={(data) => setEditingUmkm(editingUmkm ? { ...editingUmkm, ...data } : editingUmkm)}
                 isEdit={true}
               />
               <DialogFooter>
-                <Button onClick={() => updateUmkmMutation.mutate(editingUmkm)}>
+                <Button onClick={() => editingUmkm && updateUmkmMutation.mutate(editingUmkm)}>
                   Save Changes
                 </Button>
               </DialogFooter>
@@ -466,3 +508,6 @@ export default function Dashboard() {
     </div>
   );
 }
+
+// Penjelasan singkat:
+// Masalah hover/input "reset" setiap satu huruf terjadi karena setiap kali mengetik, state newUmkm diubah secara langsung (setNewUmkm), sehingga seluruh form di-*rerender* dan menyebabkan efek hover/fokus pada input berubah. Namun, pada kode Anda saat ini, masalah utama biasanya terjadi jika ada efek samping (useEffect) yang memanggil setData/setNewUmkm setiap render, atau jika inisialisasi state bergantung pada data async (categories).

@@ -44,29 +44,8 @@ export default function UMKMDetail() {
   }
 
   // Fallback agar tidak error jika productImages/reviews bukan array
-  let productImages: string[] = [];
-  if (Array.isArray(umkm.productImages)) {
-    productImages = umkm.productImages;
-  } else if (typeof umkm.productImages === "string") {
-    try {
-      const parsed = JSON.parse(umkm.productImages);
-      productImages = Array.isArray(parsed) ? parsed : [];
-    } catch {
-      productImages = [];
-    }
-  }
-
-  let reviews: any[] = [];
-  if (Array.isArray(umkm.reviews)) {
-    reviews = umkm.reviews;
-  } else if (typeof umkm.reviews === "string") {
-    try {
-      const parsed = JSON.parse(umkm.reviews);
-      reviews = Array.isArray(parsed) ? parsed : [];
-    } catch {
-      reviews = [];
-    }
-  }
+  const productImages = Array.isArray(umkm.productImages) ? umkm.productImages : [];
+  const reviews = Array.isArray(umkm.reviews) ? umkm.reviews : [];
 
   return (
     <div className="min-h-screen bg-neutral py-16">
