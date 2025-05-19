@@ -19,19 +19,21 @@ export default function MapSection({ selectedUmkmId }: MapSectionProps) {
 
   useEffect(() => {
     if (umkms.length > 0) {
-      const markers: MapMarker[] = umkms.map((umkm) => {
-        const [lat, lng] = umkm.coordinates
-          .split(",")
-          .map((coord) => parseFloat(coord));
-        return {
-          id: umkm.id,
-          name: umkm.name,
-          position: { lat, lng },
-          address: umkm.address,
-          maps1: umkm.maps1,
-          maps2: umkm.maps2,
-        };
-      });
+      const markers: MapMarker[] = umkms
+        .filter((umkm) => typeof umkm.coordinates === "string" && umkm.coordinates.includes(","))
+        .map((umkm) => {
+          const [lat, lng] = umkm.coordinates
+            .split(",")
+            .map((coord) => parseFloat(coord));
+          return {
+            id: umkm.id,
+            name: umkm.name,
+            position: { lat, lng },
+            address: umkm.address,
+            maps1: umkm.maps1,
+            maps2: umkm.maps2,
+          };
+        });
       setMapMarkers(markers);
     }
   }, [umkms]);
