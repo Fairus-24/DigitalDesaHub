@@ -124,13 +124,6 @@ export default function Dashboard() {
   };
 
   const UmkmForm = ({ data, setData, isEdit = false }: { data: Partial<Umkm>, setData: (data: Partial<Umkm>) => void, isEdit?: boolean }) => {
-    useEffect(() => {
-      if (!isEdit && !data.reviews) {
-        const dummyReviews = generateDummyReviews();
-        setData({ ...data, reviews: dummyReviews });
-      }
-    }, [isEdit, data, setData]);
-    
     return (
       <div className="grid gap-4 py-4">
         <div className="grid grid-cols-2 gap-4">
@@ -338,7 +331,7 @@ export default function Dashboard() {
                   <DialogTrigger asChild>
                     <Button><Plus className="w-4 h-4 mr-2" /> Add Category</Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-md">
+                  <DialogContent className="max-w-md bg-white">
                     <DialogHeader>
                       <DialogTitle>Add New Category</DialogTitle>
                     </DialogHeader>
