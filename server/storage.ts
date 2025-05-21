@@ -509,12 +509,14 @@ export class MemStorage implements IStorage {
     // village profile
     const vp: InsertVillageProfile = {
       name: "Kelurahan Sukodono",
-      description: "Pusat informasi digital...",
-      history: "...sejak tahun 1945...",
-      vision: "Menjadikan...",
+      description: "Pusat informasi digital untuk mempromosikan potensi desa dan mendukung UMKM lokal.",
+      history: "Kelurahan Sukodono merupakan salah satu kelurahan di Kecamatan Gresik, Kabupaten Gresik, Provinsi Jawa Timur. Wilayah ini dikenal sebagai pusat produksi jajanan khas Gresik, seperti pudak, otak-otak bandeng, jenang jubung, kerupuk ikan Gresik, opak giri, dan aneka makanan khas lainnya.",
+      vision: "Menjadikan Kelurahan Sukodono sebagai desa mandiri dan berkelanjutan melalui pemberdayaan ekonomi lokal dan pelestarian budaya.",
       mission: JSON.stringify([
-        "Meningkatkan taraf hidup...",
-        "Mengembangkan potensi alam...",
+        "Meningkatkan taraf hidup masyarakat melalui pemberdayaan UMKM",
+        "Mengembangkan potensi alam desa secara berkelanjutan",
+        "Melestarikan kearifan lokal dan budaya desa",
+        "Menciptakan lingkungan desa yang bersih dan sehat",
       ]),
       population: 1220,
       umkmCount: 52,
