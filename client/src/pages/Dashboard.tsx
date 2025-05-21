@@ -18,7 +18,6 @@ import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
-// Perbaikan: Gunakan tipe yang konsisten antara string[] dan string pada state newUmkm
 export default function Dashboard() {
   const queryClient = useQueryClient();
   const { data: umkms = [] } = useQuery<Umkm[]>({
@@ -37,23 +36,6 @@ export default function Dashboard() {
   });
   const { toast } = useToast();
 
-  // Gunakan tipe yang sesuai dengan Umkm
-  const [newUmkm, setNewUmkm] = useState<Partial<Umkm>>({
-    name: "",
-    description: "",
-    history: "",
-    currentCondition: "",
-    imageUrl: "",
-    productImages: [], // string[]
-    location: "",
-    address: "",
-    categoryId: 1,
-    promotionText: "",
-    coordinates: "",
-    maps1: "",
-    maps2: "",
-    reviews: [], // array of review object
-  });
   const [editingUmkm, setEditingUmkm] = useState<Umkm | null>(null);
   const [deletedUmkms, setDeletedUmkms] = useState<Umkm[]>([]);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -73,7 +55,6 @@ export default function Dashboard() {
       queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/umkms`] });
       toast({ title: "Success", description: "UMKM created successfully" });
       setIsAddDialogOpen(false);
-      setNewUmkm({});
     }
   });
 
@@ -106,43 +87,6 @@ export default function Dashboard() {
       toast({ title: "Success", description: "UMKM moved to recycle bin" });
     }
   });
-
-  // Tambahkan useEffect untuk update categoryId jika categories sudah ada dan newUmkm belum diisi
-  useEffect(() => {
-    if (categories.length > 0 && !newUmkm.categoryId) {
-      setNewUmkm((prev) => ({ ...prev, categoryId: categories[0].id }));
-    }
-  }, [categories]);
-  
-  // State untuk Add UMKM (per field)
-  const [umkmName, setUmkmName] = useState("");
-  const [umkmCategoryId, setUmkmCategoryId] = useState(1);
-  const [umkmDescription, setUmkmDescription] = useState("");
-  const [umkmHistory, setUmkmHistory] = useState("");
-  const [umkmCurrentCondition, setUmkmCurrentCondition] = useState("");
-  const [umkmImageUrl, setUmkmImageUrl] = useState("");
-  const [umkmProductImages, setUmkmProductImages] = useState<string[]>([]);
-  const [umkmLocation, setUmkmLocation] = useState("");
-  const [umkmAddress, setUmkmAddress] = useState("");
-  const [umkmPromotionText, setUmkmPromotionText] = useState("");
-  const [umkmCoordinates, setUmkmCoordinates] = useState("");
-  const [umkmMaps1, setUmkmMaps1] = useState("");
-  const [umkmMaps2, setUmkmMaps2] = useState("");
-
-  // State untuk Edit UMKM (per field)
-  const [editUmkmName, setEditUmkmName] = useState("");
-  const [editUmkmCategoryId, setEditUmkmCategoryId] = useState(1);
-  const [editUmkmDescription, setEditUmkmDescription] = useState("");
-  const [editUmkmHistory, setEditUmkmHistory] = useState("");
-  const [editUmkmCurrentCondition, setEditUmkmCurrentCondition] = useState("");
-  const [editUmkmImageUrl, setEditUmkmImageUrl] = useState("");
-  const [editUmkmProductImages, setEditUmkmProductImages] = useState<string[]>([]);
-  const [editUmkmLocation, setEditUmkmLocation] = useState("");
-  const [editUmkmAddress, setEditUmkmAddress] = useState("");
-  const [editUmkmPromotionText, setEditUmkmPromotionText] = useState("");
-  const [editUmkmCoordinates, setEditUmkmCoordinates] = useState("");
-  const [editUmkmMaps1, setEditUmkmMaps1] = useState("");
-  const [editUmkmMaps2, setEditUmkmMaps2] = useState("");
 
   // Sinkronisasi state edit ketika editingUmkm berubah
   useEffect(() => {

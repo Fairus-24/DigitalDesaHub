@@ -141,7 +141,7 @@ export default function Footer() {
 
         <div className="border-t border-white border-opacity-20 pt-6 text-center text-sm">
           <p>
-            &copy; {new Date().getFullYear()} Kelurahan Sukodono. Hak Cipta
+            &copy; {new Date().getFullYear()} KKN Narotama 2025. Hak Cipta
             Dilindungi.
           </p>
         </div>
