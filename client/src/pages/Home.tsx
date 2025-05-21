@@ -23,16 +23,7 @@ export default function Home() {
     queryKey: ["/api/village-profile"],
   });
 
-  useEffect(() => {
-    if (villageProfileError) {
-      toast({
-        title: "Error",
-        description: "Gagal memuat profil desa. Silakan coba lagi nanti.",
-        variant: "destructive",
-      });
-    }
-  }, [villageProfileError, toast]);
-
+  
   const handleViewMapClick = (umkmId: number) => {
     setSelectedUmkmId(umkmId);
 
@@ -47,6 +38,7 @@ export default function Home() {
     <>
       <Helmet>
         <title>Kelurahan Sukodono - Pusat Informasi dan UMKM Lokal</title>
+        <link rel="icon" href="../assets/favicon.ico" />
         <meta
           name="description"
           content="Website Desa Sejahtera menyediakan informasi desa dan mendukung pemberdayaan UMKM lokal. Temukan produk-produk berkualitas dan lokasi usaha mikro di desa kami."

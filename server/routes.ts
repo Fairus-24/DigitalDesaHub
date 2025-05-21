@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { z } from "zod";
+import { adminDb } from './firebase-admin';
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes
@@ -214,6 +215,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ ...profile, mission: missionResponse });
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch village profile' });
+    }
+  });
+
+  // ENDPOINT MIGRASI DATA STORAGE -> FIRESTORE
+  app.post('/api/migrate-to-firestore', async (req, res) => {
+    try {
+      // Migrasi kategori
+      const categories = await storage.getCategories();
+      for (const cat of categories) {
+        await adminDb.collection('kategori').doc(String(cat.id)).set(cat);
+      }
+      // Migrasi UMKM
+      const umkms = await storage.getUmkms();
+      for (const umkm of umkms) {
+        await adminDb.collection('umkm').doc(String(umkm.id)).set(umkm);
+      }
+      res.json({ success: true, message: 'Migrasi data ke Firestore berhasil!' });
+    } catch (err) {
+      res.status(500).json({ success: false, error: err?.toString() });
     }
   });
 

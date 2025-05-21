@@ -14,14 +14,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Trash2, RefreshCw, Edit, Plus } from 'lucide-react';
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+import { getUMKM, addUMKM, getKategori, addKategori, updateUMKM, deleteUMKM, restoreUMKM, updateKategori, deleteKategori } from '@/lib/umkmService';
 
 // Perbaikan: Gunakan tipe yang konsisten antara string[] dan string pada state newUmkm
 export default function Dashboard() {
-  const { data: umkms = [] } = useQuery<Umkm[]>({ queryKey: [`${API_BASE_URL}/api/umkms`] });
-  const { data: categories = [] } = useQuery<Category[]>({ queryKey: [`${API_BASE_URL}/api/categories`] });
   const queryClient = useQueryClient();
+  const { data: umkms = [] } = useQuery({ queryKey: ['firestore-umkms'], queryFn: getUMKM });
+  const { data: categories = [] } = useQuery({ queryKey: ['firestore-categories'], queryFn: getKategori });
   const { toast } = useToast();
 
   // Gunakan tipe yang sesuai dengan Umkm
@@ -48,54 +47,89 @@ export default function Dashboard() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
+  // Tambah UMKM
   const createUmkmMutation = useMutation({
     mutationFn: async (data: Partial<Umkm>) => {
-      const response = await fetch(`${API_BASE_URL}/api/umkms`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) throw new Error('Failed to create UMKM');
-      return response.json();
+      return await addUMKM(data as Umkm);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/umkms`] });
+      queryClient.invalidateQueries({ queryKey: ['firestore-umkms'] });
       toast({ title: "Success", description: "UMKM created successfully" });
       setIsAddDialogOpen(false);
       setNewUmkm({});
     }
   });
 
-  const updateUmkmMutation = useMutation({
-    mutationFn: async (data: Umkm) => {
-      const response = await fetch(`${API_BASE_URL}/api/umkms/${data.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) throw new Error('Failed to update UMKM');
-      return response.json();
+  // Tambah kategori
+  const createCategoryMutation = useMutation({
+    mutationFn: async (data: Partial<Category>) => {
+      return await addKategori(data as Category);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/umkms`] });
-      toast({ title: "Success", description: "UMKM updated successfully" });
-      setIsEditDialogOpen(false);
-      setEditingUmkm(null);
+      queryClient.invalidateQueries({ queryKey: ['firestore-categories'] });
+      toast({ title: "Success", description: "Category created successfully" });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error?.message || 'Failed to create category',
+        variant: 'destructive',
+      });
+      console.error('[createCategoryMutation] Error:', error);
     }
   });
 
   const deleteUmkmMutation = useMutation({
     mutationFn: async (id: number) => {
-      const response = await fetch(`${API_BASE_URL}/api/umkms/${id}`, { method: 'DELETE' });
-      if (!response.ok) throw new Error('Failed to delete UMKM');
+      await deleteUMKM(id);
     },
     onSuccess: (_, id) => {
       const deletedUmkm = umkms.find(u => u.id === id);
       if (deletedUmkm) {
         setDeletedUmkms(prev => [...prev, deletedUmkm]);
       }
-      queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/umkms`] });
+      queryClient.invalidateQueries({ queryKey: ['firestore-umkms'] });
       toast({ title: "Success", description: "UMKM moved to recycle bin" });
+    }
+  });
+
+  const updateUmkmMutation = useMutation({
+    mutationFn: async (data: Partial<Umkm> & { id: number }) => {
+      await updateUMKM(data.id, data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['firestore-umkms'] });
+      toast({ title: "Success", description: "UMKM updated successfully" });
+    }
+  });
+
+  const restoreUmkmMutation = useMutation({
+    mutationFn: async (umkm: Umkm) => {
+      await restoreUMKM(umkm);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['firestore-umkms'] });
+      toast({ title: "Success", description: "UMKM restored" });
+    }
+  });
+
+  const updateCategoryMutation = useMutation({
+    mutationFn: async ({ id, name, slug }: { id: number, name: string, slug: string }) => {
+      await updateKategori(id, { name, slug });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['firestore-categories'] });
+      toast({ title: "Success", description: "Category updated successfully" });
+    }
+  });
+
+  const deleteCategoryMutation = useMutation({
+    mutationFn: async (id: number) => {
+      await deleteKategori(id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['firestore-categories'] });
+      toast({ title: "Success", description: "Category deleted successfully" });
     }
   });
 
@@ -169,7 +203,7 @@ export default function Dashboard() {
   };
 
   const handleRestore = (umkm: Umkm) => {
-    createUmkmMutation.mutate(umkm);
+    restoreUmkmMutation.mutate(umkm);
     setDeletedUmkms(prev => prev.filter(u => u.id !== umkm.id));
   };
 
@@ -327,21 +361,15 @@ export default function Dashboard() {
   const handleJsonSubmit = async () => {
     try {
       const json = JSON.parse(jsonInput);
-      let url = `${API_BASE_URL}/api/umkms`;
-      let method = "POST";
       if (jsonEditId) {
-        url = `${API_BASE_URL}/api/umkms/${jsonEditId}`;
-        method = "PUT";
+        await updateUMKM(jsonEditId, json);
+      } else {
+        await addUMKM(json);
       }
-      await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(json),
-      });
       setIsJsonDialogOpen(false);
       setJsonInput("");
       setJsonEditId(null);
-      queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/umkms`] });
+      queryClient.invalidateQueries({ queryKey: ['firestore-umkms'] });
       toast({ title: "Success", description: jsonEditId ? "UMKM updated from JSON" : "UMKM added from JSON" });
     } catch (e) {
       toast({ title: "Error", description: "Invalid JSON or failed to save" });
@@ -614,16 +642,8 @@ export default function Dashboard() {
                       const formData = new FormData(e.currentTarget);
                       const name = formData.get('name') as string;
                       const slug = name.toLowerCase().replace(/\s+/g, '-');
-                      
-                      fetch(`${API_BASE_URL}/api/categories`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ name, slug }),
-                      }).then(() => {
-                        queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/categories`] });
-                        (e.target as HTMLFormElement).reset();
-                        toast({ title: "Success", description: "Category created successfully" });
-                      });
+                      createCategoryMutation.mutate({ name, slug });
+                      (e.target as HTMLFormElement).reset();
                     }}>
                       <div className="grid gap-4 py-4">
                         <div className="grid gap-2">
@@ -661,14 +681,7 @@ export default function Dashboard() {
                               const newName = window.prompt('Enter new name:', category.name);
                               if (newName) {
                                 const newSlug = newName.toLowerCase().replace(/\s+/g, '-');
-                                fetch(`${API_BASE_URL}/api/categories/${category.id}`, {
-                                  method: 'PUT',
-                                  headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify({ name: newName, slug: newSlug }),
-                                }).then(() => {
-                                  queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/categories`] });
-                                  toast({ title: "Success", description: "Category updated successfully" });
-                                });
+                                updateCategoryMutation.mutate({ id: category.id, name: newName, slug: newSlug });
                               }
                             }}
                           >
@@ -679,12 +692,7 @@ export default function Dashboard() {
                             size="sm"
                             onClick={() => {
                               if (window.confirm('Are you sure you want to delete this category?')) {
-                                fetch(`${API_BASE_URL}/api/categories/${category.id}`, {
-                                  method: 'DELETE',
-                                }).then(() => {
-                                  queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/categories`] });
-                                  toast({ title: "Success", description: "Category deleted successfully" });
-                                });
+                                deleteCategoryMutation.mutate(category.id);
                               }
                             }}
                           >
