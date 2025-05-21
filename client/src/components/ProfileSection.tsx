@@ -33,7 +33,7 @@ export default function ProfileSection({ villageProfile }: ProfileSectionProps) 
                   'Kelurahan Sukodono memiliki sejarah panjang sejak tahun 1945. Didirikan oleh para pejuang kemerdekaan, desa ini telah berkembang menjadi pusat ekonomi dan budaya di kawasan ini.'}
               </p>
               <p className="text-text-light">
-                Masyarakat desa memiliki tradisi gotong royong yang kuat, tercermin dalam berbagai kegiatan sosial dan pembangunan desa yang melibatkan seluruh warga.
+                Kelurahan Sukodono merupakan salah satu kelurahan di Kecamatan Gresik, Kabupaten Gresik, Provinsi Jawa Timur. Wilayah ini dikenal sebagai pusat produksi jajanan khas Gresik, seperti pudak, otak-otak bandeng, jenang jubung, kerupuk ikan Gresik, opak giri, dan aneka makanan khas lainnya. 
               </p>
             </div>
           </div>
@@ -46,9 +46,9 @@ export default function ProfileSection({ villageProfile }: ProfileSectionProps) 
                 className="w-full md:w-1/3 h-48 md:h-auto object-cover"
               />
               <div className="p-6 flex-1">
-                <h3 className="font-heading font-bold text-xl mb-2">Sumber Daya Alam</h3>
+                <h3 className="font-heading font-bold text-xl mb-2">Umkm</h3>
                 <p className="text-text-light">
-                  Desa Sejahtera kaya akan hasil pertanian seperti padi, jagung, dan sayuran. Selain itu, desa ini memiliki hutan bambu yang menjadi bahan baku kerajinan lokal.
+                  Pemerintah Kabupaten Gresik telah menunjukkan komitmen dalam mendukung pengembangan UMKM melalui berbagai program pelatihan, akses permodalan, dan promosi produk lokal. Dukungan ini bertujuan untuk meningkatkan daya saing UMKM di pasar lokal maupun nasional, serta mendorong pertumbuhan ekonomi berbasis komunitas.<br />Dengan mempertahankan tradisi kuliner khas dan mengadopsi inovasi dalam produksi serta pemasaran, UMKM di Kelurahan Sukodono berpotensi untuk terus berkembang dan memberikan kontribusi signifikan terhadap perekonomian daerah.
                 </p>
               </div>
             </div>
@@ -62,7 +62,7 @@ export default function ProfileSection({ villageProfile }: ProfileSectionProps) 
               <div className="p-6 flex-1">
                 <h3 className="font-heading font-bold text-xl mb-2">Budaya Lokal</h3>
                 <p className="text-text-light">
-                  Kesenian tradisional seperti tari-tarian dan musik gamelan masih dilestarikan. Festival tahunan desa menarik pengunjung dari berbagai daerah.
+                  Kelurahan Sukodono memainkan peran penting dalam menjaga dan melestarikan budaya lokal Gresik, terutama dalam bidang kuliner dan partisipasi aktif dalam festival budaya. Melalui berbagai kegiatan komunitas dan pelestarian tradisi, Sukodono terus memperkuat identitas budaya lokal dan berkontribusi pada kekayaan budaya Kabupaten Gresik.
                 </p>
               </div>
             </div>
@@ -74,7 +74,7 @@ export default function ProfileSection({ villageProfile }: ProfileSectionProps) 
             <div className="mb-6 md:mb-0 md:mr-6">
               <h3 className="font-heading font-bold text-2xl mb-3">Visi & Misi Desa</h3>
               <p className="text-text-light mb-4">
-                {villageProfile?.vision || 'Menjadikan Desa Sejahtera sebagai desa mandiri dan berkelanjutan melalui pemberdayaan ekonomi lokal dan pelestarian budaya.'}
+                {villageProfile?.vision || 'Menjadikan Kelurahan Sukodono sebagai desa mandiri dan berkelanjutan melalui pemberdayaan ekonomi lokal dan pelestarian budaya.'}
               </p>
               <ul className="list-disc list-inside text-text-light space-y-2">
                 {villageProfile?.mission.map((item, index) => (
@@ -93,7 +93,7 @@ export default function ProfileSection({ villageProfile }: ProfileSectionProps) 
               <div className="flex space-x-4 md:space-x-6">
                 <div className="bg-white rounded-lg p-4 shadow text-center w-24">
                   <div className="text-primary text-2xl font-bold">
-                    {villageProfile?.population.toLocaleString() || '1,250'}
+                    {villageProfile?.population.toLocaleString() || '1,220'}
                   </div>
                   <div className="text-text-light text-sm">Penduduk</div>
                 </div>
