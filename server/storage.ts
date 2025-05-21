@@ -265,7 +265,7 @@ export class MemStorage implements IStorage {
         description:
           "Memproduksi berbagai kerajinan tangan berupa gelang manik (Crystal kaca) yang elegan dan menawan.",
         imageUrl:
-          "https://down-id.img.susercontent.com/file/id-11134207-7r98z-lnh14d40x6o1c6",
+          "https://raw.githubusercontent.com/Fairus-24/DigitalDesaHub/refs/heads/main/client/src/components/Assets/Yayuk%20Collection.png",
         location: "Sindujoyo 21/51",
         address: "Jl. Sindujoyo Gg. XXI No.51",
         categoryId: 1, // Kerajinan
@@ -308,7 +308,7 @@ export class MemStorage implements IStorage {
         description:
           "Menyajikan berbagai kue kering yang dibuat dari bahan-bahan lokal berkualitas. Spesialisasi kami adalah kue kering tradisional dengan sentuhan modern yang cocok untuk berbagai acara.",
         imageUrl:
-          "https://2112snackdelight.com/wp-content/uploads/2020/11/products-image-nutella-cookies-04.jpg",
+          "https://raw.githubusercontent.com/Fairus-24/DigitalDesaHub/refs/heads/main/client/src/components/Assets/Yaris%20Cookies.png",
         location: "Sindujoyo 13/08",
         address: "Jl. Sindujoyo Gg. XIII No.08",
         categoryId: 2, // Makanan
@@ -345,7 +345,7 @@ export class MemStorage implements IStorage {
         description:
           "Menyajikan berbagai minuman kemasan dan kopi khas dari gresik yang kental dan nikmat. Tempat nongkrong favorit warga sekitar dengan suasana yang nyaman dan harga terjangkau.",
         imageUrl:
-          "https://manual.co.id/wp-content/uploads/2021/11/manual_photo_essay_warkop_web-18-980x719.jpg",
+          "https://raw.githubusercontent.com/Fairus-24/DigitalDesaHub/refs/heads/main/client/src/components/Assets/Warkop%20Mama%20Atul.png",
         location: "KH Hasyim Asyari",
         address: "Jl. K.H. Hasyim Asyari gang pasar",
         categoryId: 3, // Kedai
@@ -388,7 +388,7 @@ export class MemStorage implements IStorage {
         description:
           "Memproduksi suvenir seperti bucket bunga, jajanan, uang dll, dan juga memproduksi jajanan kue kering. Menghadirkan kreasi handmade berkualitas tinggi dengan design yang unik dan modern.",
         imageUrl:
-          "https://threebouquets.com/cdn/shop/articles/toko-bunga-terdekat.jpg?v=1659941837",
+          "https://raw.githubusercontent.com/Fairus-24/DigitalDesaHub/refs/heads/main/client/src/components/Assets/Farah%20Craft.png",
         location: "Sindujoyo 13/46",
         address: "Jl. Sindujoyo Gg. XIII No.466",
         categoryId: 1, // Kerajinan
@@ -515,7 +515,7 @@ export class MemStorage implements IStorage {
         name: "Warung Kopi Cak Udin",
         description: "Warkop Cak Udin menyajikan berbagai jenis kopi dan minuman dengan suasana yang nyaman dan harga terjangkau. Tempat favorit untuk nongkrong dan bersantai bagi warga sekitar.",
         imageUrl:
-          "https://manual.co.id/wp-content/uploads/2021/11/manual_photo_essay_warkop_web-14-980x719.jpg",
+          "https://raw.githubusercontent.com/Fairus-24/DigitalDesaHub/refs/heads/main/client/src/components/Assets/Warkop%20Cak%20Udin.png",
         location: "KH Hasyim Asyari",
         address: "Jl. K.H. Hasyim Asyari No. 1",
         categoryId: 3,
@@ -576,12 +576,14 @@ export class MemStorage implements IStorage {
     // village profile
     const vp: InsertVillageProfile = {
       name: "Kelurahan Sukodono",
-      description: "Pusat informasi digital...",
-      history: "...sejak tahun 1945...",
-      vision: "Menjadikan...",
+      description: "Pusat informasi digital untuk mempromosikan potensi desa dan mendukung UMKM lokal.",
+      history: "Kelurahan Sukodono merupakan salah satu kelurahan di Kecamatan Gresik, Kabupaten Gresik, Provinsi Jawa Timur.",
+      vision: "Menjadikan Kelurahan Sukodono sebagai desa mandiri dan berkelanjutan melalui pemberdayaan ekonomi lokal dan pelestarian budaya.",
       mission: JSON.stringify([
-        "Meningkatkan taraf hidup...",
-        "Mengembangkan potensi alam...",
+        "Meningkatkan taraf hidup masyarakat melalui pemberdayaan UMKM",
+        "Mengembangkan potensi alam desa secara berkelanjutan",
+        "Melestarikan kearifan lokal dan budaya desa",
+        "Menciptakan lingkungan desa yang bersih dan sehat",
       ]),
       population: 1220,
       umkmCount: 52,

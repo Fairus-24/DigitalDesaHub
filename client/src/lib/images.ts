@@ -3,10 +3,10 @@
 
 // Village landscape images
 export const VILLAGE_IMAGES = {
-  HERO: "https://cdn.pixabay.com/photo/2016/03/27/19/49/bamboo-1283976_1280.jpg",
-  TRADITIONAL_VILLAGE: "https://cdn.pixabay.com/photo/2022/01/30/12/07/city-6980582_1280.jpg",
-  FOREST: "https://cdn.pixabay.com/photo/2017/04/22/16/00/water-resources-2251633_1280.jpg",
-  CULTURE: "https://cdn.pixabay.com/photo/2023/03/14/11/53/gamelan-7852175_1280.jpg"
+  HERO: "https://raw.githubusercontent.com/Fairus-24/DigitalDesaHub/refs/heads/main/client/src/components/Assets/c957130e-e0aa-434d-a746-01cfddb565ff.jpg",
+  TRADITIONAL_VILLAGE: "https://raw.githubusercontent.com/Fairus-24/DigitalDesaHub/refs/heads/main/client/src/components/Assets/5db43e1d-47bd-48bf-b01b-4c93579694cd.jpg",
+  FOREST: "https://asset.kompas.com/crops/6o1zT5mmr9qjO1RzUqAXf4rhS_o=/0x0:1000x667/750x500/data/photo/2021/05/11/6099ee8edc078.jpeg",
+  CULTURE: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhxQgjEw0vSFiO9EojEv2YelPz5XBUH7xDfVXk7wnLay2SEY8SJFzKKznCftAnfw3kujPZlua91GgFGbtvD4PZRBku37Z77q9i7aGINb-Qf-sM2MmMw2yO-tmjVSfB1ARgbErXVNWDHECr-/w1200-h630-p-k-no-nu/DSC_5299.jpg"
 };
 
 // Small business product images
