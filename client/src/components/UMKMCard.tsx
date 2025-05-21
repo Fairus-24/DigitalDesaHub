@@ -15,7 +15,7 @@ export default function UMKMCard({ umkm, onViewMapClick, categoryName }: UMKMCar
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-lg relative group transition-all duration-300 hover:shadow-xl">
       <div 
-        onClick={() => navigate(`umkm/${umkm.id}`)}
+        onClick={() => navigate(`/umkm/${umkm.id}`)}
         className="cursor-pointer relative overflow-hidden"
       >
         <img 
