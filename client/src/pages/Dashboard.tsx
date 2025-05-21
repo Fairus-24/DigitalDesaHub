@@ -43,6 +43,36 @@ export default function Dashboard() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
+  // Add UMKM form state (one useState per field)
+  const [umkmName, setUmkmName] = useState("");
+  const [umkmCategoryId, setUmkmCategoryId] = useState(1);
+  const [umkmDescription, setUmkmDescription] = useState("");
+  const [umkmHistory, setUmkmHistory] = useState("");
+  const [umkmCurrentCondition, setUmkmCurrentCondition] = useState("");
+  const [umkmImageUrl, setUmkmImageUrl] = useState("");
+  const [umkmProductImages, setUmkmProductImages] = useState<string[]>([]);
+  const [umkmLocation, setUmkmLocation] = useState("");
+  const [umkmAddress, setUmkmAddress] = useState("");
+  const [umkmPromotionText, setUmkmPromotionText] = useState("");
+  const [umkmCoordinates, setUmkmCoordinates] = useState("");
+  const [umkmMaps1, setUmkmMaps1] = useState("");
+  const [umkmMaps2, setUmkmMaps2] = useState("");
+
+  // Edit UMKM form state (one useState per field)
+  const [editUmkmName, setEditUmkmName] = useState("");
+  const [editUmkmCategoryId, setEditUmkmCategoryId] = useState(1);
+  const [editUmkmDescription, setEditUmkmDescription] = useState("");
+  const [editUmkmHistory, setEditUmkmHistory] = useState("");
+  const [editUmkmCurrentCondition, setEditUmkmCurrentCondition] = useState("");
+  const [editUmkmImageUrl, setEditUmkmImageUrl] = useState("");
+  const [editUmkmProductImages, setEditUmkmProductImages] = useState<string[]>([]);
+  const [editUmkmLocation, setEditUmkmLocation] = useState("");
+  const [editUmkmAddress, setEditUmkmAddress] = useState("");
+  const [editUmkmPromotionText, setEditUmkmPromotionText] = useState("");
+  const [editUmkmCoordinates, setEditUmkmCoordinates] = useState("");
+  const [editUmkmMaps1, setEditUmkmMaps1] = useState("");
+  const [editUmkmMaps2, setEditUmkmMaps2] = useState("");
+
   const createUmkmMutation = useMutation({
     mutationFn: async (data: Partial<Umkm>) => {
       const res = await axios.post(`${API_BASE_URL}/api/umkms`, data, {
@@ -262,13 +292,6 @@ export default function Dashboard() {
     </div>
   );
 
-  // Tambahkan useEffect untuk update categoryId jika categories sudah ada dan newUmkm belum diisi
-  useEffect(() => {
-    if (categories.length > 0 && !newUmkm.categoryId) {
-      setNewUmkm((prev) => ({ ...prev, categoryId: categories[0].id }));
-    }
-  }, [categories]);
-  
   // State for JSON input dialog
   const [isJsonDialogOpen, setIsJsonDialogOpen] = useState(false);
   const [jsonInput, setJsonInput] = useState("");
