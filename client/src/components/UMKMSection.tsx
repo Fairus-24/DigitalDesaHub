@@ -38,7 +38,8 @@ export default function UMKMSection({ onViewMapClick }: UMKMSectionProps) {
     queryKey: [`${API_BASE_URL}/api/umkms`],
     queryFn: async () => {
       const res = await axios.get(`${API_BASE_URL}/api/umkms`);
-      return res.data;
+      // Pastikan selalu array
+      return Array.isArray(res.data) ? res.data : [];
     }
   });
 
