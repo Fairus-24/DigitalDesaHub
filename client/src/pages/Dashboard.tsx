@@ -68,6 +68,14 @@ export default function Dashboard() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['firestore-categories'] });
       toast({ title: "Success", description: "Category created successfully" });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error?.message || 'Failed to create category',
+        variant: 'destructive',
+      });
+      console.error('[createCategoryMutation] Error:', error);
     }
   });
 

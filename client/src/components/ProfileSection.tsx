@@ -15,7 +15,7 @@ export default function ProfileSection({ villageProfile }: ProfileSectionProps) 
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto mt-4 mb-6"></div>
           <p className="text-text-light max-w-3xl mx-auto">
-            Mengenal lebih dekat desa kami dengan berbagai potensi alam dan budaya yang menjadi kebanggaan masyarakat lokal.
+            Mengenal lebih dekat desa kami dengan berbagai potensi umkm dan budaya yang menjadi kebanggaan masyarakat lokal.
           </p>
         </div>
 
@@ -48,7 +48,7 @@ export default function ProfileSection({ villageProfile }: ProfileSectionProps) 
               <div className="p-6 flex-1">
                 <h3 className="font-heading font-bold text-xl mb-2">Umkm</h3>
                 <p className="text-text-light">
-                  Pemerintah Kabupaten Gresik telah menunjukkan komitmen dalam mendukung pengembangan UMKM melalui berbagai program pelatihan, akses permodalan, dan promosi produk lokal. Dukungan ini bertujuan untuk meningkatkan daya saing UMKM di pasar lokal maupun nasional, serta mendorong pertumbuhan ekonomi berbasis komunitas.<br />Dengan mempertahankan tradisi kuliner khas dan mengadopsi inovasi dalam produksi serta pemasaran, UMKM di Kelurahan Sukodono berpotensi untuk terus berkembang dan memberikan kontribusi signifikan terhadap perekonomian daerah.
+                  Dengan mempertahankan tradisi kuliner khas dan mengadopsi inovasi dalam produksi serta pemasaran, UMKM di Kelurahan Sukodono berpotensi untuk terus berkembang dan memberikan kontribusi signifikan terhadap perekonomian daerah.
                 </p>
               </div>
             </div>

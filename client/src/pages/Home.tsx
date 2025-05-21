@@ -23,16 +23,7 @@ export default function Home() {
     queryKey: ["/api/village-profile"],
   });
 
-  useEffect(() => {
-    if (villageProfileError) {
-      toast({
-        title: "Error",
-        description: "Gagal memuat profil desa. Silakan coba lagi nanti.",
-        variant: "destructive",
-      });
-    }
-  }, [villageProfileError, toast]);
-
+  
   const handleViewMapClick = (umkmId: number) => {
     setSelectedUmkmId(umkmId);
 

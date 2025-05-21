@@ -76,7 +76,15 @@ export async function getKategori(): Promise<Category[]> {
 
 // Tambah data kategori
 export async function addKategori(data: Category) {
-  return await addDoc(collection(db, "kategori"), data);
+  try {
+    console.log('[addKategori] Data to add:', data);
+    const result = await addDoc(collection(db, "kategori"), data);
+    console.log('[addKategori] Firestore result:', result);
+    return result;
+  } catch (err) {
+    console.error('[addKategori] Firestore error:', err);
+    throw err;
+  }
 }
 
 // Update Category by doc id
