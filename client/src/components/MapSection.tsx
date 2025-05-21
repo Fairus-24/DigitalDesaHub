@@ -17,9 +17,9 @@ export default function MapSection({ selectedUmkmId }: MapSectionProps) {
   const mapRef = useRef<HTMLIFrameElement>(null);
 
   const { data: umkms = [], isLoading } = useQuery<Umkm[]>({
-    queryKey: [`${API_BASE_URL}api/umkms`],
+    queryKey: [`${API_BASE_URL}/api/umkms`],
     queryFn: async () => {
-      const res = await axios.get(`${API_BASE_URL}api/umkms`);
+      const res = await axios.get(`${API_BASE_URL}/api/umkms`);
       return res.data;
     }
   });
