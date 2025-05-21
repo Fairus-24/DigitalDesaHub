@@ -5,6 +5,9 @@ import { Umkm } from '@/lib/types';
 import { ArrowLeft, MapPin, Star, MessageSquare, User2, Clock, Phone, Mail, Instagram, Facebook } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { format } from 'date-fns';
+import axios from 'axios';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 export default function UMKMDetail() {
   const { id } = useParams();
@@ -15,7 +18,11 @@ export default function UMKMDetail() {
   }, []);
 
   const { data: umkm, isLoading } = useQuery<Umkm>({
-    queryKey: [`/api/umkms/${id}`],
+    queryKey: [`${API_BASE_URL}/api/umkms/${id}`],
+    queryFn: async () => {
+      const res = await axios.get(`${API_BASE_URL}/api/umkms/${id}`);
+      return res.data;
+    }
   });
 
   if (isLoading) {

@@ -4,10 +4,13 @@ import { Category, Umkm } from '@/lib/types';
 import UMKMCard from './UMKMCard';
 import { ArrowRight } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
+import axios from 'axios';
 
 interface UMKMSectionProps {
   onViewMapClick: (umkmId: number) => void;
 }
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 export default function UMKMSection({ onViewMapClick }: UMKMSectionProps) {
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
@@ -20,7 +23,11 @@ export default function UMKMSection({ onViewMapClick }: UMKMSectionProps) {
     data: categories = [], 
     isLoading: isCategoriesLoading 
   } = useQuery<Category[]>({ 
-    queryKey: ['/api/categories'] 
+    queryKey: [`${API_BASE_URL}/api/categories`],
+    queryFn: async () => {
+      const res = await axios.get(`${API_BASE_URL}/api/categories`);
+      return res.data;
+    }
   });
 
   // Fetch UMKMs
@@ -28,7 +35,11 @@ export default function UMKMSection({ onViewMapClick }: UMKMSectionProps) {
     data: umkms = [], 
     isLoading: isUmkmsLoading 
   } = useQuery<Umkm[]>({ 
-    queryKey: ['/api/umkms'] 
+    queryKey: [`${API_BASE_URL}/api/umkms`],
+    queryFn: async () => {
+      const res = await axios.get(`${API_BASE_URL}/api/umkms`);
+      return res.data;
+    }
   });
 
   useEffect(() => {

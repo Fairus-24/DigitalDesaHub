@@ -14,14 +14,27 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Trash2, RefreshCw, Edit, Plus } from 'lucide-react';
+import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 // Perbaikan: Gunakan tipe yang konsisten antara string[] dan string pada state newUmkm
 export default function Dashboard() {
-  const { data: umkms = [] } = useQuery<Umkm[]>({ queryKey: [`${API_BASE_URL}/api/umkms`] });
-  const { data: categories = [] } = useQuery<Category[]>({ queryKey: [`${API_BASE_URL}/api/categories`] });
   const queryClient = useQueryClient();
+  const { data: umkms = [] } = useQuery<Umkm[]>({
+    queryKey: [`${API_BASE_URL}/api/umkms`],
+    queryFn: async () => {
+      const res = await axios.get(`${API_BASE_URL}/api/umkms`);
+      return res.data;
+    }
+  });
+  const { data: categories = [] } = useQuery<Category[]>({
+    queryKey: [`${API_BASE_URL}/api/categories`],
+    queryFn: async () => {
+      const res = await axios.get(`${API_BASE_URL}/api/categories`);
+      return res.data;
+    }
+  });
   const { toast } = useToast();
 
   // Gunakan tipe yang sesuai dengan Umkm
@@ -50,13 +63,11 @@ export default function Dashboard() {
 
   const createUmkmMutation = useMutation({
     mutationFn: async (data: Partial<Umkm>) => {
-      const response = await fetch(`${API_BASE_URL}/api/umkms`, {
-        method: 'POST',
+      const res = await axios.post(`${API_BASE_URL}/api/umkms`, data, {
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        withCredentials: true,
       });
-      if (!response.ok) throw new Error('Failed to create UMKM');
-      return response.json();
+      return res.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/umkms`] });
@@ -68,13 +79,11 @@ export default function Dashboard() {
 
   const updateUmkmMutation = useMutation({
     mutationFn: async (data: Umkm) => {
-      const response = await fetch(`${API_BASE_URL}/api/umkms/${data.id}`, {
-        method: 'PUT',
+      const res = await axios.put(`${API_BASE_URL}/api/umkms/${data.id}`, data, {
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        withCredentials: true,
       });
-      if (!response.ok) throw new Error('Failed to update UMKM');
-      return response.json();
+      return res.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/umkms`] });
@@ -86,8 +95,7 @@ export default function Dashboard() {
 
   const deleteUmkmMutation = useMutation({
     mutationFn: async (id: number) => {
-      const response = await fetch(`${API_BASE_URL}/api/umkms/${id}`, { method: 'DELETE' });
-      if (!response.ok) throw new Error('Failed to delete UMKM');
+      await axios.delete(`${API_BASE_URL}/api/umkms/${id}`, { withCredentials: true });
     },
     onSuccess: (_, id) => {
       const deletedUmkm = umkms.find(u => u.id === id);
@@ -333,11 +341,11 @@ export default function Dashboard() {
         url = `${API_BASE_URL}/api/umkms/${jsonEditId}`;
         method = "PUT";
       }
-      await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(json),
-      });
+      if (method === "POST") {
+        await axios.post(url, json, { headers: { 'Content-Type': 'application/json' }, withCredentials: true });
+      } else {
+        await axios.put(url, json, { headers: { 'Content-Type': 'application/json' }, withCredentials: true });
+      }
       setIsJsonDialogOpen(false);
       setJsonInput("");
       setJsonEditId(null);
@@ -609,21 +617,15 @@ export default function Dashboard() {
                     <DialogHeader>
                       <DialogTitle>Add New Category</DialogTitle>
                     </DialogHeader>
-                    <form onSubmit={(e) => {
+                    <form onSubmit={async (e) => {
                       e.preventDefault();
                       const formData = new FormData(e.currentTarget);
                       const name = formData.get('name') as string;
                       const slug = name.toLowerCase().replace(/\s+/g, '-');
-                      
-                      fetch(`${API_BASE_URL}/api/categories`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ name, slug }),
-                      }).then(() => {
-                        queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/categories`] });
-                        (e.target as HTMLFormElement).reset();
-                        toast({ title: "Success", description: "Category created successfully" });
-                      });
+                      await axios.post(`${API_BASE_URL}/api/categories`, { name, slug }, { headers: { 'Content-Type': 'application/json' }, withCredentials: true });
+                      queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/categories`] });
+                      (e.target as HTMLFormElement).reset();
+                      toast({ title: "Success", description: "Category created successfully" });
                     }}>
                       <div className="grid gap-4 py-4">
                         <div className="grid gap-2">
@@ -657,18 +659,13 @@ export default function Dashboard() {
                           <Button
                             variant="outline"
                             size="sm"
-                            onClick={() => {
+                            onClick={async () => {
                               const newName = window.prompt('Enter new name:', category.name);
                               if (newName) {
                                 const newSlug = newName.toLowerCase().replace(/\s+/g, '-');
-                                fetch(`${API_BASE_URL}/api/categories/${category.id}`, {
-                                  method: 'PUT',
-                                  headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify({ name: newName, slug: newSlug }),
-                                }).then(() => {
-                                  queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/categories`] });
-                                  toast({ title: "Success", description: "Category updated successfully" });
-                                });
+                                await axios.put(`${API_BASE_URL}/api/categories/${category.id}`, { name: newName, slug: newSlug }, { headers: { 'Content-Type': 'application/json' }, withCredentials: true });
+                                queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/categories`] });
+                                toast({ title: "Success", description: "Category updated successfully" });
                               }
                             }}
                           >
@@ -677,14 +674,11 @@ export default function Dashboard() {
                           <Button
                             variant="destructive"
                             size="sm"
-                            onClick={() => {
+                            onClick={async () => {
                               if (window.confirm('Are you sure you want to delete this category?')) {
-                                fetch(`${API_BASE_URL}/api/categories/${category.id}`, {
-                                  method: 'DELETE',
-                                }).then(() => {
-                                  queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/categories`] });
-                                  toast({ title: "Success", description: "Category deleted successfully" });
-                                });
+                                await axios.delete(`${API_BASE_URL}/api/categories/${category.id}`, { withCredentials: true });
+                                queryClient.invalidateQueries({ queryKey: [`${API_BASE_URL}/api/categories`] });
+                                toast({ title: "Success", description: "Category deleted successfully" });
                               }
                             }}
                           >

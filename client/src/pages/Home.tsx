@@ -10,6 +10,9 @@ import Footer from "@/components/Footer";
 import { VillageProfile } from "@/lib/types";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
+import axios from "axios";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 export default function Home() {
   const [selectedUmkmId, setSelectedUmkmId] = useState<number | null>(null);
@@ -20,7 +23,15 @@ export default function Home() {
     isLoading: isVillageProfileLoading,
     error: villageProfileError,
   } = useQuery<VillageProfile>({
-    queryKey: ["/api/village-profile"],
+    queryKey: [`${API_BASE_URL}/api/village-profile`],
+    queryFn: async () => {
+      const res = await axios.get(`${API_BASE_URL}/api/village-profile`);
+      // If response is array, return first item, else return as is
+      if (Array.isArray(res.data)) {
+        return res.data[0] || null;
+      }
+      return res.data;
+    },
   });
 
   useEffect(() => {

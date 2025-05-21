@@ -3,6 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import { Umkm, MapMarker } from "@/lib/types";
 import { MapPin } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import axios from 'axios';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 interface MapSectionProps {
   selectedUmkmId: number | null;
@@ -14,7 +17,11 @@ export default function MapSection({ selectedUmkmId }: MapSectionProps) {
   const mapRef = useRef<HTMLIFrameElement>(null);
 
   const { data: umkms = [], isLoading } = useQuery<Umkm[]>({
-    queryKey: ["/api/umkms"],
+    queryKey: [`${API_BASE_URL}/api/umkms`],
+    queryFn: async () => {
+      const res = await axios.get(`${API_BASE_URL}/api/umkms`);
+      return res.data;
+    }
   });
 
   useEffect(() => {
