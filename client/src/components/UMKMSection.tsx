@@ -4,6 +4,7 @@ import { Category, Umkm } from '@/lib/types';
 import UMKMCard from './UMKMCard';
 import { ArrowRight } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { getUMKM, getKategori } from '@/lib/umkmService';
 
 interface UMKMSectionProps {
   onViewMapClick: (umkmId: number) => void;
@@ -15,20 +16,22 @@ export default function UMKMSection({ onViewMapClick }: UMKMSectionProps) {
   const [showAll, setShowAll] = useState(true);
   const [visibleCount, setVisibleCount] = useState(6);
 
-  // Fetch categories
-  const { 
-    data: categories = [], 
-    isLoading: isCategoriesLoading 
-  } = useQuery<Category[]>({ 
-    queryKey: ['/api/categories'] 
+  // Fetch categories dari Firestore
+  const {
+    data: categories = [],
+    isLoading: isCategoriesLoading
+  } = useQuery<Category[]>({
+    queryKey: ['firestore-categories'],
+    queryFn: getKategori
   });
 
-  // Fetch UMKMs
-  const { 
-    data: umkms = [], 
-    isLoading: isUmkmsLoading 
-  } = useQuery<Umkm[]>({ 
-    queryKey: ['/api/umkms'] 
+  // Fetch UMKMs dari Firestore
+  const {
+    data: umkms = [],
+    isLoading: isUmkmsLoading
+  } = useQuery<Umkm[]>({
+    queryKey: ['firestore-umkms'],
+    queryFn: getUMKM
   });
 
   useEffect(() => {
