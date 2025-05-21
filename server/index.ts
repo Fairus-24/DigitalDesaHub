@@ -8,6 +8,7 @@ const app = express();
 app.use(cors({
   origin: [
     "https://kelurahansukodono.netlify.app",
+    "https://kelurahansukodonogresik.biz.id",
     "http://localhost:5173"
   ],
   credentials: true
