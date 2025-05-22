@@ -93,7 +93,7 @@ export default function ProfileSection({ villageProfile }: ProfileSectionProps) 
               <div className="flex space-x-4 md:space-x-6">
                 <div className="bg-white rounded-lg p-4 shadow text-center w-24">
                   <div className="text-primary text-2xl font-bold">
-                    {villageProfile?.population.toLocaleString() || '1,220'}
+                    ± {villageProfile?.population.toLocaleString() || '± 1,220'}
                   </div>
                   <div className="text-text-light text-sm">Penduduk</div>
                 </div>
