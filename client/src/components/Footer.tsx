@@ -119,7 +119,7 @@ export default function Footer() {
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mt-1 mr-3 text-accent flex-shrink-0" />
                 <span>
-                  Jl. Sindujoyo Gg. XIII No.9, Kebungson, Kemuteran, Kec.
+                  Jl. Sindujoyo Gg. XIII No.9, Sukodono, Kec.
                   Gresik, Kabupaten Gresik, Jawa Timur 61116
                 </span>
               </li>
@@ -133,7 +133,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Clock className="h-5 w-5 mr-3 text-accent flex-shrink-0" />
-                <span>Senin - Jumat: 08.00 - 15.00</span>
+                <span>Senin - Kamis: 07.30 - 16.00 (Istirahat 12.00 - 13.00)</span>
+                <br /><span>Jumat: 07.00 - 16.00 (Istirahat 11.30 - 13.00)</span>
               </li>
             </ul>
           </div>
@@ -141,7 +142,7 @@ export default function Footer() {
 
         <div className="border-t border-white border-opacity-20 pt-6 text-center text-sm">
           <p>
-            &copy; {new Date().getFullYear()} KKN Narotama 2025. Hak Cipta
+            &copy; {new Date().getFullYear()} KKN Narotama. Hak Cipta
             Dilindungi.
           </p>
         </div>

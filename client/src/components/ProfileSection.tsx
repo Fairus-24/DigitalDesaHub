@@ -89,26 +89,26 @@ export default function ProfileSection({ villageProfile }: ProfileSectionProps) 
                 )}
               </ul>
             </div>
-            <div className="flex-shrink-0">
-              <div className="flex space-x-4 md:space-x-6">
-                <div className="bg-white rounded-lg p-4 shadow text-center w-24">
-                  <div className="text-primary text-2xl font-bold">
-                    ± {villageProfile?.population.toLocaleString() || '± 1,220'}
-                  </div>
-                  <div className="text-text-light text-sm">Penduduk</div>
+            <div className="flex-shrink-0 flex justify-center items-center">
+              <div className="flex justify-center items-center space-x-4 md:space-x-6">
+              <div className="bg-white rounded-lg p-4 shadow text-center w-24 flex flex-col items-center justify-center">
+                <div className="text-primary text-2xl font-bold">
+                ± {villageProfile?.population.toLocaleString() || '± 1,220'}
                 </div>
-                <div className="bg-white rounded-lg p-4 shadow text-center w-24">
-                  <div className="text-primary text-2xl font-bold">
-                    {villageProfile?.umkmCount || '52'}
-                  </div>
-                  <div className="text-text-light text-sm">UMKM</div>
+                <div className="text-text-light text-sm">Penduduk</div>
+              </div>
+              <div className="bg-white rounded-lg p-4 shadow text-center w-24 flex flex-col items-center justify-center">
+                <div className="text-primary text-2xl font-bold">
+                {villageProfile?.umkmCount || '52'}
                 </div>
-                <div className="bg-white rounded-lg p-4 shadow text-center w-24">
-                  <div className="text-primary text-2xl font-bold">
-                    {villageProfile?.hamletCount || '8'}
-                  </div>
-                  <div className="text-text-light text-sm">RT</div>
+                <div className="text-text-light text-sm">UMKM</div>
+              </div>
+              <div className="bg-white rounded-lg p-4 shadow text-center w-24 flex flex-col items-center justify-center">
+                <div className="text-primary text-2xl font-bold">
+                {villageProfile?.hamletCount || '8'}
                 </div>
+                <div className="text-text-light text-sm">RT</div>
+              </div>
               </div>
             </div>
           </div>
