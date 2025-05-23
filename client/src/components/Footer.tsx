@@ -133,8 +133,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Clock className="h-5 w-5 mr-3 text-accent flex-shrink-0" />
-                <span>Senin - Kamis: 07.30 - 16.00 (Istirahat 12.00 - 13.00)</span>
-                <br /><span>Jumat: 07.00 - 16.00 (Istirahat 11.30 - 13.00)</span>
+                <span>Senin - Jumat: 07.30 - 16.00</span>
               </li>
             </ul>
           </div>
