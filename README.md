@@ -66,5 +66,3 @@ Kontribusi terbuka untuk siapa saja! Silakan baca [CONTRIBUTING.md](CONTRIBUTING
 > *DigitalDesaHub: Menuju Desa Digital yang Lebih Maju & Terhubung!*
 
 ---
-
-Silakan edit bagian-bagian bertanda * sesuai kebutuhan atau detail proyek Anda. Jika ada fitur khusus atau teknologi spesifik lain yang digunakan, tambahkan pada bagian yang relevan.
